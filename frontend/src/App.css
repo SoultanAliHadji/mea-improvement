@@ -1,0 +1,306 @@
+/*---------------------------------------------------------global costumization---------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+.body-bg {
+    background-color: #F5F5F5;
+}
+
+.shadow-all {
+    box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+}
+
+.p-small {
+    font-size: 12px;
+    margin-top: -6px;
+    margin-bottom: 0px;
+}
+
+.notification-tag {
+    width: max-content;
+    height: 20px;
+    background-color: #F0F3FF;
+    border: 2px solid #B1C5F6;
+    font-size: 10px;
+}
+
+.notification-icon {
+    width: 16px;
+    height: 16px;
+
+}
+
+
+
+/*----------------------------------------------------navbar component costumization----------------------------------------------------*/
+.navbar-component .nav-border {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.navbar-component .logo {
+    width: 100%;
+}
+
+.navbar-component .navbar-brand {
+    width: 200px;
+}
+
+.navbar-component .nav-item, .dropdown-item {
+    font-size: 14px;
+}
+
+.navbar-component .dropdown-item:hover {
+    background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
+}
+
+.navbar-component .dropdown-item:active {
+    background-image: linear-gradient(to left, #297209, #297209);
+}
+
+
+
+/*------------------------------------------cctv list button component component costumization------------------------------------------*/
+.cctvlistbutton-component .btn-success:hover {
+    background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
+    color: #3E4958 !important;
+    font-size: 10px !important;
+}
+
+.cctvlistbutton-component .btn-success {
+    background-image: linear-gradient(to right, white, white);
+    color: #3E4958 !important;
+    border: none !important;
+    font-size: small !important;
+    font-size: 10px !important;
+}
+
+.cctvlistbutton-component .btn-success:focus {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    font-size: small !important;
+    font-size: 10px !important;
+}
+
+
+
+/*-------------------------------------------notification list button component costumization-------------------------------------------*/
+.notificationlistbutton-component .btn-success:hover {
+    background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
+    color: #3E4958 !important;
+    font-size: 10px !important;
+}
+
+.notificationlistbutton-component .btn-success {
+    background-image: linear-gradient(to right, white, white);
+    color: #3E4958 !important;
+    border: none !important;
+    font-size: small !important;
+    font-size: 10px !important;
+}
+
+.notificationlistbutton-component .btn-success:focus {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    font-size: small !important;
+    font-size: 10px !important;
+}
+
+.notificationlistbutton-component .details {
+    margin-top: -10px;
+}
+
+
+/*----------------------------------------notification filter component component costumization-----------------------------------------*/
+.notificationfilter-component .btn-success:hover {
+    background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
+    color: #3E4958 !important;
+    font-size: 10px !important;
+}
+
+.notificationfilter-component .btn-success {
+    background-image: linear-gradient(to right, white, white);
+    color: #3E4958 !important;
+    border: none !important;
+    font-size: small !important;
+    font-size: 10px !important;
+}
+
+.notificationfilter-component .btn-success:focus {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    font-size: small !important;
+    font-size: 10px !important;
+}
+
+
+
+/*------------------------------------see all notification button component component costumization-------------------------------------*/
+.seeallnotificationbutton-component .btn-success:hover {
+    background-image: linear-gradient(to right, #297209, #297209);
+    color: white !important;
+    font-size: 10px !important;
+}
+
+.seeallnotificationbutton-component .btn-success {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    font-size: small !important;
+    font-size: 10px !important;
+}
+
+
+
+/*----------------------------------------------validation button component costumization-----------------------------------------------*/
+.validationbutton-component .btn-success:hover {
+    background-image: linear-gradient(to right, #297209, #297209);
+    color: white !important;
+    font-size: 10px !important;
+    width: 76px;
+    height: 32px !important;
+}
+
+.validationbutton-component .btn-success {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    font-size: 10px !important;
+    width: 76px;
+    height: 32px !important;
+}
+
+.validationbutton-component .btn-outline-success:hover {
+    background-image: linear-gradient(to right, #297209, #297209);
+    color: white !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    width: 76px;
+    height: 32px !important;
+}
+
+.validationbutton-component .btn-outline-success {
+    color: #297209 !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    width: 76px;
+    height: 32px !important;
+}
+
+
+
+/*-------------------------------------------------------login page costumization-------------------------------------------------------*/
+.login-page .bg-img {
+    background-image: url("./assets/background/bg_login.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-page .card {
+    width: 70%;
+    height: 82%;
+}
+
+.login-page .card-col-left {
+    width: 75%;
+    height: 90%;
+}
+
+.login-page .logo {
+    width: 70%;
+}
+
+.login-page .btn-success {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+}
+
+.login-page .btn-success:hover {
+    background-image: linear-gradient(to left, #297209, #297209);
+}
+
+
+
+/*-------------------------------------------------live monitoring page costumization---------------------------------------------------*/
+.livemonitoring-body .notification-list {
+    height: 340px;
+}
+
+
+
+/*-------------------------------------------------validasi deviasi page costumization--------------------------------------------------*/
+.validasideviasi-body .deviasi-img {
+    height: 315px;
+}
+
+.validasideviasi-body .notif-icon {
+    margin-top: -6px;
+    margin-bottom: 0px;
+}
+
+.validasideviasi-body .notification-list {
+    height: 380px;
+}
+
+.validasideviasi-body .status .notification-tag {
+    font-size: 12px;
+    font-weight: bolder;
+    width: max-content;
+    height: 22px;
+    background-color: #F0F3FF;
+    border: 2px solid #B1C5F6;
+    margin-bottom: 12px;
+}
+
+
+
+/*-------------------------------------------------data tervalidasi page costumization--------------------------------------------------*/
+.datatervalidasi-body .input-group {
+    width: 240px !important;
+    margin-top: -12px;
+}
+
+.datatervalidasi-body .input-group-text {
+    background-color: white !important;
+}
+
+.datatervalidasi-body .filter-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.datatervalidasi-body .btn-success:hover {
+    background-image: linear-gradient(to right, #297209, #297209);
+    color: white !important;
+    font-size: 10px !important;
+    width: 84px;
+    height: 32px !important;
+}
+
+.datatervalidasi-body .btn-success {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    font-size: 10px !important;
+    width: 84px;
+    height: 32px !important;
+}
+
+.datatervalidasi-body .button-icon {
+    width: 15px;
+}
+
+.datatervalidasi-body .table {
+    font-size: 12px;
+}
+
+.datatervalidasi-body .table-data {
+    max-height: 100px;
+}
+
+.datatervalidasi-body .table .data-img {
+    width: 80px;
+}
+
+.datatervalidasi-body .table-success {
+    background-image: linear-gradient(to right, #3B9315, #3b9315) !important;
+    color: white;
+}
