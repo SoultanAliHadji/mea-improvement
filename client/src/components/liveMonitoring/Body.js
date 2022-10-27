@@ -34,7 +34,7 @@ const Body = () => {
                 <div className="d-grid px-2 py-2">
                   <img
                     className="mw-100 border border-3 border-dark"
-                    src={require("../../assets/mining_eyes.jpg")}
+                    src="http://10.1.74.9:5000/video_feed/1"
                     alt=""
                   />
                   <div className="bg-dark">
