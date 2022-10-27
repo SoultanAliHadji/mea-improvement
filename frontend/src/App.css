@@ -292,8 +292,8 @@
     font-size: 12px;
 }
 
-.datatervalidasi-body .table-data {
-    max-height: 100px;
+.datatervalidasi-body .overflow-auto {
+    max-height: 384px;
 }
 
 .datatervalidasi-body .table .data-img {
@@ -303,4 +303,26 @@
 .datatervalidasi-body .table-success {
     background-image: linear-gradient(to right, #3B9315, #3b9315) !important;
     color: white;
+}
+
+.datatervalidasi-body .modal-img {
+    height: 260px;
+}
+
+.datatervalidasi-body .btn-primary {
+    background-image: linear-gradient(to right, #0D99FF, #0D99FF) !important;
+    border: 0px;
+    width: 52px;
+    height: 28px !important;
+}
+
+.datatervalidasi-body .btn-primary:hover {
+    background-image: linear-gradient(to right, #276EF1, #276EF1) !important;
+    width: 52px;
+    height: 28px !important;
+}
+
+.datatervalidasi-body .modal-icon {
+    width: 20px;
+    margin-top: -8px;
 }

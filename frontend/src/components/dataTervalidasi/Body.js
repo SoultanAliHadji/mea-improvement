@@ -7,8 +7,8 @@ const Body = () => {
       <div className="body-bg">
         <div className="container pt-3 pb-3">
           <div className="shadow-all bg-body rounded px-3 py-2">
-            <h6 className="fw-semibold">Data Deviasi Tervalidasi</h6>
-            <div className="row mb-5">
+            <h6 className="fw-semibold mb-3">Data Deviasi Tervalidasi</h6>
+            <div className="row mb-4">
               <div className="col-3">
                 <p>CCTV</p>
                 <div className="input-group">
@@ -96,7 +96,7 @@ const Body = () => {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="overflow-auto">
               <table className="table">
                 <thead>
                   <tr>
@@ -129,7 +129,10 @@ const Body = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="table-group-divider overflow-auto table-data">
+                <tbody className="table-group-divider">
+                  <TableData />
+                  <TableData />
+                  <TableData />
                   <TableData />
                   <TableData />
                   <TableData />
