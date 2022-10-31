@@ -40,7 +40,7 @@ const Login = () => {
                     />
                   </div>
                   <div>
-                    <a className="d-grid text-decoration-none" href="/">
+                    <a className="d-grid text-decoration-none" href="/livemonitoring">
                       <button className="btn btn-success" type="button">
                         Masuk
                       </button>

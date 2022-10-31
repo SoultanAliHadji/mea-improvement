@@ -10,8 +10,8 @@ function App() {
     <div className="font-roboto">
       <Router>
         <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/" component={LiveMonitoring} />
+          <Route exact path="/" component={Login} />
+          <Route exact path="/livemonitoring" component={LiveMonitoring} />
           <Route exact path="/validasideviasi" component={ValidasiDeviasi} />
           <Route exact path="/datatervalidasi" component={DataTervalidasi} />
         </Switch>

@@ -1,10 +1,48 @@
 import "../../App.css";
 import CctvListButton from "../CctvListButton";
-import NotificationFilter from "../NotificationFilter";
-import NotificationListButton from "../NotificationListButton";
 import SeeAllNotificationButton from "../SeeAllNotificationButton";
+import NotificationList from "../NotificationList";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const Body = () => {
+  const [data, setData] = useState([{}]);
+  const [cctvid, setCctvid] = useState(1);
+  const [cctvname, setCctvname] = useState("CCTV BMO2");
+  const [cctvlocation, setCctvlocation] = useState("E Camera 3");
+
+  useEffect(() => {
+    axios
+      .get("/cctv")
+      .then((res) => {
+        console.log("Getting from ::::", res.data.data);
+        setData(res.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const arr = data.map((data, index) => {
+    return (
+      <div className="d-grid px-2 py-1">
+        <button
+          type="button"
+          className="shadow-all btn btn-success fw-semibold py-2 rounded-3 text-start"
+          key={data.id}
+          onClick={() => {
+            setCctvid(data.id);
+            setCctvname(data.name);
+            setCctvlocation(data.location);
+          }}
+        >
+          <div className="d-flex gap-1">
+            <div>{data.name}</div>
+            <div>{data.location}</div>
+          </div>
+        </button>
+      </div>
+    );
+  });
+
   return (
     <div className="livemonitoring-body">
       <div className="body-bg">
@@ -18,11 +56,7 @@ const Body = () => {
                 </p>
               </div>
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 py-2 cctvlistbutton-component">
-                <CctvListButton />
-                <CctvListButton />
-                <CctvListButton />
-                <CctvListButton />
-                <CctvListButton />
+                {arr}
               </div>
             </div>
             <div className="col-6">
@@ -34,15 +68,17 @@ const Body = () => {
                 <div className="d-grid px-2 py-2">
                   <img
                     className="mw-100 border border-3 border-dark"
-                    src="http://10.1.74.9:5000/video_feed/1"
-                    alt=""
+                    src={"http://10.1.74.9:5000/video_feed/" + cctvid}
+                    alt="scscscs"
                   />
                   <div className="bg-dark">
                     <p>.</p>
                   </div>
                 </div>
                 <div className="d-grid px-2 pt-2">
-                  <h6 className="fw-semibold">CCTV BMO 2 - E Camera 3</h6>
+                  <h6 className="fw-semibold">
+                    {cctvname} - {cctvlocation}
+                  </h6>
                   <div className="d-flex pb-2">
                     <p className="fw-semibold pe-2 p-small">IP</p>
                     <p className="p-small">10.1.73.20</p>
@@ -69,23 +105,11 @@ const Body = () => {
             </div>
             <div className="col">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
-              <h6 className="fw-semibold">List Deviasi</h6>
+                <h6 className="fw-semibold">List Deviasi</h6>
                 <p className="p-small">List deviasi yang terdeteksi</p>
               </div>
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 py-2">
-                <div className="d-grid px-2 py-2 border-bottom border-2 notificationfilter-component">
-                    <NotificationFilter />
-                </div>
-                <div className="d-grid px-2 py-2 overflow-auto notification-list gap-2 mt-2 notificationlistbutton-component">
-                  <NotificationListButton />
-                  <NotificationListButton />
-                  <NotificationListButton />
-                  <NotificationListButton />
-                  <NotificationListButton />
-                  <NotificationListButton />
-                  <NotificationListButton />
-                  <NotificationListButton />
-                </div>
+                <NotificationList />
                 <div className="px-2 py-1 seeallnotificationbutton-component">
                   <SeeAllNotificationButton />
                 </div>

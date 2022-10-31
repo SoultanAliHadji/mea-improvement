@@ -7,7 +7,7 @@ const Navbar = () => {
         <div className="container">
           <nav className="navbar navbar-expand-md">
             <div className="container-fluid">
-              <a className="navbar-brand" href="/">
+              <a className="navbar-brand" href="/livemonitoring">
                 <img
                   className="logo"
                   src={require("../assets/logo.png")}
@@ -49,7 +49,7 @@ const Navbar = () => {
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="/login">
+                        <a className="dropdown-item" href="/">
                           Log Out
                         </a>
                       </li>
