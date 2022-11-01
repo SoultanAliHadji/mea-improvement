@@ -1,3 +1,4 @@
+from audioop import reverse
 from app.model.realtime_images import Realtime_images
 from app.model.realtime_deviations import Realtime_deviations
 from app import response, app, db
@@ -5,7 +6,7 @@ from flask import request
 
 def index():
     try:
-        image = Realtime_images.query.all()
+        image = Realtime_images.query.limit(10)
         imagedata = formatarray(image)
         
         return response.success(imagedata, "Success")
@@ -38,7 +39,7 @@ def singleObject(data):
 def imagedetail(id):
     try:
         image = Realtime_images.query.filter_by(id=id).first()
-        deviations = Realtime_deviations.query.filter((Realtime_deviations.realtime_images_id == id))
+        deviations = Realtime_deviations.query.filter(Realtime_deviations.realtime_images_id == id)
 
         if not image:
             return response.badRequest([], 'Tidak ada data realtime image')
@@ -66,16 +67,16 @@ def singleDetailObject(image, deviationdata):
 
     return data
 
-def singleDeviation(image):
+def singleDeviation(deviation):
     data = {
-        'id' : image.id,
-        'user_id' : image.user_id,
-        'type_validation' : image.type_validation,
-        'type_object' : image.type_object,
-        'violate_count' : image.violate_count,
-        'comment' : image.comment,
-        'created_at' : image.created_at,
-        'updated_at' : image.updated_at
+        'id' : deviation.id,
+        'user_id' : deviation.user_id,
+        'type_validation' : deviation.type_validation,
+        'type_object' : deviation.type_object,
+        'violate_count' : deviation.violate_count,
+        'comment' : deviation.comment,
+        'created_at' : deviation.created_at,
+        'updated_at' : deviation.updated_at
     }
 
     return data

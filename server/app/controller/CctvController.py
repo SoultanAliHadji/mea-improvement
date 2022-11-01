@@ -1,20 +1,20 @@
 from app.model.cctv import Cctv
 from app.model.realtime_images import Realtime_images
-from app.controller import Realtime_ImagesController
+from app.model.realtime_deviations import Realtime_deviations
 from app import response, app, db
 from flask import request
 
 def index():
     try:
         cctv = Cctv.query.all()
-        data = formatarray(cctv)
+        data = formatArray(cctv)
         
         return response.success(data, "Success")
 
     except Exception as e:
         print(e)
 
-def formatarray(datas):
+def formatArray(datas):
     array = []
     
     for i in datas:
@@ -39,7 +39,7 @@ def singleObject(data):
 def detail(id):
     try:
         cctv = Cctv.query.filter_by(id=id).first()
-        image = Realtime_images.query.filter((Realtime_images.cctv_id == id))
+        image = Realtime_images.query.filter(Realtime_images.cctv_id == id)
 
         if not cctv:
             return response.badRequest([], 'Tidak ada data cctv')
