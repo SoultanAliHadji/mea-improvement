@@ -2,19 +2,30 @@ from audioop import reverse
 from app.model.realtime_images import Realtime_images
 from app.model.realtime_deviations import Realtime_deviations
 from app import response, app, db
+from sqlalchemy import desc
 from flask import request
 
 def index():
     try:
-        image = Realtime_images.query.limit(10)
-        imagedata = formatarray(image)
+        image = Realtime_images.query.all()
+        imagedata = formatArray(image)
         
         return response.success(imagedata, "Success")
 
     except Exception as e:
         print(e)
 
-def formatarray(datas):
+def imageLimit(num):
+    try:
+        image = Realtime_images.query.order_by(desc(Realtime_images.id)).limit(num)
+        imagedata = formatArray(image)
+        
+        return response.success(imagedata, "Success")
+
+    except Exception as e:
+        print(e)
+
+def formatArray(datas):
     array = []
     
     for i in datas:
@@ -36,7 +47,7 @@ def singleObject(data):
 
     return data
 
-def imagedetail(id):
+def imageDetail(id):
     try:
         image = Realtime_images.query.filter_by(id=id).first()
         deviations = Realtime_deviations.query.filter(Realtime_deviations.realtime_images_id == id)

@@ -1,15 +1,17 @@
 import "../../App.css";
-import CctvListButton from "../CctvListButton";
-import SeeAllNotificationButton from "../SeeAllNotificationButton";
-import NotificationList from "../NotificationList";
+import SeeAllNotificationButton from "../deviation_component/SeeAllNotificationButton";
+import NotificationList from "../deviation_component/NotificationList";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Icon } from "@iconify/react";
+import ReactImageMagnify from "react-magnify-image";
 
 const Body = () => {
   const [data, setData] = useState([{}]);
   const [cctvid, setCctvid] = useState(1);
   const [cctvname, setCctvname] = useState("CCTV BMO2");
   const [cctvlocation, setCctvlocation] = useState("E Camera 3");
+  const livecctv = "http://10.1.74.9:5000/video_feed/" + cctvid;
 
   useEffect(() => {
     axios
@@ -26,7 +28,10 @@ const Body = () => {
       <div className="d-grid px-2 py-1">
         <button
           type="button"
-          className="shadow-all btn btn-success fw-semibold py-2 rounded-3 text-start"
+          className={
+            "shadow-all btn fw-semibold py-2 rounded-3 text-start" +
+            (cctvid == data.id ? " btn-outline-success" : " btn-success")
+          }
           key={data.id}
           onClick={() => {
             setCctvid(data.id);
@@ -34,9 +39,8 @@ const Body = () => {
             setCctvlocation(data.location);
           }}
         >
-          <div className="d-flex gap-1">
-            <div>{data.name}</div>
-            <div>{data.location}</div>
+          <div className="">
+            {data.name} - {data.location}
           </div>
         </button>
       </div>
@@ -66,17 +70,51 @@ const Body = () => {
               </div>
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 pt-2">
                 <div className="d-grid px-2 py-2">
-                  <img
-                    className="mw-100 border border-3 border-dark"
-                    src={"http://10.1.74.9:5000/video_feed/" + cctvid}
-                    alt="scscscs"
+                  <ReactImageMagnify
+                    className="mw-100 image-border"
+                    {...{
+                      smallImage: {
+                        alt: "",
+                        isFluidWidth: true,
+                        src: livecctv,
+                      },
+                      largeImage: {
+                        src: livecctv,
+                        width: 2000,
+                        height: 1100,
+                      },
+                      enlargedImagePosition : "over",
+                    }}
                   />
-                  <div className="bg-dark">
-                    <p>.</p>
+                  <div className="cam-navigation shadow-all d-flex justify-content-end align-items-center p-2">
+                    <button class="navigation">
+                      <Icon icon="charm:refresh" />
+                    </button>
+                    <button class="navigation">
+                      <Icon icon="akar-icons:chevron-left" />
+                    </button>
+                    <button class="navigation">
+                      <Icon icon="akar-icons:chevron-right" />
+                    </button>
+                    <button class="navigation">
+                      <Icon icon="akar-icons:chevron-down" />
+                    </button>
+                    <button class="navigation">
+                      <Icon icon="akar-icons:chevron-up" />
+                    </button>
+                    <button class="navigation">
+                      <Icon icon="bx:zoom-out" />
+                    </button>
+                    <button class="navigation">
+                      <Icon icon="bx:zoom-in" />
+                    </button>
+                    <button class="navigation">
+                      <Icon icon="ic:outline-zoom-out-map" />
+                    </button>
                   </div>
                 </div>
                 <div className="d-grid px-2 pt-2">
-                  <h6 className="fw-semibold">
+                  <h6 className="fw-semibold pb-2">
                     {cctvname} - {cctvlocation}
                   </h6>
                   <div className="d-flex pb-2">

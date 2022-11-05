@@ -8,5 +8,5 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 
-from app.model import cctv, users, realtime_images, realtime_deviations
+from app.model import cctv, users, realtime_images, realtime_deviations, viewtable
 from app import routes

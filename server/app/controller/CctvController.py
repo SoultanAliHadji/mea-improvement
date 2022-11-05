@@ -14,6 +14,27 @@ def index():
     except Exception as e:
         print(e)
 
+def cctvDetail(id):
+    try:
+        cctv = Cctv.query.filter_by(id=id).first()
+
+        if not cctv:
+            return response.badRequest([], 'Tidak ada data cctv')
+
+        data = formatArrayDetail(cctv)
+        
+        return response.success(data, "Success")
+
+    except Exception as e:
+        print(e)
+
+def formatArrayDetail(data):
+    array = []
+    
+    array.append(singleObject(data))
+
+    return array
+
 def formatArray(datas):
     array = []
     

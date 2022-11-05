@@ -19,6 +19,12 @@
     margin-bottom: 0px;
 }
 
+.p-medium {
+    font-size: 14px;
+    margin-top: -6px;
+    margin-bottom: 0px;
+}
+
 .notification-tag {
     width: max-content;
     height: 20px;
@@ -27,10 +33,30 @@
     font-size: 10px;
 }
 
-.notification-icon {
-    width: 16px;
-    height: 16px;
+.notification-tag-true {
+    width: max-content;
+    height: 20px;
+    background-color: #D2F1DD;
+    border: 2px solid #8EDCA9;
+    font-size: 10px;
+}
 
+.notification-tag-false {
+    width: max-content;
+    height: 20px;
+    background-color: #F9D1CC;
+    border: 2px solid #F08C80;
+    font-size: 10px;
+}
+
+.notification-icon {
+    width: 14px;
+    height: 14px;
+}
+
+button {
+    border: none;
+    background-color: transparent;
 }
 
 
@@ -48,8 +74,23 @@
     width: 200px;
 }
 
+.navbar-component .navbar-brand:hover {
+    width: 200px;
+}
+
+.navbar-component .account-icon {
+    width: 24px;
+    height: 24px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
 .navbar-component .nav-item, .dropdown-item {
     font-size: 14px;
+}
+
+.navbar-component .nav-link:hover {
+    color: #297209;
 }
 
 .navbar-component .dropdown-item:hover {
@@ -58,6 +99,14 @@
 
 .navbar-component .dropdown-item:active {
     background-image: linear-gradient(to left, #297209, #297209);
+}
+
+.navbar-component .page-current {
+    color: #297209;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 10px;
+    pointer-events: none;
 }
 
 
@@ -77,11 +126,46 @@
     font-size: 10px !important;
 }
 
-.cctvlistbutton-component .btn-success:focus {
+.cctvlistbutton-component .btn-outline-success {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    border: none !important;
+    font-size: small !important;
+    font-size: 10px !important;
+    pointer-events: none;
+}
+
+
+
+/*----------------------------------------notification filter component component costumization-----------------------------------------*/
+.notificationfilter-component .btn-success:hover {
+    background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
+    color: #3E4958 !important;
+    font-size: 10px !important;
+}
+
+.notificationfilter-component .btn-success {
+    background-image: linear-gradient(to right, white, white);
+    color: #3E4958 !important;
+    border: none !important;
+    font-size: small !important;
+    font-size: 10px !important;
+}
+
+.notificationfilter-component .btn-success:focus {
     background-image: linear-gradient(to right, #3B9315, #297209);
     color: white !important;
     font-size: small !important;
     font-size: 10px !important;
+}
+
+.notificationfilter-component .btn-outline-success {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    border: none !important;
+    font-size: small !important;
+    font-size: 10px !important;
+    pointer-events: none;
 }
 
 
@@ -110,29 +194,6 @@
 
 .notificationlistbutton-component .details {
     margin-top: -10px;
-}
-
-
-/*----------------------------------------notification filter component component costumization-----------------------------------------*/
-.notificationfilter-component .btn-success:hover {
-    background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
-    color: #3E4958 !important;
-    font-size: 10px !important;
-}
-
-.notificationfilter-component .btn-success {
-    background-image: linear-gradient(to right, white, white);
-    color: #3E4958 !important;
-    border: none !important;
-    font-size: small !important;
-    font-size: 10px !important;
-}
-
-.notificationfilter-component .btn-success:focus {
-    background-image: linear-gradient(to right, #3B9315, #297209);
-    color: white !important;
-    font-size: small !important;
-    font-size: 10px !important;
 }
 
 
@@ -191,7 +252,7 @@
 
 /*-------------------------------------------------------login page costumization-------------------------------------------------------*/
 .login-page .bg-img {
-    background-image: url("./assets/background/bg_login.png");
+    background-image: url("./assets/background/bg_login.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -222,14 +283,39 @@
 
 /*-------------------------------------------------live monitoring page costumization---------------------------------------------------*/
 .livemonitoring-body .notification-list {
-    height: 340px;
+    height: 338px;
+}
+
+.livemonitoring-body .image-border {
+    border: solid #297209;
+}
+
+.livemonitoring-body .cam-navigation {
+    height: 32px;
+}
+
+.livemonitoring-body .navigation:hover {
+    color: #297209;
+    margin-top: 4px;
+}
+
+.livemonitoring-body .shadow-all {
+    box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
 }
 
 
 
 /*-------------------------------------------------validasi deviasi page costumization--------------------------------------------------*/
+.deviasi-image-container {
+    width: 71%;
+}
+
 .validasideviasi-body .deviasi-img {
     height: 315px;
+}
+
+.validasideviasi-body .image-border {
+    border: solid #297209;
 }
 
 .validasideviasi-body .notif-icon {
@@ -241,14 +327,13 @@
     height: 380px;
 }
 
-.validasideviasi-body .status .notification-tag {
-    font-size: 12px;
-    font-weight: bolder;
-    width: max-content;
-    height: 22px;
-    background-color: #F0F3FF;
-    border: 2px solid #B1C5F6;
-    margin-bottom: 12px;
+.validasideviasi-body .notificationlistbutton-component .btn-outline-success {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    border: none !important;
+    font-size: small !important;
+    font-size: 10px !important;
+    pointer-events: none;
 }
 
 
@@ -285,7 +370,8 @@
 }
 
 .datatervalidasi-body .button-icon {
-    width: 15px;
+    width: 16px;
+    height: 16px;
 }
 
 .datatervalidasi-body .table {
@@ -293,7 +379,7 @@
 }
 
 .datatervalidasi-body .overflow-auto {
-    max-height: 384px;
+    max-height: 368px;
 }
 
 .datatervalidasi-body .table .data-img {
@@ -309,20 +395,25 @@
     height: 260px;
 }
 
-.datatervalidasi-body .btn-primary {
-    background-image: linear-gradient(to right, #0D99FF, #0D99FF) !important;
-    border: 0px;
-    width: 52px;
-    height: 28px !important;
+.datatervalidasi-body .btn-outline-success:hover {
+    background-image: linear-gradient(to right, #297209, #297209);
+    color: white !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    width: 48px;
+    height: 24px !important;
 }
 
-.datatervalidasi-body .btn-primary:hover {
-    background-image: linear-gradient(to right, #276EF1, #276EF1) !important;
-    width: 52px;
-    height: 28px !important;
+.datatervalidasi-body .btn-outline-success {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    width: 48px;
+    height:24px !important;
 }
 
 .datatervalidasi-body .modal-icon {
     width: 20px;
-    margin-top: -8px;
+    margin-top: -16px;
 }

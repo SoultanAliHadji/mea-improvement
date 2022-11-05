@@ -1,23 +1,20 @@
 import "../../App.css";
-import TableData from "../TableData";
+import TableData from "../table_component/TableData";
+import { Icon } from "@iconify/react";
 
 const Body = () => {
   return (
     <div className="datatervalidasi-body">
       <div className="body-bg">
         <div className="container pt-3 pb-3">
-          <div className="shadow-all bg-body rounded px-3 py-2">
+          <div className="shadow-all bg-body rounded px-3 py-3">
             <h6 className="fw-semibold mb-3">Data Deviasi Tervalidasi</h6>
-            <div className="row mb-4">
+            <div className="row mb-4 p-medium">
               <div className="col-3">
                 <p>CCTV</p>
                 <div className="input-group">
                   <label className="input-group-text" for="inputGroupSelect03">
-                    <img
-                      className="filter-icon"
-                      src={require("../../assets/icon-png/photo_camera.png")}
-                      alt=""
-                    />
+                  <Icon className="filter-icon" icon="bi:camera-fill" />
                   </label>
                   <select className="form-select" id="inputGroupSelect01">
                     <option selected>Semua</option>
@@ -31,11 +28,7 @@ const Body = () => {
                 <p>Objek</p>
                 <div className="input-group">
                   <label className="input-group-text" for="inputGroupSelect03">
-                    <img
-                      className="filter-icon"
-                      src={require("../../assets/icon-png/center_focus_strong.png")}
-                      alt=""
-                    />
+                  <Icon className="filter-icon" icon="ic:round-filter-center-focus" />
                   </label>
                   <select className="form-select" id="inputGroupSelect02">
                     <option selected>Semua</option>
@@ -49,11 +42,7 @@ const Body = () => {
                 <p>Periode</p>
                 <div className="input-group">
                   <label className="input-group-text" for="inputGroupSelect03">
-                    <img
-                      className="filter-icon"
-                      src={require("../../assets/icon-png/event_note.png")}
-                      alt=""
-                    />
+                  <Icon className="filter-icon" icon="bi:calendar-week" />
                   </label>
                   <select className="form-select" id="inputGroupSelect03">
                     <option selected>Semua</option>
@@ -71,11 +60,7 @@ const Body = () => {
                     data-bs-toggle="modal"
                   >
                     <div>
-                      <img
-                        className="button-icon me-1"
-                        src={require("../../assets/icon-png/insert_drive_file.png")}
-                        alt=""
-                      />
+                    <Icon className="button-icon me-1" icon="entypo:magnifying-glass" />
                       Search
                     </div>
                   </button>
@@ -85,91 +70,14 @@ const Body = () => {
                     data-bs-toggle="modal"
                   >
                     <div>
-                      <img
-                        className="button-icon me-1"
-                        src={require("../../assets/icon-png/insert_drive_file.png")}
-                        alt=""
-                      />
+                    <Icon className="button-icon me-1" icon="entypo:export" />
                       Export
                     </div>
                   </button>
                 </div>
               </div>
             </div>
-            <div className="overflow-auto">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th className="table-success" scope="col">
-                      ID
-                    </th>
-                    <th className="table-success" scope="col">
-                      Lokasi CCTV
-                    </th>
-                    <th className="table-success" scope="col">
-                      Date Time
-                    </th>
-                    <th className="table-success" scope="col">
-                      Objek
-                    </th>
-                    <th className="table-success" scope="col">
-                      Gambar Deviasi
-                    </th>
-                    <th className="table-success" scope="col">
-                      Deskripsi
-                    </th>
-                    <th className="table-success" scope="col">
-                      Status
-                    </th>
-                    <th className="table-success" scope="col">
-                      Pengawas
-                    </th>
-                    <th className="table-success" scope="col">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="table-group-divider">
-                  <TableData />
-                  <TableData />
-                  <TableData />
-                  <TableData />
-                  <TableData />
-                  <TableData />
-                  <TableData />
-                  <TableData />
-                  <TableData />
-                  <TableData />
-                </tbody>
-              </table>
-              <nav aria-label="Page navigation example">
-                <ul className="pagination justify-content-end">
-                  <li className="page-item disabled">
-                    <a className="page-link">Previous</a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      1
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      Next
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+            <TableData />
           </div>
         </div>
       </div>
