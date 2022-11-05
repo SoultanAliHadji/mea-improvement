@@ -54,5 +54,13 @@ def viewLimited(num):
     return ViewTableController.viewLimit(num)
 
 @app.route('/viewobject/<object>/<num>', methods=['GET'])
-def viewFilter(object, num):
+def viewNotificationFilter(object, num):
     return ViewTableController.viewNotificationFilter(object, num)
+
+@app.route('/viewvalidated/<num>', methods=['GET'])
+def viewValidatedFilter(num):
+    return ViewTableController.viewValidatedFilter(num)
+
+@app.route('/viewtable/<name>/<location>/<object>/<num>', methods=['GET'])
+def viewTableFilter(name, location, object, num):
+    return ViewTableController.viewTableFilter(name, location, object, num)

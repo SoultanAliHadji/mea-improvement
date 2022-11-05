@@ -14,18 +14,18 @@ const Body = () => {
   const [viewcctvlocation, setViewcctvlocation] = useState();
   const [viewtime, setViewtime] = useState();
   const [viewimage, setViewimage] = useState();
-  const [kategori, setKategori] = useState("all");
+  const [kategori, setKategori] = useState("All");
   const numlimiter = 10;
 
   useEffect(() => {
     axios
-      .get("/viewlimit/" + numlimiter)
+      .get(kategori == "All" ? ("/viewlimit/" + numlimiter) : kategori == "Person" ? ("/viewobject/" + kategori + "/" + numlimiter) : kategori == "LV" ? ("/viewobject/" + kategori + "/" + numlimiter) : ("/viewobject/" + kategori + "/" + numlimiter))
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [kategori]);
 
   const arr = data.slice(0, [numlimiter]).map((data, index) => {
     return (
@@ -54,7 +54,7 @@ const Body = () => {
                 ? " text-primary notification-tag"
                 : data.type_validation == "true"
                 ? " text-success notification-tag-true"
-                : "text-danger notification-tag-false")
+                : " text-danger notification-tag-false")
             }
           >
             {data.type_validation == "not_yet"
@@ -125,7 +125,7 @@ const Body = () => {
                             ? " text-primary notification-tag"
                             : viewstatus == "true"
                             ? " text-success notification-tag-true"
-                            : "text-danger notification-tag-false")
+                            : " text-danger notification-tag-false")
                         }
                       >
                         {viewstatus == "not_yet"
@@ -167,12 +167,12 @@ const Body = () => {
                       type="button"
                       className={
                         "shadow-all btn fw-semibold rounded-5 text-start" +
-                        (kategori == "all"
+                        (kategori == "All"
                           ? " btn-outline-success"
                           : " btn-success")
                       }
                       onClick={() => {
-                        setKategori("all");
+                        setKategori("All");
                       }}
                     >
                       Semua
@@ -181,12 +181,12 @@ const Body = () => {
                       type="button"
                       className={
                         "shadow-all btn fw-semibold rounded-5 text-start" +
-                        (kategori == "person"
+                        (kategori == "Person"
                           ? " btn-outline-success"
                           : " btn-success")
                       }
                       onClick={() => {
-                        setKategori("person");
+                        setKategori("Person");
                       }}
                     >
                       Person
@@ -195,12 +195,12 @@ const Body = () => {
                       type="button"
                       className={
                         "shadow-all btn fw-semibold rounded-5 text-start" +
-                        (kategori == "lv"
+                        (kategori == "LV"
                           ? " btn-outline-success"
                           : " btn-success")
                       }
                       onClick={() => {
-                        setKategori("lv");
+                        setKategori("LV");
                       }}
                     >
                       LV
@@ -209,12 +209,12 @@ const Body = () => {
                       type="button"
                       className={
                         "shadow-all btn fw-semibold rounded-5 text-start" +
-                        (kategori == "hd"
+                        (kategori == "HD"
                           ? " btn-outline-success"
                           : " btn-success")
                       }
                       onClick={() => {
-                        setKategori("hd");
+                        setKategori("HD");
                       }}
                     >
                       HD

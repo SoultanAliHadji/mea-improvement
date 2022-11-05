@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 const NotificationList = () => {
   const [data, setData] = useState([{}]);
   const [viewid, setViewid] = useState();
-  const [kategori, setKategori] = useState("Person");
+  const [kategori, setKategori] = useState("All");
   const numlimiter = 10;
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const NotificationList = () => {
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [kategori]);
 
   const arr = data.slice(0, [numlimiter]).map((data, index) => {
     return (
@@ -27,6 +27,7 @@ const NotificationList = () => {
         key={data.id}
         onClick={() => {
           setViewid(data.id);
+          window.location.href='validasideviasi'
         }}
       >
         <div className="d-flex">
@@ -38,7 +39,7 @@ const NotificationList = () => {
                 ? " text-primary notification-tag"
                 : data.type_validation == "true"
                 ? " text-success notification-tag-true"
-                : "text-danger notification-tag-false")
+                : " text-danger notification-tag-false")
             }
           >
             {data.type_validation == "not_yet"

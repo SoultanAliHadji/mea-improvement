@@ -5,23 +5,23 @@ import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import ReactImageMagnify from "react-magnify-image";
 
-const TableData = () => {
+const TableData = ({ filtercctv, filterobject }) => {
   const [data, setData] = useState([{}]);
   const modalimage = "mining_eyes.jpg";
-  const datalimit = 30;
+  const datalimit = 50;
   const [numstart, setNumstart] = useState(0);
   const [numend, setNumend] = useState(5);
   const lastpage = " disabled";
 
   useEffect(() => {
     axios
-      .get("/viewlimit/" + datalimit)
+      .get(filtercctv == "All" & filterobject == "All" ? ("/viewvalidated/" + datalimit) : ("/viewtable/" + filtercctv + "/" + filterobject + "/" + datalimit))
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [filterobject]);
 
   const arr = data.slice(numstart, numend).map((data, index) => {
     return (
