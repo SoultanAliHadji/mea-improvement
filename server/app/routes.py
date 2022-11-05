@@ -26,10 +26,6 @@ def users():
 def images():
     return Realtime_ImagesController.index()
 
-@app.route('/imagelimit/<num>', methods=['GET'])
-def imageLimiter(num):
-    return Realtime_ImagesController.imageLimit(num)
-
 @app.route('/image/<id>', methods=['GET'])
 def imageDetail(id):
     return Realtime_ImagesController.imageDetail(id)
@@ -38,9 +34,12 @@ def imageDetail(id):
 def deviations():
     return Realtime_DeviationsController.index()
 
-@app.route('/deviation/<id>', methods=['GET'])
+@app.route('/deviation/<id>', methods=['GET', 'PUT'])
 def deviationDetail(id):
-    return Realtime_DeviationsController.detail(id)
+    if request.method == 'GET':
+        return Realtime_DeviationsController.detail(id)
+    elif request.method == 'PUT':
+        return Realtime_DeviationsController.update(id)
 
 @app.route('/view', methods=['GET'])
 def view():
@@ -53,3 +52,7 @@ def viewSingle(id):
 @app.route('/viewlimit/<num>', methods=['GET'])
 def viewLimited(num):
     return ViewTableController.viewLimit(num)
+
+@app.route('/viewobject/<object>/<num>', methods=['GET'])
+def viewFilter(object, num):
+    return ViewTableController.viewNotificationFilter(object, num)

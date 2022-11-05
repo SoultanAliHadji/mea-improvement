@@ -23,6 +23,16 @@ def viewLimit(num):
     except Exception as e:
         print(e)
 
+def viewNotificationFilter(object, num):
+    try:
+        view = Viewtable.query.filter(Viewtable.type_object == object).order_by(desc(Viewtable.id)).limit(num)
+        data = formatData(view)
+        
+        return response.success(data, "Success")
+
+    except Exception as e:
+        print(e)
+
 def viewDetail(id):
     try:
         view = Viewtable.query.filter_by(id=id).first()

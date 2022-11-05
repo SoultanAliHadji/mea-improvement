@@ -1,6 +1,6 @@
 import "../../App.css";
-import SeeAllNotificationButton from "../deviation_component/SeeAllNotificationButton";
-import NotificationList from "../deviation_component/NotificationList";
+import SeeAllNotificationButton from "./SeeAllNotificationButton";
+import NotificationList from "./NotificationList";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";

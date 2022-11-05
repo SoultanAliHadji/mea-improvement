@@ -1,4 +1,5 @@
 import "../../App.css";
+import Validation from "./Validation";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
@@ -30,11 +31,14 @@ const Body = () => {
     return (
       <button
         type="button"
-        className="shadow-all btn btn-success fw-semibold py-2 rounded-3 text-start"
+        className={
+          "shadow-all btn fw-semibold py-2 rounded-3 text-start" +
+          (viewid == data.id ? " btn-outline-success" : " btn-success")
+        }
         key={data.id}
         onClick={() => {
           setViewid(data.id);
-          setViewstatus(data.type_validation)
+          setViewstatus(data.type_validation);
           setViewobject(data.type_object);
           setViewcctvname(data.name);
           setViewcctvlocation(data.location);
@@ -106,7 +110,6 @@ const Body = () => {
                           width: 2000,
                           height: 1100,
                         },
-
                         enlargedImagePosition: "over",
                       }}
                     />
@@ -147,75 +150,7 @@ const Body = () => {
                     </div>
                   </div>
                   <div className="col">
-                    <div className="d-flex gap-2 justify-content-end validationbutton-component">
-                      <button
-                        type="button"
-                        className="shadow-all btn btn-success fw-semibold py-2 rounded-3"
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop"
-                      >
-                        Valid
-                      </button>
-                      <button
-                        type="button"
-                        className="shadow-all btn btn-outline-success fw-semibold py-2 rounded-3"
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop"
-                      >
-                        Tidak Valid
-                      </button>
-                      <div
-                        className="modal fade"
-                        id="staticBackdrop"
-                        data-bs-backdrop="static"
-                        data-bs-keyboard="false"
-                        tabindex="-1"
-                        aria-labelledby="staticBackdropLabel"
-                        aria-hidden="true"
-                      >
-                        <div className="modal-dialog">
-                          <div className="modal-content">
-                            <div className="modal-header">
-                              <h6
-                                className="modal-title fw-semibold"
-                                id="staticBackdropLabel"
-                              >
-                                Deskripsi Deviasi
-                              </h6>
-                              <button
-                                type="button"
-                                className="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                              ></button>
-                            </div>
-                            <div className="modal-body">
-                              <textarea
-                                class="form-control"
-                                id="message-text"
-                                placeholder="Masukkan keterangan deviasi"
-                              ></textarea>
-                            </div>
-                            <div className="modal-footer">
-                              <button
-                                type="button"
-                                className="btn btn-outline-success"
-                                data-bs-dismiss="modal"
-                              >
-                                Batal
-                              </button>
-                              <button
-                                type="button"
-                                className="btn btn-success"
-                                data-bs-dismiss="modal"
-                              >
-                                Simpan
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <Validation viewid={viewid} />
                   </div>
                 </div>
               </div>
@@ -294,7 +229,6 @@ const Body = () => {
           </div>
         </div>
       </div>
-      {viewid}
     </div>
   );
 };

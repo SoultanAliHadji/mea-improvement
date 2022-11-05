@@ -70,3 +70,26 @@ def singleObjectDetail(data):
     }
 
     return data
+
+def update(id):
+    try:
+        type_validation = request.form.get('type_validation')
+        comment = request.form.get('comment')
+
+        input = [
+            {
+                'type_validation' : type_validation,
+                'comment' : comment
+            }
+        ]
+
+        deviation = Realtime_deviations.query.filter_by(id=id).first()
+        deviation.type_validation = type_validation
+        deviation.comment = comment
+
+        db.session.commit()
+
+        return response.success(input, 'Sukses update data')
+
+    except Exception as e:
+        print(e)

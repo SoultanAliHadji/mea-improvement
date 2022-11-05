@@ -6,12 +6,12 @@ import { Icon } from "@iconify/react";
 const NotificationList = () => {
   const [data, setData] = useState([{}]);
   const [viewid, setViewid] = useState();
-  const [kategori, setKategori] = useState("all");
+  const [kategori, setKategori] = useState("Person");
   const numlimiter = 10;
 
   useEffect(() => {
     axios
-      .get("/viewlimit/" + numlimiter)
+      .get(kategori == "All" ? ("/viewlimit/" + numlimiter) : kategori == "Person" ? ("/viewobject/" + kategori + "/" + numlimiter) : kategori == "LV" ? ("/viewobject/" + kategori + "/" + numlimiter) : ("/viewobject/" + kategori + "/" + numlimiter))
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
@@ -76,10 +76,10 @@ const NotificationList = () => {
             type="button"
             className={
               "shadow-all btn fw-semibold rounded-5 text-start" +
-              (kategori == "all" ? " btn-outline-success" : " btn-success")
+              (kategori == "All" ? " btn-outline-success" : " btn-success")
             }
             onClick={() => {
-              setKategori("all");
+              setKategori("All");
             }}
           >
             Semua
@@ -88,10 +88,10 @@ const NotificationList = () => {
             type="button"
             className={
               "shadow-all btn fw-semibold rounded-5 text-start" +
-              (kategori == "person" ? " btn-outline-success" : " btn-success")
+              (kategori == "Person" ? " btn-outline-success" : " btn-success")
             }
             onClick={() => {
-              setKategori("person");
+              setKategori("Person");
             }}
           >
             Person
@@ -100,10 +100,10 @@ const NotificationList = () => {
             type="button"
             className={
               "shadow-all btn fw-semibold rounded-5 text-start" +
-              (kategori == "lv" ? " btn-outline-success" : " btn-success")
+              (kategori == "LV" ? " btn-outline-success" : " btn-success")
             }
             onClick={() => {
-              setKategori("lv");
+              setKategori("LV");
             }}
           >
             LV
@@ -112,10 +112,10 @@ const NotificationList = () => {
             type="button"
             className={
               "shadow-all btn fw-semibold rounded-5 text-start" +
-              (kategori == "hd" ? " btn-outline-success" : " btn-success")
+              (kategori == "HD" ? " btn-outline-success" : " btn-success")
             }
             onClick={() => {
-              setKategori("hd");
+              setKategori("HD");
             }}
           >
             HD
