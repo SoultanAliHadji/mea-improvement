@@ -15,16 +15,6 @@ def index():
     except Exception as e:
         print(e)
 
-def imageLimit(num):
-    try:
-        image = Realtime_images.query.order_by(desc(Realtime_images.id)).limit(num)
-        imagedata = formatArray(image)
-        
-        return response.success(imagedata, "Success")
-
-    except Exception as e:
-        print(e)
-
 def formatArray(datas):
     array = []
     
