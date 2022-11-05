@@ -19,8 +19,11 @@ const Body = () => {
     <div className="datatervalidasi-body">
       <div className="body-bg">
         <div className="container pt-3 pb-3">
-          <div className="shadow-all bg-body rounded px-3 py-3">
-            <h6 className="fw-semibold mb-3">Data Deviasi Tervalidasi</h6>
+          <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2 d-flex jusify-content-center">
+            <div></div>
+            <h6 className="fw-semibold">Data Deviasi Tervalidasi</h6>
+          </div>
+          <div className="shadow-all mb-2 bg-body rounded-bottom px-3 py-2">
             <div className="row mb-4 p-medium">
               <div className="col-3">
                 <p>CCTV</p>
@@ -34,7 +37,9 @@ const Body = () => {
                     defaultValue={filtercctv}
                     onChange={handlerFiltercctv}
                   >
-                    <option selected value="All">Semua</option>
+                    <option selected value="All">
+                      Semua
+                    </option>
                     <option value="CCTV BMO2/E Camera 3">
                       CCTV BMO2 - E Camera 3
                     </option>
@@ -68,7 +73,9 @@ const Body = () => {
                     defaultValue={filterobject}
                     onChange={handlerFilterobject}
                   >
-                    <option selected value="All">Semua</option>
+                    <option selected value="All">
+                      Semua
+                    </option>
                     <option value="Person">Person</option>
                     <option value="LV">LV</option>
                     <option value="HD">HD</option>

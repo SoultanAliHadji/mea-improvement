@@ -8,14 +8,18 @@ import ReactImageMagnify from "react-magnify-image";
 const TableData = ({ filtercctv, filterobject }) => {
   const [data, setData] = useState([{}]);
   const modalimage = "mining_eyes.jpg";
-  const datalimit = 50;
+  const datalimit = 32;
   const [numstart, setNumstart] = useState(0);
-  const [numend, setNumend] = useState(5);
-  const lastpage = " disabled";
+  const [numend, setNumend] = useState(4);
+  const lastpage = " text-black-50 disabled";
 
   useEffect(() => {
     axios
-      .get(filtercctv == "All" & filterobject == "All" ? ("/viewvalidated/" + datalimit) : ("/viewtable/" + filtercctv + "/" + filterobject + "/" + datalimit))
+      .get(
+        (filtercctv == "All") & (filterobject == "All")
+          ? "/viewvalidated/" + datalimit
+          : "/viewtable/" + filtercctv + "/" + filterobject + "/" + datalimit
+      )
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
@@ -41,7 +45,7 @@ const TableData = ({ filtercctv, filterobject }) => {
             alt=""
           />
         </td>
-        <td>{data.comment = "NULL" ? "Empty" : data.comment}</td>
+        <td>{(data.comment = "NULL" ? "Empty" : data.comment)}</td>
         <td>
           <div className="d-flex justify-content-center">
             <div
@@ -51,7 +55,7 @@ const TableData = ({ filtercctv, filterobject }) => {
                   ? " text-primary notification-tag"
                   : data.type_validation == "true"
                   ? " text-success notification-tag-true"
-                  : "text-danger notification-tag-false")
+                  : " text-danger notification-tag-false")
               }
             >
               {data.type_validation == "not_yet"
@@ -147,14 +151,14 @@ const TableData = ({ filtercctv, filterobject }) => {
         </thead>
         <tbody className="table-group-divider">{arr}</tbody>
       </table>
-      <nav aria-label="Page navigation example">
+      <nav aria-label="Page navigation">
         <ul className="pagination justify-content-center gap-4">
           <li className="page-item">
             <button
-              className={numstart == 0 ? "page-link" + lastpage : "page-link"}
+              className={"page-link" + (numstart == 0 ? lastpage : " text-success")}
               onClick={() => {
-                setNumstart(numstart - 5);
-                setNumend(numend - 5);
+                setNumstart(numstart - 4);
+                setNumend(numend - 4);
               }}
             >
               Previous
@@ -162,12 +166,10 @@ const TableData = ({ filtercctv, filterobject }) => {
           </li>
           <li className="page-item" key={data.id}>
             <button
-              className={
-                numend == datalimit ? "page-link" + lastpage : "page-link"
-              }
+              className={"page-link" + (numend == datalimit ? lastpage : " text-success")}
               onClick={() => {
-                setNumstart(numstart + 5);
-                setNumend(numend + 5);
+                setNumstart(numstart + 4);
+                setNumend(numend + 4);
               }}
             >
               Next

@@ -50,7 +50,7 @@ const Body = () => {
   return (
     <div className="livemonitoring-body">
       <div className="body-bg">
-        <div className="container pt-3">
+        <div className="container pt-3 pb-3">
           <div className="row">
             <div className="col">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
