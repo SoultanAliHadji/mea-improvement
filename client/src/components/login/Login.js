@@ -1,6 +1,34 @@
 import "../../App.css";
+import { Icon } from "@iconify/react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const Login = () => {
+  const [data, setData] = useState([{}]);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordtype, setPasswordtype] = useState("password");
+  const [incorrect, setIncorrect] = useState("");
+  const incorrectAlert = "*Incorrect username or password";
+
+  function handlerUsername(data) {
+    setUsername(data.target.value);
+  }
+
+  function handlerPassword(data) {
+    setPassword(data.target.value);
+  }
+
+  useEffect(() => {
+    axios
+      .get("/user/" + username)
+      .then((res) => {
+        console.log("Getting from ::::", res.data.data);
+        setData(res.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, [username]);
+
   return (
     <div className="login-page">
       <div className="bg-img">
@@ -25,26 +53,98 @@ const Login = () => {
                   </div>
                   <div className="mb-2">
                     <h6 className="fw-semibold">Username/SID</h6>
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Masukkan Username atau SID"
-                    />
+                    <div className="d-flex">
+                      <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Masukkan Username atau SID"
+                        defaultValue={username}
+                        onChange={handlerUsername}
+                      />
+                      <div className="d-flex align-items-center checker-container">
+                        <Icon
+                          className={
+                            "checker" +
+                            (username == ""
+                              ? " text-white"
+                              : data.status == "Success"
+                              ? " text-success"
+                              : " text-danger")
+                          }
+                          icon={
+                            data.status == "Success"
+                              ? "akar-icons:circle-check"
+                              : "akar-icons:circle-x"
+                          }
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div className="mb-4">
                     <h6 className="fw-semibold">Password</h6>
-                    <input
-                      className="form-control"
-                      type="password"
-                      placeholder="Masukkan Password"
-                    />
+                    <div className="d-flex">
+                      <input
+                        className="form-control"
+                        type={passwordtype}
+                        placeholder="Masukkan Password"
+                        defaultValue={password}
+                        onChange={handlerPassword}
+                      />
+                      <div className="view-container">
+                        {passwordtype == "password" ? (
+                          <button
+                            onClick={() => {
+                              setPasswordtype("text");
+                            }}
+                          >
+                            <Icon
+                              className="view text-black-50"
+                              icon="clarity:eye-line"
+                            />
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              setPasswordtype("password");
+                            }}
+                          >
+                            <Icon
+                              className="view text-black-50"
+                              icon="clarity:eye-hide-line"
+                            />
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   </div>
                   <div>
-                    <a className="d-grid text-decoration-none" href="/livemonitoring">
-                      <button className="btn btn-success" type="button">
+                    <a
+                      className="d-grid text-decoration-none"
+                      href={
+                        (data.status == "Success") & (password == username)
+                          ? "/livemonitoring"
+                          : "#"
+                      }
+                    >
+                      <button
+                        className="btn btn-success"
+                        type="button"
+                        onClick={() => {
+                          setIncorrect(
+                            (data.status == "Success") & (password == username)
+                              ? ""
+                              : "Incorrect"
+                          );
+                        }}
+                      >
                         Masuk
                       </button>
                     </a>
+                  </div>
+                  <div className="mt-3">
+                    <p className="p-small text-danger">
+                      {incorrect == "Incorrect" ? incorrectAlert : ""}
+                    </p>
                   </div>
                 </div>
               </div>

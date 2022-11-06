@@ -22,6 +22,10 @@ def cctvMostDetail(id):
 def users():
     return UsersController.index()
 
+@app.route('/user/<username>', methods=['GET'])
+def userDetail(username):
+    return UsersController.detail(username)
+
 @app.route('/image', methods=['GET'])
 def images():
     return Realtime_ImagesController.index()
@@ -72,3 +76,7 @@ def viewTableFilterAllCctv(object, num):
 @app.route('/viewtable/<name>/<location>/<num>', methods=['GET'])
 def viewTableFilterAllObject(name, location, num):
     return ViewTableController.viewTableFilterAllObject(name, location, num)
+
+@app.route('/viewtablet/<datetime>/<num>', methods=['GET'])
+def viewTableFilterAllDatetime(datetime, num):
+    return ViewTableController.viewTableFilterAllDatetime(datetime, num)

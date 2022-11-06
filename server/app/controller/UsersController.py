@@ -33,3 +33,15 @@ def singleObject(data):
     }
 
     return data
+
+def detail(username):
+    try:
+        user = Users.query.filter_by(username=username).first()
+
+        if not user:
+            return response.success({'status' : "Failed"}, "Failed")
+
+        return response.success({'status' : "Success"}, "Success")
+
+    except Exception as e:
+        print(e)

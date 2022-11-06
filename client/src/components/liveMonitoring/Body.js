@@ -11,6 +11,7 @@ const Body = () => {
   const [cctvid, setCctvid] = useState(1);
   const [cctvname, setCctvname] = useState("CCTV BMO2");
   const [cctvlocation, setCctvlocation] = useState("E Camera 3");
+  const [cctvip, setCctvip] = useState("10.1.73.20")
   const livecctv = "http://10.1.74.9:5000/video_feed/" + cctvid;
 
   useEffect(() => {
@@ -37,6 +38,7 @@ const Body = () => {
             setCctvid(data.id);
             setCctvname(data.name);
             setCctvlocation(data.location);
+            setCctvip(data.ip)
           }}
         >
           <div className="">
@@ -50,7 +52,7 @@ const Body = () => {
   return (
     <div className="livemonitoring-body">
       <div className="body-bg">
-        <div className="container pt-3 pb-3">
+        <div className="container pt-3 pb-2">
           <div className="row">
             <div className="col">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
@@ -119,7 +121,7 @@ const Body = () => {
                   </h6>
                   <div className="d-flex pb-2">
                     <p className="fw-semibold pe-2 p-small">IP</p>
-                    <p className="p-small">10.1.73.20</p>
+                    <p className="p-small">{cctvip}</p>
                   </div>
                   <p className="fw-semibold pe-2 p-small pb-2">
                     Titik Koordinat
