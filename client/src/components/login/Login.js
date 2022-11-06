@@ -151,7 +151,7 @@ const Login = () => {
               <div className="col">
                 <div
                   id="carouselExampleDark"
-                  className="carousel carousel-dark slide"
+                  className="carousel carousel slide"
                   data-bs-ride="carousel"
                 >
                   <div className="carousel-indicators">
