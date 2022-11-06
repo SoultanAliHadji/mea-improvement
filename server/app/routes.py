@@ -64,3 +64,11 @@ def viewValidatedFilter(num):
 @app.route('/viewtable/<name>/<location>/<object>/<num>', methods=['GET'])
 def viewTableFilter(name, location, object, num):
     return ViewTableController.viewTableFilter(name, location, object, num)
+
+@app.route('/viewtable/<object>/<num>', methods=['GET'])
+def viewTableFilterAllCctv(object, num):
+    return ViewTableController.viewTableFilterAllCctv(object, num)
+
+@app.route('/viewtable/<name>/<location>/<num>', methods=['GET'])
+def viewTableFilterAllObject(name, location, num):
+    return ViewTableController.viewTableFilterAllObject(name, location, num)

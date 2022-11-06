@@ -19,12 +19,11 @@ const Body = () => {
     <div className="datatervalidasi-body">
       <div className="body-bg">
         <div className="container pt-3 pb-3">
-          <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2 d-flex jusify-content-center">
-            <div></div>
-            <h6 className="fw-semibold">Data Deviasi Tervalidasi</h6>
-          </div>
-          <div className="shadow-all mb-2 bg-body rounded-bottom px-3 py-2">
-            <div className="row mb-4 p-medium">
+          <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
+            <div className="mb-3">
+              <h6 className="fw-semibold">Data Deviasi Tervalidasi</h6>
+            </div>
+            <div className="row mb-2 p-medium">
               <div className="col-3">
                 <p>CCTV</p>
                 <div className="input-group">
@@ -96,21 +95,8 @@ const Body = () => {
                   </select>
                 </div>
               </div>
-              <div className="col-3 d-flex align-items-end">
+              <div className="col-3 d-flex align-items-end justify-content-end">
                 <div className="d-flex gap-3">
-                  <button
-                    type="button"
-                    className="shadow-all btn btn-success fw-semibold py-2 rounded-3"
-                    data-bs-toggle="modal"
-                  >
-                    <div>
-                      <Icon
-                        className="button-icon me-1"
-                        icon="entypo:magnifying-glass"
-                      />
-                      Search
-                    </div>
-                  </button>
                   <button
                     type="button"
                     className="shadow-all btn btn-success fw-semibold py-2 rounded-3"
@@ -124,6 +110,8 @@ const Body = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="shadow-all bg-body rounded-bottom px-3 py-3">
             <TableData filterobject={filterobject} filtercctv={filtercctv} />
           </div>
         </div>

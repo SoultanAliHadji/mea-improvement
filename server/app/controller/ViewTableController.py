@@ -47,7 +47,27 @@ def viewTableFilter(name, location, object, num):
     try:
         view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.name == name) & (Viewtable.location == location) & (Viewtable.type_object == object)).order_by(desc(Viewtable.id)).limit(num)
         data = formatData(view)
-        
+
+        return response.success(data, "Success")
+
+    except Exception as e:
+        print(e)
+
+def viewTableFilterAllCctv(object, num):
+    try:
+        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.type_object == object)).order_by(desc(Viewtable.id)).limit(num)
+        data = formatData(view)
+
+        return response.success(data, "Success")
+
+    except Exception as e:
+        print(e)
+
+def viewTableFilterAllObject(name, location, num):
+    try:
+        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.name == name) & (Viewtable.location == location)).order_by(desc(Viewtable.id)).limit(num)
+        data = formatData(view)
+
         return response.success(data, "Success")
 
     except Exception as e:

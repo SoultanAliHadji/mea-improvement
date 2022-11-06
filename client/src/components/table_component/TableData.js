@@ -18,6 +18,10 @@ const TableData = ({ filtercctv, filterobject }) => {
       .get(
         (filtercctv == "All") & (filterobject == "All")
           ? "/viewvalidated/" + datalimit
+          : (filtercctv == "All") & (filterobject != "All")
+          ? "/viewtable/" + filterobject + "/" + datalimit
+          : (filtercctv != "All") & (filterobject == "All")
+          ? "/viewtable/" + filtercctv + "/" + datalimit
           : "/viewtable/" + filtercctv + "/" + filterobject + "/" + datalimit
       )
       .then((res) => {
@@ -25,7 +29,7 @@ const TableData = ({ filtercctv, filterobject }) => {
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [filterobject]);
+  }, [filtercctv, filterobject]);
 
   const arr = data.slice(numstart, numend).map((data, index) => {
     return (
@@ -116,7 +120,7 @@ const TableData = ({ filtercctv, filterobject }) => {
   });
 
   return (
-    <div className="overflow-auto">
+    <div className="overflow-auto pt-1">
       <table className="table">
         <thead>
           <tr className="text-center">
@@ -155,7 +159,9 @@ const TableData = ({ filtercctv, filterobject }) => {
         <ul className="pagination justify-content-center gap-4">
           <li className="page-item">
             <button
-              className={"page-link" + (numstart == 0 ? lastpage : " text-success")}
+              className={
+                "page-link" + (numstart == 0 ? lastpage : " text-success")
+              }
               onClick={() => {
                 setNumstart(numstart - 4);
                 setNumend(numend - 4);
@@ -166,7 +172,9 @@ const TableData = ({ filtercctv, filterobject }) => {
           </li>
           <li className="page-item" key={data.id}>
             <button
-              className={"page-link" + (numend == datalimit ? lastpage : " text-success")}
+              className={
+                "page-link" + (numend == datalimit ? lastpage : " text-success")
+              }
               onClick={() => {
                 setNumstart(numstart + 4);
                 setNumend(numend + 4);
