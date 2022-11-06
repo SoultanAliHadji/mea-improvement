@@ -77,6 +77,6 @@ def viewTableFilterAllCctv(object, num):
 def viewTableFilterAllObject(name, location, num):
     return ViewTableController.viewTableFilterAllObject(name, location, num)
 
-@app.route('/viewtablet/<datetime>/<num>', methods=['GET'])
+@app.route('/viewtabledate/<datetime>/<num>', methods=['GET'])
 def viewTableFilterAllDatetime(datetime, num):
     return ViewTableController.viewTableFilterAllDatetime(datetime, num)

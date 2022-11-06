@@ -75,7 +75,7 @@ def viewTableFilterAllObject(name, location, num):
 
 def viewTableFilterAllDatetime(datetime, num):
     try:
-        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.updated_at == datetime)).order_by(desc(Viewtable.id)).limit(num)
+        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.updated_at.contains(datetime))).order_by(desc(Viewtable.id)).limit(num)
         data = formatData(view)
 
         return response.success(data, "Success")

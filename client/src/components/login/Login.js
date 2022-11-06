@@ -92,7 +92,7 @@ const Login = () => {
                       />
                       <div className="view-container">
                         {passwordtype == "password" ? (
-                          <button
+                          <div
                             onClick={() => {
                               setPasswordtype("text");
                             }}
@@ -101,9 +101,9 @@ const Login = () => {
                               className="view text-black-50"
                               icon="clarity:eye-line"
                             />
-                          </button>
+                          </div>
                         ) : (
-                          <button
+                          <div
                             onClick={() => {
                               setPasswordtype("password");
                             }}
@@ -112,7 +112,7 @@ const Login = () => {
                               className="view text-black-50"
                               icon="clarity:eye-hide-line"
                             />
-                          </button>
+                          </div>
                         )}
                       </div>
                     </div>

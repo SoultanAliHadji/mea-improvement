@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import ReactImageMagnify from "react-magnify-image";
 
-const TableData = ({ filtercctv, filterobject }) => {
+const TableData = ({ filtercctv, filterobject, filterdate }) => {
   const [data, setData] = useState([{}]);
   const modalimage = "mining_eyes.jpg";
   const datalimit = 32;
@@ -17,19 +17,19 @@ const TableData = ({ filtercctv, filterobject }) => {
     axios
       .get(
         (filtercctv == "All") & (filterobject == "All")
-          ? "/viewvalidated/" + datalimit
+          ? ("/viewvalidated/" + datalimit)
           : (filtercctv == "All") & (filterobject != "All")
           ? "/viewtable/" + filterobject + "/" + datalimit
           : (filtercctv != "All") & (filterobject == "All")
-          ? "/viewtable/" + filtercctv + "/" + datalimit
-          : "/viewtable/" + filtercctv + "/" + filterobject + "/" + datalimit
+          ? ("/viewtable/" + filtercctv + "/" + datalimit)
+          : ("/viewtable/" + filtercctv + "/" + filterobject + "/" + datalimit)
       )
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [filtercctv, filterobject]);
+  }, [filtercctv, filterobject, filterdate]);
 
   const arr = data.slice(numstart, numend).map((data, index) => {
     return (

@@ -2,10 +2,12 @@ import "../../App.css";
 import TableData from "../table_component/TableData";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
+import Calendar from "react-calendar";
 
 const Body = () => {
   const [filtercctv, setFiltercctv] = useState("All");
   const [filterobject, setFilterobject] = useState("All");
+  const [filterdate, setFilterdate] = useState(new Date());
 
   function handlerFiltercctv(data) {
     setFiltercctv(data.target.value);
@@ -84,15 +86,36 @@ const Body = () => {
               <div className="col-3">
                 <p>Periode</p>
                 <div className="input-group">
-                  <label className="input-group-text" for="inputGroupSelect03">
+                  <button
+                    type="button"
+                    className="input-group-text btn btn-success"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  >
                     <Icon className="filter-icon" icon="bi:calendar-week" />
-                  </label>
-                  <select className="form-select" id="inputGroupSelect03">
-                    <option selected>Semua</option>
-                    <option value="31">Hari ini</option>
-                    <option value="32">3 Hari</option>
-                    <option value="33">7 Hari</option>
-                  </select>
+                  </button>
+                </div>
+                <div
+                  className="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                      <div className="modal-body">
+                        <div className="app">
+                          <div className="calendar-container d-flex justify-content-center">
+                            <Calendar
+                              onChange={setFilterdate}
+                              value={filterdate}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="col-3 d-flex align-items-end justify-content-end">
@@ -112,7 +135,11 @@ const Body = () => {
             </div>
           </div>
           <div className="shadow-all bg-body rounded-bottom px-3 py-3">
-            <TableData filterobject={filterobject} filtercctv={filtercctv} />
+            <TableData
+              filterobject={filterobject}
+              filtercctv={filtercctv}
+              filterdate={filterdate}
+            />
           </div>
         </div>
       </div>
