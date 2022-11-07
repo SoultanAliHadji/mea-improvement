@@ -11,14 +11,6 @@ const Login = () => {
   const [incorrect, setIncorrect] = useState("");
   const incorrectAlert = "*Incorrect username or password";
 
-  function handlerUsername(data) {
-    setUsername(data.target.value);
-  }
-
-  function handlerPassword(data) {
-    setPassword(data.target.value);
-  }
-
   useEffect(() => {
     axios
       .get("/user/" + username)
@@ -28,6 +20,14 @@ const Login = () => {
       })
       .catch((err) => console.log(err));
   }, [username]);
+
+  function handlerUsername(data) {
+    setUsername(data.target.value);
+  }
+
+  function handlerPassword(data) {
+    setPassword(data.target.value);
+  }
 
   return (
     <div className="login-page">

@@ -17,6 +17,20 @@ const Validation = ({ viewid }) => {
       .catch((err) => console.log(err));
   }, []);
 
+  function handlerComment(data) {
+    setDeviationcomment(data.target.value);
+  }
+
+  const handleUpdate = async (datas) => {
+    datas.type_validation = "true"
+    datas.comment = "Sebuah deviasi"
+    await axios.put("/deviation/" + viewid);
+    const dataClone = [...data];
+    const index = dataClone.indexOf(datas);
+    dataClone[index] = { ...datas };
+    setData(dataClone);
+  };
+
   const arr = data.map((data, index) => {
     return (
       <div className="d-flex gap-2 justify-content-end validationbutton-component">
@@ -72,6 +86,8 @@ const Validation = ({ viewid }) => {
                   class="form-control"
                   id="message-text"
                   placeholder="Masukkan keterangan deviasi"
+                  defaultValue={deviationcomment}
+                  onChange={handlerComment}
                 ></textarea>
               </div>
               <div className="modal-footer">
@@ -86,6 +102,7 @@ const Validation = ({ viewid }) => {
                   type="submit"
                   className="btn btn-success"
                   data-bs-dismiss="modal"
+                  onClick={() => handleUpdate(data)}
                 >
                   Simpan
                 </button>

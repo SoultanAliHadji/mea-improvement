@@ -6,12 +6,14 @@ import ReactImageMagnify from "react-magnify-image";
 
 const TableData = ({ filtercctv, filterobject, year, month, day }) => {
   const [data, setData] = useState([{}]);
-  const modalimage = "mining_eyes.jpg";
+  const [modalimage, setModalImage] = useState();
   const datalimit = 100;
   const [numstart, setNumstart] = useState(0);
   const [numend, setNumend] = useState(10);
   const lastpage = " text-black-50 disabled";
   const date = year + "-" + month + "-" + day;
+  const [comment, setComment] = useState();
+  const [status, setStatus] = useState();
 
   useEffect(() => {
     axios
@@ -52,7 +54,7 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
         <td className="text-center">
           <img
             className="data-img"
-            src={require("../../assets/" + modalimage)}
+            src={require("../../assets/mining_eyes.jpg")}
             alt=""
           />
         </td>
@@ -93,6 +95,11 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
               className="btn btn-outline-success"
               data-bs-toggle="modal"
               data-bs-target="#viewModal"
+              onClick={() => {
+                setComment(data.comment);
+                setStatus(data.type_validation);
+                setModalImage(require("../../assets/mining_eyes.jpg"));
+              }}
             >
               <Icon className="modal-icon" icon="fa-solid:eye" />
             </button>
@@ -114,16 +121,37 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
                     smallImage: {
                       alt: "",
                       isFluidWidth: true,
-                      src: require("../../assets/" + modalimage),
+                      src: modalimage,
                     },
                     largeImage: {
-                      src: require("../../assets/" + modalimage),
+                      src: modalimage,
                       width: 1600,
                       height: 700,
                     },
                     enlargedImagePosition: "over",
                   }}
                 />
+                <div
+                  className={
+                    "rounded-2 px-2 fw-bolder mt-2" +
+                    (status == "not_yet"
+                      ? " text-primary notification-tag"
+                      : status == "true"
+                      ? " text-success notification-tag-true"
+                      : " text-danger notification-tag-false")
+                  }
+                >
+                  {status == "not_yet"
+                    ? "Perlu Validasi"
+                    : status == "true"
+                    ? "Valid"
+                    : "Tidak Valid"}
+                </div>
+
+                <div className="d-flex gap-1 mt-2 deviation-desc">
+                  <label className="fw-bolder">Deskripsi:</label>
+                  {comment == null ? "-" : <label>{comment}</label>}
+                </div>
               </div>
             </div>
           </div>
@@ -186,7 +214,7 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
           <li className="page-item" key={data.id}>
             <button
               className={
-                "page-link" + (numend == datalimit ? lastpage : " text-success")
+                "page-link" + (numend > data.length ? lastpage : " text-success")
               }
               onClick={() => {
                 setNumstart(numstart + 10);
