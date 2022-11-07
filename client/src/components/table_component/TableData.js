@@ -85,7 +85,7 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
           </div>
         </td>
         <td className="text-center">
-          <TableUser deviationid={data.id} />
+          {data.user_id == null ? "-" : data.user_id}
         </td>
         <td>
           <div className="d-flex justify-content-center">
