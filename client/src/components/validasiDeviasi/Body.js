@@ -16,6 +16,7 @@ const Body = () => {
   const [viewimage, setViewimage] = useState();
   const [kategori, setKategori] = useState("All");
   const numlimiter = 10;
+  const autoupdate = window.setInterval(+1, 10000);
 
   useEffect(() => {
     axios
@@ -33,7 +34,7 @@ const Body = () => {
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [kategori]);
+  }, [autoupdate]);
 
   const arr = data.slice(0, [numlimiter]).map((data, index) => {
     return (

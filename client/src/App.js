@@ -7,7 +7,7 @@ import DataTervalidasi from "./components/dataTervalidasi/DataTervalidasi";
 
 function App() {
   return (
-    <div className="font-roboto">
+    <div className="font-roboto noselect">
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />

@@ -15,15 +15,15 @@ const Validation = ({ viewid }) => {
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [viewid]);
 
   function handlerComment(data) {
     setDeviationcomment(data.target.value);
   }
 
   const handleUpdate = async (datas) => {
-    datas.type_validation = "true"
-    datas.comment = "Sebuah deviasi"
+    data.type_validation = "true";
+    data.comment = "Sebuah deviasi";
     await axios.put("/deviation/" + viewid);
     const dataClone = [...data];
     const index = dataClone.indexOf(datas);
