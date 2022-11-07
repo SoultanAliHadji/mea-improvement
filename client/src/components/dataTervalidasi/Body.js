@@ -8,6 +8,32 @@ const Body = () => {
   const [filtercctv, setFiltercctv] = useState("All");
   const [filterobject, setFilterobject] = useState("All");
   const [filterdate, setFilterdate] = useState(new Date());
+  const year = filterdate.toString().substring(11, 15);
+  const month =
+    filterdate.toString().substring(4, 7) == "Jan"
+      ? "01"
+      : filterdate.toString().substring(4, 7) == "Feb"
+      ? "02"
+      : filterdate.toString().substring(4, 7) == "Mar"
+      ? "03"
+      : filterdate.toString().substring(4, 7) == "Apr"
+      ? "04"
+      : filterdate.toString().substring(4, 7) == "May"
+      ? "05"
+      : filterdate.toString().substring(4, 7) == "Jun"
+      ? "06"
+      : filterdate.toString().substring(4, 7) == "Jul"
+      ? "07"
+      : filterdate.toString().substring(4, 7) == "Aug"
+      ? "08"
+      : filterdate.toString().substring(4, 7) == "Sep"
+      ? "09"
+      : filterdate.toString().substring(4, 7) == "Oct"
+      ? "10"
+      : filterdate.toString().substring(4, 7) == "Nov"
+      ? "11"
+      : "12";
+  const day = filterdate.toString().substring(8, 10);
 
   function handlerFiltercctv(data) {
     setFiltercctv(data.target.value);
@@ -83,7 +109,7 @@ const Body = () => {
                   </select>
                 </div>
               </div>
-              <div className="col-3">
+              <div className="col-1">
                 <p>Periode</p>
                 <div className="input-group">
                   <button
@@ -118,7 +144,7 @@ const Body = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-3 d-flex align-items-end justify-content-end">
+              <div className="col-5 d-flex align-items-end justify-content-end">
                 <div className="d-flex gap-3">
                   <button
                     type="button"
@@ -138,7 +164,9 @@ const Body = () => {
             <TableData
               filterobject={filterobject}
               filtercctv={filtercctv}
-              filterdate={filterdate}
+              year={year}
+              month={month}
+              day={day}
             />
           </div>
         </div>

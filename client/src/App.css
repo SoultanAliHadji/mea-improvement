@@ -427,7 +427,7 @@ button {
 }
 
 .datatervalidasi-body .overflow-auto {
-    max-height: 368px;
+    max-height: 356px;
 }
 
 .datatervalidasi-body .table .data-img {
@@ -608,7 +608,7 @@ abbr[title] {
 }
 
 .react-calendar__tile--hasActive {
-    background: #76baff;
+    background: #3B931533;
 }
 
 .react-calendar__tile--hasActive:enabled:hover,

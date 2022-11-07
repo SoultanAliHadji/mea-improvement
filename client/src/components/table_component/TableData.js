@@ -5,31 +5,39 @@ import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import ReactImageMagnify from "react-magnify-image";
 
-const TableData = ({ filtercctv, filterobject, filterdate }) => {
+const TableData = ({ filtercctv, filterobject, year, month, day }) => {
   const [data, setData] = useState([{}]);
   const modalimage = "mining_eyes.jpg";
-  const datalimit = 32;
+  const datalimit = 100;
   const [numstart, setNumstart] = useState(0);
-  const [numend, setNumend] = useState(4);
+  const [numend, setNumend] = useState(10);
   const lastpage = " text-black-50 disabled";
+  const date = year + "-" + month + "-" + day;
 
   useEffect(() => {
     axios
       .get(
         (filtercctv == "All") & (filterobject == "All")
-          ? ("/viewvalidated/" + datalimit)
+          ? "viewvalidated/" + date + "/" + datalimit
           : (filtercctv == "All") & (filterobject != "All")
-          ? "/viewtable/" + filterobject + "/" + datalimit
+          ? "/viewtable/" + filterobject + "/" + date + "/" + datalimit
           : (filtercctv != "All") & (filterobject == "All")
-          ? ("/viewtable/" + filtercctv + "/" + datalimit)
-          : ("/viewtable/" + filtercctv + "/" + filterobject + "/" + datalimit)
+          ? "/viewtable/" + filtercctv + "/" + date + "/" + datalimit
+          : "/viewtable/" +
+            filtercctv +
+            "/" +
+            filterobject +
+            "/" +
+            date +
+            "/" +
+            datalimit
       )
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [filtercctv, filterobject, filterdate]);
+  }, [filtercctv, filterobject, year, month, day]);
 
   const arr = data.slice(numstart, numend).map((data, index) => {
     return (
@@ -40,7 +48,7 @@ const TableData = ({ filtercctv, filterobject, filterdate }) => {
         <td>
           {data.name} - {data.location}
         </td>
-        <td>{data.created_at}</td>
+        <td>{data.updated_at}</td>
         <td className="text-center">{data.type_object}</td>
         <td className="text-center">
           <img
@@ -49,7 +57,13 @@ const TableData = ({ filtercctv, filterobject, filterdate }) => {
             alt=""
           />
         </td>
-        <td>{(data.comment = "NULL" ? "Empty" : data.comment)}</td>
+        <td>
+          {data.comment == null
+            ? "-"
+            : data.comment.length < 10
+            ? data.comment
+            : data.comment.substr(0, 16) + "..."}
+        </td>
         <td>
           <div className="d-flex justify-content-center">
             <div
@@ -71,7 +85,7 @@ const TableData = ({ filtercctv, filterobject, filterdate }) => {
           </div>
         </td>
         <td className="text-center">
-          <TableUser imageid={data.id} />
+          <TableUser deviationid={data.id} />
         </td>
         <td>
           <div className="d-flex justify-content-center">
@@ -79,7 +93,7 @@ const TableData = ({ filtercctv, filterobject, filterdate }) => {
               type="button"
               className="btn btn-outline-success"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#viewModal"
             >
               <Icon className="modal-icon" icon="fa-solid:eye" />
             </button>
@@ -87,7 +101,7 @@ const TableData = ({ filtercctv, filterobject, filterdate }) => {
         </td>
         <div
           className="modal fade"
-          id="exampleModal"
+          id="viewModal"
           tabindex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
@@ -163,8 +177,8 @@ const TableData = ({ filtercctv, filterobject, filterdate }) => {
                 "page-link" + (numstart == 0 ? lastpage : " text-success")
               }
               onClick={() => {
-                setNumstart(numstart - 4);
-                setNumend(numend - 4);
+                setNumstart(numstart - 10);
+                setNumend(numend - 10);
               }}
             >
               Previous
@@ -176,8 +190,8 @@ const TableData = ({ filtercctv, filterobject, filterdate }) => {
                 "page-link" + (numend == datalimit ? lastpage : " text-success")
               }
               onClick={() => {
-                setNumstart(numstart + 4);
-                setNumend(numend + 4);
+                setNumstart(numstart + 10);
+                setNumend(numend + 10);
               }}
             >
               Next

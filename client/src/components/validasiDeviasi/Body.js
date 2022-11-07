@@ -19,7 +19,15 @@ const Body = () => {
 
   useEffect(() => {
     axios
-      .get(kategori == "All" ? ("/viewlimit/" + numlimiter) : kategori == "Person" ? ("/viewobject/" + kategori + "/" + numlimiter) : kategori == "LV" ? ("/viewobject/" + kategori + "/" + numlimiter) : ("/viewobject/" + kategori + "/" + numlimiter))
+      .get(
+        kategori == "All"
+          ? "/viewlimit/" + numlimiter
+          : kategori == "Person"
+          ? "/viewobject/" + kategori + "/" + numlimiter
+          : kategori == "LV"
+          ? "/viewobject/" + kategori + "/" + numlimiter
+          : "/viewobject/" + kategori + "/" + numlimiter
+      )
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);

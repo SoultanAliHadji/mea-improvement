@@ -33,9 +33,9 @@ def viewNotificationFilter(object, num):
     except Exception as e:
         print(e)
 
-def viewValidatedFilter(num):
+def viewValidatedFilter(date, num):
     try:
-        view = Viewtable.query.filter((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")).order_by(desc(Viewtable.id)).limit(num)
+        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
         data = formatData(view)
         
         return response.success(data, "Success")
@@ -43,9 +43,9 @@ def viewValidatedFilter(num):
     except Exception as e:
         print(e)
 
-def viewTableFilter(name, location, object, num):
+def viewTableFilter(name, location, object, date, num):
     try:
-        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.name == name) & (Viewtable.location == location) & (Viewtable.type_object == object)).order_by(desc(Viewtable.id)).limit(num)
+        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.name == name) & (Viewtable.location == location) & (Viewtable.type_object == object) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
         data = formatData(view)
 
         return response.success(data, "Success")
@@ -53,9 +53,9 @@ def viewTableFilter(name, location, object, num):
     except Exception as e:
         print(e)
 
-def viewTableFilterAllCctv(object, num):
+def viewTableFilterAllCctv(object, date, num):
     try:
-        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.type_object == object)).order_by(desc(Viewtable.id)).limit(num)
+        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.type_object == object) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
         data = formatData(view)
 
         return response.success(data, "Success")
@@ -63,19 +63,9 @@ def viewTableFilterAllCctv(object, num):
     except Exception as e:
         print(e)
 
-def viewTableFilterAllObject(name, location, num):
+def viewTableFilterAllObject(name, location, date, num):
     try:
-        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.name == name) & (Viewtable.location == location)).order_by(desc(Viewtable.id)).limit(num)
-        data = formatData(view)
-
-        return response.success(data, "Success")
-
-    except Exception as e:
-        print(e)
-
-def viewTableFilterAllDatetime(datetime, num):
-    try:
-        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.updated_at.contains(datetime))).order_by(desc(Viewtable.id)).limit(num)
+        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.name == name) & (Viewtable.location == location) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
         data = formatData(view)
 
         return response.success(data, "Success")

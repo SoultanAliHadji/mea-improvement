@@ -4,9 +4,11 @@ from app.model.cctv import Cctv
 from app.model.users import Users
 from app.model.realtime_images import Realtime_images
 
+
 class Viewtable(db.Model):
     id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
-    realtime_images_id = db.Column(db.BigInteger, db.ForeignKey(Realtime_images.id))
+    realtime_images_id = db.Column(
+        db.BigInteger, db.ForeignKey(Realtime_images.id))
     user_id = db.Column(db.BigInteger, db.ForeignKey(Users.id), nullable=True)
     type_validation = db.Column(db.String(100), nullable=False)
     type_object = db.Column(db.String(100), nullable=False)
