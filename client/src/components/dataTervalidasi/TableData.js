@@ -1,5 +1,4 @@
 import "../../App.css";
-import TableUser from "./TableUser";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";

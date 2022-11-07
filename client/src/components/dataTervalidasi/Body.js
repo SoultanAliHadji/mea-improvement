@@ -1,5 +1,5 @@
 import "../../App.css";
-import TableData from "../table_component/TableData";
+import TableData from "./TableData";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import Calendar from "react-calendar";
