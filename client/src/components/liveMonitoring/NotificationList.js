@@ -8,7 +8,7 @@ const NotificationList = () => {
   const [viewid, setViewid] = useState();
   const [kategori, setKategori] = useState("All");
   const numlimiter = 10;
-  const autoupdate = window.setInterval(+1, 1000);
+  const array = data.map((data, index) => {return(data.id)})
 
   useEffect(() => {
     axios
@@ -18,7 +18,7 @@ const NotificationList = () => {
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [autoupdate]);
+  }, [array]);
 
   const arr = data.slice(0, [numlimiter]).map((data, index) => {
     return (

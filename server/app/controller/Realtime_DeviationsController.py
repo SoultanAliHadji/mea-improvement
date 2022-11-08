@@ -75,17 +75,20 @@ def update(id):
     try:
         type_validation = request.form.get('type_validation')
         comment = request.form.get('comment')
+        user_id = request.form.get('user_id')
 
         input = [
             {
                 'type_validation' : type_validation,
-                'comment' : comment
+                'comment' : comment,
+                'user_id' : user_id
             }
         ]
 
         deviation = Realtime_deviations.query.filter_by(id=id).first()
         deviation.type_validation = type_validation
         deviation.comment = comment
+        deviation.user_id = user_id
 
         db.session.commit()
 

@@ -24,6 +24,7 @@ const Validation = ({ viewid }) => {
   const handleUpdate = async (datas) => {
     data.type_validation = "true";
     data.comment = "Sebuah deviasi";
+    data.user_id = "7"
     await axios.put("/deviation/" + viewid);
     const dataClone = [...data];
     const index = dataClone.indexOf(datas);

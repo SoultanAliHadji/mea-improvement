@@ -13,10 +13,14 @@ const Body = () => {
   const [viewcctvname, setViewcctvname] = useState();
   const [viewcctvlocation, setViewcctvlocation] = useState();
   const [viewtime, setViewtime] = useState();
+  const [viewuser, setViewuser] = useState();
+  const [viewcomment, setViewcomment] = useState();
   const [viewimage, setViewimage] = useState();
   const [kategori, setKategori] = useState("All");
   const numlimiter = 10;
-  const autoupdate = window.setInterval(+1, 10000);
+  const array = data.map((data, index) => {
+    return data.id;
+  });
 
   useEffect(() => {
     axios
@@ -34,7 +38,7 @@ const Body = () => {
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [autoupdate]);
+  }, [viewid, viewstatus, viewobject, viewcctvname, viewcctvlocation, viewtime, viewuser, viewcomment, viewimage, array]);
 
   const arr = data.slice(0, [numlimiter]).map((data, index) => {
     return (
@@ -52,6 +56,8 @@ const Body = () => {
           setViewcctvname(data.name);
           setViewcctvlocation(data.location);
           setViewtime(data.created_at);
+          setViewuser(data.user_name);
+          setViewcomment(data.comment);
         }}
       >
         <div className="d-flex">
@@ -147,20 +153,75 @@ const Body = () => {
                     <h6 className="fw-semibold d-flex gap-1">
                       <div>Terdeteksi Deviasi {viewobject}</div>
                     </h6>
-                    <div className="d-flex pb-2 gap-2">
-                      <Icon className="notif-icon" icon="bi:camera-fill" />
-                      <p className="p-small">
-                        {viewcctvname} - {viewcctvlocation}
-                      </p>
-                    </div>
-                    <div className="d-flex pb-2 gap-2">
-                      <Icon className="notif-icon" icon="akar-icons:clock" />
-                      <p className="p-small">{viewtime}</p>
-                    </div>
+                    {viewstatus != "not_yet" ? (
+                      <div>
+                        <div className="d-flex row">
+                          <div className="d-flex pb-2 gap-2 col">
+                            <Icon
+                              className="notif-icon"
+                              icon="bi:camera-fill"
+                            />
+                            <p className="p-small">
+                              {viewcctvname} - {viewcctvlocation}
+                            </p>
+                          </div>
+                          <div className="d-flex pb-2 gap-2 col">
+                            <Icon
+                              className="notif-icon"
+                              icon="fa6-solid:helmet-safety"
+                            />
+                            <p className="p-small">
+                              {viewuser == null ? "-" : viewuser}
+                            </p>
+                          </div>
+                          <div className="col"></div>
+                        </div>
+                        <div className="d-flex row">
+                          <div className="d-flex pb-2 gap-2 col">
+                            <Icon
+                              className="notif-icon"
+                              icon="akar-icons:clock"
+                            />
+                            <p className="p-small">{viewtime}</p>
+                          </div>
+                          <div className="d-flex pb-2 gap-2 col">
+                            <Icon className="notif-icon" icon="codicon:note" />
+                            <p className="p-small">
+                              {viewcomment == null
+                                ? "-"
+                                : viewcomment.length < 30
+                                ? viewcomment
+                                : viewcomment.substr(0, 30) + "..."}
+                            </p>
+                          </div>
+                          <div className="col"></div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <div className="d-flex pb-2 gap-2 col">
+                          <Icon className="notif-icon" icon="bi:camera-fill" />
+                          <p className="p-small">
+                            {viewcctvname} - {viewcctvlocation}
+                          </p>
+                        </div>
+                        <div className="d-flex pb-2 gap-2 col">
+                          <Icon
+                            className="notif-icon"
+                            icon="akar-icons:clock"
+                          />
+                          <p className="p-small">{viewtime}</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <div className="col">
-                    <Validation viewid={viewid} />
-                  </div>
+                  {viewstatus == "not_yet" ? (
+                    <div className="col">
+                      <Validation viewid={viewid} />
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>

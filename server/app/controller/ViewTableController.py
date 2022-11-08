@@ -117,7 +117,9 @@ def viewIndexData(data):
         'cctv_id' : data.cctv_id,
         'name' : data.name,
         'location' : data.location,
-        'ip' : data.ip
+        'ip' : data.ip,
+        'username' : data.username,
+        'user_name' : data.user_name
     }
 
     return data

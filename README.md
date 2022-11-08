@@ -16,6 +16,10 @@ realtime_images.image,
 realtime_images.cctv_id,
 cctv.name,
 cctv.location,
-cctv.ip
-FROM cctv RIGHT JOIN realtime_images ON cctv.id = realtime_images.cctv_id
+cctv.ip,
+users.username,
+users.name AS user_name
+FROM cctv
+RIGHT JOIN realtime_images ON cctv.id = realtime_images.cctv_id
 RIGHT JOIN realtime_deviations ON realtime_images.id = realtime_deviations.realtime_images_id
+LEFT JOIN users ON realtime_deviations.user_id = users.id

@@ -114,11 +114,14 @@ const Body = () => {
                 <div className="input-group">
                   <button
                     type="button"
-                    className="input-group-text btn btn-success"
+                    className="input-group-text btn btn-success d-flex justify-content-center"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                   >
-                    <Icon className="filter-icon" icon="bi:calendar-week" />
+                    <div className="d-flex gap-3">
+                      <Icon className="filter-icon" icon="bi:calendar-week" />
+                      <div>{day + "-" + month + "-" + year}</div>
+                    </div>
                   </button>
                 </div>
                 <div
@@ -128,7 +131,7 @@ const Body = () => {
                   aria-labelledby="exampleModalLabel"
                   aria-hidden="true"
                 >
-                  <div className="modal-dialog modal-dialog-centered">
+                  <div className="modal-dialog modal-dialog-centered date-modal">
                     <div className="modal-content">
                       <div className="modal-body">
                         <div className="app">

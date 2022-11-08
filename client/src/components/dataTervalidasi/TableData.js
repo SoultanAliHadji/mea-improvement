@@ -54,14 +54,14 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
         <td className="text-center">
           <img
             className="data-img"
-            src={require("../../assets/mining_eyes.jpg")}
+            src={data.image}
             alt=""
           />
         </td>
         <td>
           {data.comment == null
             ? "-"
-            : data.comment.length < 10
+            : data.comment.length < 16
             ? data.comment
             : data.comment.substr(0, 16) + "..."}
         </td>
@@ -86,7 +86,11 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
           </div>
         </td>
         <td className="text-center">
-          {data.user_id == null ? "-" : data.user_id}
+          {data.user_name == null
+            ? "-"
+            : data.user_name.length < 10
+            ? data.user_name
+            : data.user_name.substr(0, 10) + "..."}
         </td>
         <td>
           <div className="d-flex justify-content-center">
@@ -214,7 +218,8 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
           <li className="page-item" key={data.id}>
             <button
               className={
-                "page-link" + (numend > data.length ? lastpage : " text-success")
+                "page-link" +
+                (numend > data.length ? lastpage : " text-success")
               }
               onClick={() => {
                 setNumstart(numstart + 10);
