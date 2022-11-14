@@ -114,7 +114,7 @@ const Validation = ({ viewid }) => {
                   className="modal-title fw-semibold"
                   id="staticBackdropLabel"
                 >
-                  Deskripsi Deviasi {viewid} {deviationstatus}
+                  Deskripsi Deviasi
                 </h6>
                 <button
                   type="button"
@@ -125,70 +125,80 @@ const Validation = ({ viewid }) => {
               </div>
               <div className="modal-body">
                 <form action="">
-                  <div className="d-flex gap-2 mb-3">
-                    <input
-                      type="checkbox"
-                      onClick={() => {
-                        checkbox1 == "off"
-                          ? setCheckbox1("on")
-                          : setCheckbox1("off");
-                      }}
-                    />
-                    <label htmlFor="">
-                      Unit hauling road jarak kurang dari 50 meter terhadap unit
-                      di depannya.
-                    </label>
-                  </div>
-                  <div className="d-flex gap-2 mb-3">
-                    <input
-                      type="checkbox"
-                      onClick={() => {
-                        checkbox2 == "off"
-                          ? setCheckbox2("on")
-                          : setCheckbox2("off");
-                      }}
-                    />
-                    <label htmlFor="">
-                      Double trailer, jarak aman unit kurang dari 180 meter
-                    </label>
-                  </div>
-                  <div className="d-flex gap-2 mb-3">
-                    <input
-                      type="checkbox"
-                      onClick={() => {
-                        checkbox3 == "off"
-                          ? setCheckbox3("on")
-                          : setCheckbox3("off");
-                      }}
-                    />
-                    <label htmlFor="">
-                      Jarak aman di area pit kurang dari 40 meter
-                    </label>
-                  </div>
-                  <div className="d-flex gap-2 mb-3">
-                    <input
-                      type="checkbox"
-                      onClick={() => {
-                        checkbox4 == "off"
-                          ? setCheckbox4("on")
-                          : setCheckbox4("off");
-                      }}
-                    />
-                    <label htmlFor="">
-                      Pekerja/Orang berada di luar unit area pertambangan
-                    </label>
-                  </div>
-                  <div className="d-flex gap-2 mb-3">
-                    <input
-                      type="checkbox"
-                      onClick={() => {
-                        checkbox5 == "off"
-                          ? setCheckbox5("on")
-                          : setCheckbox5("off");
-                      }}
-                    />
-                    <label htmlFor="">Tidak ada deviasi</label>
-                  </div>
+                  {deviationstatus == "true" ? 
+                    <div>
+                      <div className="d-flex gap-2 mb-3">
+                        <input
+                          type="checkbox"
+                          onClick={() => {
+                            checkbox1 == "off"
+                              ? setCheckbox1("on")
+                              : setCheckbox1("off");
+                          }}
+                        />
+                        <label htmlFor="">
+                          Unit hauling road jarak kurang dari 50 meter terhadap
+                          unit di depannya.
+                        </label>
+                      </div>
+                      <div className="d-flex gap-2 mb-3">
+                        <input
+                          type="checkbox"
+                          onClick={() => {
+                            checkbox2 == "off"
+                              ? setCheckbox2("on")
+                              : setCheckbox2("off");
+                          }}
+                        />
+                        <label htmlFor="">
+                          Double trailer, jarak aman unit kurang dari 180 meter
+                        </label>
+                      </div>
+                      <div className="d-flex gap-2 mb-3">
+                        <input
+                          type="checkbox"
+                          onClick={() => {
+                            checkbox3 == "off"
+                              ? setCheckbox3("on")
+                              : setCheckbox3("off");
+                          }}
+                        />
+                        <label htmlFor="">
+                          Jarak aman di area pit kurang dari 40 meter
+                        </label>
+                      </div>
+                      <div className="d-flex gap-2 mb-3">
+                        <input
+                          type="checkbox"
+                          onClick={() => {
+                            checkbox4 == "off"
+                              ? setCheckbox4("on")
+                              : setCheckbox4("off");
+                          }}
+                        />
+                        <label htmlFor="">
+                          Pekerja/Orang berada di luar unit area pertambangan
+                        </label>
+                      </div>
+                    </div>
+                   : 
+                    ""
+                  }
+                  {deviationstatus == "false" ? (
+                    <div className="d-flex gap-2 mb-3">
+                      <input
+                        type="checkbox"
+                        onClick={() => {
+                          checkbox5 == "off"
+                            ? setCheckbox5("on")
+                            : setCheckbox5("off");
+                        }}
+                      />
+                      <label htmlFor="">Tidak ada deviasi</label>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                   <div className="d-flex gap-2">
                     <input
                       type="checkbox"
