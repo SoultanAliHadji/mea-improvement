@@ -56,6 +56,7 @@ const Body = () => {
           setViewcctvname(data.name);
           setViewcctvlocation(data.location);
           setViewtime(data.created_at);
+          setViewimage(data.image);
           setViewuser(data.user_name);
           setViewcomment(data.comment);
         }}

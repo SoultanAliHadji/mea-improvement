@@ -39,6 +39,7 @@ const Validation = ({ viewid }) => {
     cbvalue5 +
     "" +
     tavalue;
+    
 
   useEffect(() => {
     axios
@@ -59,9 +60,9 @@ const Validation = ({ viewid }) => {
       method: "put",
       url: "/deviation/" + viewid,
       data: {
-        type_validation: deviationstatus,
-        comment: deviationcomment,
-        user_id: 7,
+        'type_validation': deviationstatus,
+        'comment': deviationcomment,
+        'user_id': 7,
       },
       headers: { "Content-Type": "multipart/form-data" },
     })
@@ -114,7 +115,7 @@ const Validation = ({ viewid }) => {
                   className="modal-title fw-semibold"
                   id="staticBackdropLabel"
                 >
-                  Deskripsi Deviasi {viewid} {deviationstatus}
+                  Deskripsi Deviasi
                 </h6>
                 <button
                   type="button"
@@ -203,7 +204,7 @@ const Validation = ({ viewid }) => {
                         "form-control" +
                         (checkbox6 == "off" ? " disabled-textarea" : "")
                       }
-                      id="message-text"
+                      id="floatingTextarea"
                       placeholder={
                         checkbox6 == "off"
                           ? "Klik checkbox untuk mengaktifkan"
@@ -227,7 +228,7 @@ const Validation = ({ viewid }) => {
                   type="submit"
                   className="btn btn-success"
                   data-bs-dismiss="modal"
-                  onClick={handleUpdate}
+                  onChange={handleUpdate}
                 >
                   Simpan
                 </button>
@@ -235,6 +236,7 @@ const Validation = ({ viewid }) => {
             </div>
           </div>
         </div>
+        {deviationcomment}
       </div>
     );
   });

@@ -1,7 +1,7 @@
 /*---------------------------------------------------------global costumization---------------------------------------------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-.noselecta {
+.noselect {
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
        -khtml-user-select: none; /* Konqueror HTML */
@@ -376,6 +376,10 @@ button {
     pointer-events: none;
 }
 
+.validasideviasi-body .disabled-textarea {
+    pointer-events:none;
+}
+
 
 
 /*-------------------------------------------------data tervalidasi page costumization--------------------------------------------------*/
@@ -651,3 +655,6 @@ abbr[title] {
     background-color: #f8f8fa;
 }
 
+.imageimage {
+    width: 100px;
+}

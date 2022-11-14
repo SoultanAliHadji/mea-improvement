@@ -15,7 +15,7 @@ def cctvs():
 
 @app.route('/cctvdetail/<id>', methods=['GET'])
 def cctvDetail(id):
-    return CctvController.cctvDetail(id)
+    return CctvController.detail(id)
 
 
 @app.route('/cctv/<id>', methods=['GET'])
@@ -76,7 +76,7 @@ def viewNotificationFilter(object, num):
     return ViewTableController.viewNotificationFilter(object, num)
 
 
-@app.route('/viewvalidated/<date>/<num>', methods=['GET'])
+@app.route('/viewtable/<date>/<num>', methods=['GET'])
 def viewValidatedFilter(date, num):
     return ViewTableController.viewValidatedFilter(date, num)
 

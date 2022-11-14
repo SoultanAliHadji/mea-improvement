@@ -56,7 +56,7 @@ const Body = () => {
           <div className="row">
             <div className="col">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
-                <h6 className="fw-semibold">Data CCTV Mining Eyes</h6>
+                <h6 className="fw-semibold">List CCTV</h6>
                 <p className="p-small">
                   Pilih CCTV untuk melihat live monitoring
                 </p>
@@ -68,7 +68,7 @@ const Body = () => {
             <div className="col-6">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
                 <h6 className="fw-semibold">Real Time Monitoring</h6>
-                <p className="p-small">Monitoring Deteksi Deviasi</p>
+                <p className="p-small">Monitoring deviasi yang terdeteksi secara real time melalui CCTV Mining Eyes</p>
               </div>
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 pt-2">
                 <div className="d-grid px-2 py-2">

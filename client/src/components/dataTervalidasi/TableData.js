@@ -10,16 +10,16 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
   const datalimit = 100;
   const [numstart, setNumstart] = useState(0);
   const [numend, setNumend] = useState(10);
-  const lastpage = " text-black-50 disabled";
   const date = year + "-" + month + "-" + day;
-  const [comment, setComment] = useState();
   const [status, setStatus] = useState();
+  const [validator, setValidator] = useState();
+  const [comment, setComment] = useState();
 
   useEffect(() => {
     axios
       .get(
         (filtercctv == "All") & (filterobject == "All")
-          ? "viewvalidated/" + date + "/" + datalimit
+          ? "viewtable/" + date + "/" + datalimit
           : (filtercctv == "All") & (filterobject != "All")
           ? "/viewtable/" + filterobject + "/" + date + "/" + datalimit
           : (filtercctv != "All") & (filterobject == "All")
@@ -49,14 +49,10 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
         <td>
           {data.name} - {data.location}
         </td>
-        <td>{data.updated_at}</td>
+        <td>{data.created_at}</td>
         <td className="text-center">{data.type_object}</td>
         <td className="text-center">
-          <img
-            className="data-img"
-            src={data.image}
-            alt=""
-          />
+          <img className="data-img" src={require("../../assets/mining_eyes.jpg")} alt="" />
         </td>
         <td>
           {data.comment == null
@@ -100,9 +96,10 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
               data-bs-toggle="modal"
               data-bs-target="#viewModal"
               onClick={() => {
-                setComment(data.comment);
-                setStatus(data.type_validation);
                 setModalImage(require("../../assets/mining_eyes.jpg"));
+                setStatus(data.type_validation);
+                setValidator(data.user_name)
+                setComment(data.comment);
               }}
             >
               <Icon className="modal-icon" icon="fa-solid:eye" />
@@ -151,8 +148,11 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
                     ? "Valid"
                     : "Tidak Valid"}
                 </div>
-
                 <div className="d-flex gap-1 mt-2 deviation-desc">
+                  <label className="fw-bolder">Validator:</label>
+                  {validator == null ? "-" : <label>{validator}</label>}
+                </div>
+                <div className="d-flex gap-1 deviation-desc">
                   <label className="fw-bolder">Deskripsi:</label>
                   {comment == null ? "-" : <label>{comment}</label>}
                 </div>
@@ -201,11 +201,18 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
         <tbody className="table-group-divider">{arr}</tbody>
       </table>
       <nav aria-label="Page navigation">
+        {data.length == 0 ? (
+          <div className="d-flex justify-content-center my-4">
+            <div className="text-black-50">Tidak terdapat data yang sesuai dengan input filter CCTV, Objek, maupun Periode</div>
+          </div>
+        ) : (
+          ""
+        )}
         <ul className="pagination justify-content-center gap-4">
           <li className="page-item">
             <button
               className={
-                "page-link" + (numstart == 0 ? lastpage : " text-success")
+                "page-link" + (numstart == 0 ? " text-black-50 disabled" : " text-success")
               }
               onClick={() => {
                 setNumstart(numstart - 10);
@@ -219,7 +226,7 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
             <button
               className={
                 "page-link" +
-                (numend > data.length ? lastpage : " text-success")
+                (numend > data.length ? " text-black-50 disabled" : " text-success")
               }
               onClick={() => {
                 setNumstart(numstart + 10);
