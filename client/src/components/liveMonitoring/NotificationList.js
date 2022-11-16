@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 
-const NotificationList = () => {
+const NotificationList = ({ cctvname, cctvlocation }) => {
   const [data, setData] = useState([{}]);
   const [viewid, setViewid] = useState();
   const [kategori, setKategori] = useState("All");
@@ -12,13 +12,13 @@ const NotificationList = () => {
 
   useEffect(() => {
     axios
-      .get(kategori == "All" ? ("/viewlimit/" + numlimiter) : kategori == "Person" ? ("/viewobject/" + kategori + "/" + numlimiter) : kategori == "LV" ? ("/viewobject/" + kategori + "/" + numlimiter) : ("/viewobject/" + kategori + "/" + numlimiter))
+      .get(kategori == "All" ? ("/viewtablecctvobject/" + cctvname + "/" + cctvlocation + "/" + numlimiter) : ("/viewtablecctvobject/" + cctvname + "/" + cctvlocation + "/" + kategori + "/" + numlimiter))
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [array]);
+  }, [cctvname, cctvlocation, kategori, array]);
 
   const arr = data.slice(0, [numlimiter]).map((data, index) => {
     return (

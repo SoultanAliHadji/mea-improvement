@@ -52,7 +52,7 @@ const Body = () => {
   return (
     <div className="livemonitoring-body">
       <div className="body-bg">
-        <div className="container pt-3 pb-2">
+        <div className="container pt-3 pb-1">
           <div className="row">
             <div className="col">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
@@ -149,7 +149,7 @@ const Body = () => {
                 <p className="p-small">List deviasi yang terdeteksi</p>
               </div>
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 py-2">
-                <NotificationList />
+                <NotificationList cctvname={cctvname} cctvlocation={cctvlocation} />
                 <div className="px-2 py-1 seeallnotificationbutton-component">
                   <SeeAllNotificationButton />
                 </div>

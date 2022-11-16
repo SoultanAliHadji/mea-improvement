@@ -85,6 +85,15 @@ def viewValidatedFilter(date, num):
 def viewTableFilter(name, location, object, date, num):
     return ViewTableController.viewTableFilter(name, location, object, date, num)
 
+@app.route('/viewtablecctvobject/<name>/<location>/<object>/<num>', methods=['GET'])
+def viewTableFilterWithoutDate(name, location, object, num):
+    return ViewTableController.viewTableFilterWithoutDate(name, location, object, num)
+
+
+@app.route('/viewtablecctvobject/<name>/<location>/<num>', methods=['GET'])
+def viewTableFilterNameLocation(name, location, num):
+    return ViewTableController.viewTableFilterNameLocation(name, location, num)
+
 
 @app.route('/viewtable/<object>/<date>/<num>', methods=['GET'])
 def viewTableFilterAllCctv(object, date, num):

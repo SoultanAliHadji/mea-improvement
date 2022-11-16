@@ -53,6 +53,26 @@ def viewTableFilter(name, location, object, date, num):
     except Exception as e:
         print(e)
 
+def viewTableFilterWithoutDate(name, location, object, num):
+    try:
+        view = Viewtable.query.filter((Viewtable.name == name) & (Viewtable.location == location) & (Viewtable.type_object == object)).order_by(desc(Viewtable.id)).limit(num)
+        data = formatData(view)
+
+        return response.success(data, "Success")
+
+    except Exception as e:
+        print(e)
+
+def viewTableFilterNameLocation(name, location, num):
+    try:
+        view = Viewtable.query.filter((Viewtable.name == name) & (Viewtable.location == location)).order_by(desc(Viewtable.id)).limit(num)
+        data = formatData(view)
+
+        return response.success(data, "Success")
+
+    except Exception as e:
+        print(e)
+
 def viewTableFilterAllCctv(object, date, num):
     try:
         view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.type_object == object) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
