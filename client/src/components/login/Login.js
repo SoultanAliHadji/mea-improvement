@@ -122,7 +122,7 @@ const Login = () => {
                       className="d-grid text-decoration-none"
                       href={
                         (data.status == "Success") & (password == username)
-                          ? "/livemonitoring"
+                          ? "/mining-eyes-analytics"
                           : "#"
                       }
                     >

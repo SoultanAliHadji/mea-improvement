@@ -1,9 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/login/Login";
-import LiveMonitoring from "./components/liveMonitoring/LiveMonitoring";
-import ValidasiDeviasi from "./components/validasiDeviasi/ValidasiDeviasi";
-import DataTervalidasi from "./components/dataTervalidasi/DataTervalidasi";
+import Parent from "./components/Parent";
 
 function App() {
   return (
@@ -11,9 +9,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/livemonitoring" component={LiveMonitoring} />
-          <Route exact path="/validasideviasi" component={ValidasiDeviasi} />
-          <Route exact path="/datatervalidasi" component={DataTervalidasi} />
+          <Route exact path="/mining-eyes-analytics" component={Parent} />
         </Switch>
       </Router>
     </div>
