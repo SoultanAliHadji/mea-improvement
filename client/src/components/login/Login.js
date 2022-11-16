@@ -29,6 +29,17 @@ const Login = () => {
     setPassword(data.target.value);
   }
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      setIncorrect(
+        (data.status == "Success") & (password == username) ? "" : "Incorrect"
+      );
+      if ((data.status == "Success") & (password == username)) {
+        window.location.replace("http://localhost:3000/mining-eyes-analytics");
+      }
+    }
+  };
+
   return (
     <div className="login-page">
       <div className="bg-img">
@@ -60,6 +71,7 @@ const Login = () => {
                         placeholder="Masukkan Username atau SID"
                         defaultValue={username}
                         onChange={handlerUsername}
+                        onKeyDown={handleKeyDown}
                       />
                       <div className="d-flex align-items-center checker-container">
                         <Icon
@@ -89,6 +101,7 @@ const Login = () => {
                         placeholder="Masukkan Password"
                         defaultValue={password}
                         onChange={handlerPassword}
+                        onKeyDown={handleKeyDown}
                       />
                       <div className="view-container">
                         {passwordtype == "password" ? (
