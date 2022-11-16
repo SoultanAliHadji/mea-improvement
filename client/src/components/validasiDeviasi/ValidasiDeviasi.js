@@ -213,7 +213,7 @@ const ValidasiDeviasi = ({
                                 ? "-"
                                 : viewcomment.length < 30
                                 ? viewcomment
-                                : viewcomment.substr(0, 30) + "..."}
+                                : viewcomment.substr(0, 29) + "..."}
                             </p>
                           </div>
                           <div className="col"></div>

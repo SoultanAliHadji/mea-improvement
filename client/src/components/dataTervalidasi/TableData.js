@@ -59,7 +59,7 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
             ? "-"
             : data.comment.length < 16
             ? data.comment
-            : data.comment.substr(0, 16) + "..."}
+            : data.comment.substr(0, 15) + "..."}
         </td>
         <td>
           <div className="d-flex justify-content-center">
@@ -86,7 +86,7 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
             ? "-"
             : data.user_name.length < 10
             ? data.user_name
-            : data.user_name.substr(0, 10) + "..."}
+            : data.user_name.substr(0, 9) + "..."}
         </td>
         <td>
           <div className="d-flex justify-content-center">
