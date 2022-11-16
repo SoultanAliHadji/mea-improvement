@@ -5,17 +5,27 @@ import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import ReactImageMagnify from "react-magnify-image";
 
-const ValidasiDeviasi = () => {
+const ValidasiDeviasi = ({
+  viewidpass,
+  viewstatuspass,
+  viewobjectpass,
+  viewcctvnamepass,
+  viewcctvlocationpass,
+  viewtimepass,
+  viewuserpass,
+  viewcommentpass,
+  viewimagepass,
+}) => {
   const [data, setData] = useState([{}]);
-  const [viewid, setViewid] = useState();
-  const [viewstatus, setViewstatus] = useState();
-  const [viewobject, setViewobject] = useState();
-  const [viewcctvname, setViewcctvname] = useState();
-  const [viewcctvlocation, setViewcctvlocation] = useState();
-  const [viewtime, setViewtime] = useState();
-  const [viewuser, setViewuser] = useState();
-  const [viewcomment, setViewcomment] = useState();
-  const [viewimage, setViewimage] = useState();
+  const [viewid, setViewid] = useState(viewidpass);
+  const [viewstatus, setViewstatus] = useState(viewstatuspass);
+  const [viewobject, setViewobject] = useState(viewobjectpass);
+  const [viewcctvname, setViewcctvname] = useState(viewcctvnamepass);
+  const [viewcctvlocation, setViewcctvlocation] = useState(viewcctvlocationpass);
+  const [viewtime, setViewtime] = useState(viewtimepass);
+  const [viewuser, setViewuser] = useState(viewuserpass);
+  const [viewcomment, setViewcomment] = useState(viewcommentpass);
+  const [viewimage, setViewimage] = useState(viewimagepass);
   const [kategori, setKategori] = useState("All");
   const numlimiter = 10;
   const array = data.map((data, index) => {
@@ -38,7 +48,18 @@ const ValidasiDeviasi = () => {
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [viewid, viewstatus, viewobject, viewcctvname, viewcctvlocation, viewtime, viewuser, viewcomment, viewimage, array]);
+  }, [
+    viewid,
+    viewstatus,
+    viewobject,
+    viewcctvname,
+    viewcctvlocation,
+    viewtime,
+    viewuser,
+    viewcomment,
+    viewimage,
+    array,
+  ]);
 
   const arr = data.slice(0, [numlimiter]).map((data, index) => {
     return (

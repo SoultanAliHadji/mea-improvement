@@ -6,13 +6,64 @@ import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import ReactImageMagnify from "react-magnify-image";
 
-const LiveMonitoring = () => {
+const LiveMonitoring = ({
+  handleRoute,
+  handleViewidpass,
+  handleViewstatuspass,
+  handleViewobjectpass,
+  handleViewcctvnamepass,
+  handleViewcctvlocationpass,
+  handleViewtimepass,
+  handleViewuserpass,
+  handleViewcommentpass,
+  handleViewimagepass,
+}) => {
   const [data, setData] = useState([{}]);
   const [cctvid, setCctvid] = useState(1);
   const [cctvname, setCctvname] = useState("CCTV BMO2");
   const [cctvlocation, setCctvlocation] = useState("E Camera 3");
-  const [cctvip, setCctvip] = useState("10.1.73.20")
+  const [cctvip, setCctvip] = useState("10.1.73.20");
   const livecctv = "http://10.1.74.9:5000/video_feed/" + cctvid;
+
+  const handleClick = (value) => {
+    handleRoute(value);
+  };
+
+  const handleViewid = (value) => {
+    handleViewidpass(value);
+  };
+
+  const handleViewstatus = (value) => {
+    handleViewstatuspass(value);
+  };
+
+  const handleViewobject = (value) => {
+    handleViewobjectpass(value);
+  };
+
+  const handleViewcctvname = (value) => {
+    handleViewcctvnamepass(value);
+  };
+
+  const handleViewcctvlocation = (value) => {
+    handleViewcctvlocationpass(value);
+  };
+
+  const handleViewtime = (value) => {
+    handleViewtimepass(value);
+  };
+
+  const handleViewuser = (value) => {
+    handleViewuserpass(value);
+  };
+
+  const handleViewcomment = (value) => {
+    handleViewcommentpass(value);
+  };
+
+  const handleViewimage = (value) => {
+    handleViewimagepass(value);
+  };
 
   useEffect(() => {
     axios
@@ -38,7 +89,7 @@ const LiveMonitoring = () => {
             setCctvid(data.id);
             setCctvname(data.name);
             setCctvlocation(data.location);
-            setCctvip(data.ip)
+            setCctvip(data.ip);
           }}
         >
           <div className="">
@@ -68,7 +119,10 @@ const LiveMonitoring = () => {
             <div className="col-6">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
                 <h6 className="fw-semibold">Real Time Monitoring</h6>
-                <p className="p-small">Monitoring deviasi yang terdeteksi secara real time melalui CCTV Mining Eyes</p>
+                <p className="p-small">
+                  Monitoring deviasi yang terdeteksi secara real time melalui
+                  CCTV Mining Eyes
+                </p>
               </div>
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 pt-2">
                 <div className="d-grid px-2 py-2">
@@ -85,7 +139,7 @@ const LiveMonitoring = () => {
                         width: 2000,
                         height: 1100,
                       },
-                      enlargedImagePosition : "over",
+                      enlargedImagePosition: "over",
                     }}
                   />
                   <div className="cam-navigation shadow-all d-flex justify-content-end align-items-center p-2">
@@ -149,9 +203,22 @@ const LiveMonitoring = () => {
                 <p className="p-small">List deviasi yang terdeteksi</p>
               </div>
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 py-2">
-                <NotificationList cctvname={cctvname} cctvlocation={cctvlocation} />
+                <NotificationList
+                  cctvname={cctvname}
+                  cctvlocation={cctvlocation}
+                  handleClick={handleClick}
+                  handleViewid={handleViewid}
+                  handleViewstatus={handleViewstatus}
+                  handleViewobject={handleViewobject}
+                  handleViewcctvname={handleViewcctvname}
+                  handleViewcctvlocation={handleViewcctvlocation}
+                  handleViewtime={handleViewtime}
+                  handleViewuser={handleViewuser}
+                  handleViewcomment={handleViewcomment}
+                  handleViewimage={handleViewimage}
+                />
                 <div className="px-2 py-1 seeallnotificationbutton-component">
-                  <SeeAllNotificationButton />
+                  <SeeAllNotificationButton handleClick={handleClick} />
                 </div>
               </div>
             </div>

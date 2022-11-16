@@ -7,6 +7,55 @@ import { useState } from "react";
 
 const Parent = () => {
   const [current, setCurrent] = useState("livemonitoring");
+  const [viewidpass, setViewidpass] = useState();
+  const [viewstatuspass, setViewstatuspass] = useState();
+  const [viewobjectpass, setViewobjectpass] = useState();
+  const [viewcctvnamepass, setViewcctvnamepass] = useState();
+  const [viewcctvlocationpass, setViewcctvlocationpass] = useState();
+  const [viewtimepass, setViewtimepass] = useState();
+  const [viewuserpass, setViewuserpass] = useState();
+  const [viewcommentpass, setViewcommentpass] = useState();
+  const [viewimagepass, setViewimagepass] = useState();
+
+  const handleRoute = (value) => {
+    setCurrent(value);
+  };
+
+  const handleViewidpass = (value) => {
+    setViewidpass(value);
+  };
+
+  const handleViewstatuspass = (value) => {
+    setViewstatuspass(value);
+  };
+
+  const handleViewobjectpass = (value) => {
+    setViewobjectpass(value);
+  };
+
+  const handleViewcctvnamepass = (value) => {
+    setViewcctvnamepass(value);
+  };
+
+  const handleViewcctvlocationpass = (value) => {
+    setViewcctvlocationpass(value);
+  };
+
+  const handleViewtimepass = (value) => {
+    setViewtimepass(value);
+  };
+
+  const handleViewuserpass = (value) => {
+    setViewuserpass(value);
+  };
+
+  const handleViewcommentpass = (value) => {
+    setViewcommentpass(value);
+  };
+
+  const handleViewimagepass = (value) => {
+    setViewimagepass(value);
+  };
 
   return (
     <div>
@@ -31,11 +80,11 @@ const Parent = () => {
                       <a
                         className={
                           "nav-link fw-semibold" +
-                          (current == "livemonitoring"
-                            ? " page-current"
-                            : "")
+                          (current == "livemonitoring" ? " page-current" : "")
                         }
-                        onClick={() => {setCurrent("livemonitoring")}}
+                        onClick={() => {
+                          setCurrent("livemonitoring");
+                        }}
                       >
                         Live Monitoring
                       </a>
@@ -44,11 +93,11 @@ const Parent = () => {
                       <a
                         className={
                           "nav-link fw-semibold" +
-                          (current == "validasideviasi"
-                            ? " page-current"
-                            : "")
+                          (current == "validasideviasi" ? " page-current" : "")
                         }
-                        onClick={() => {setCurrent("validasideviasi")}}
+                        onClick={() => {
+                          setCurrent("validasideviasi");
+                        }}
                       >
                         Validasi Deviasi
                       </a>
@@ -57,11 +106,11 @@ const Parent = () => {
                       <a
                         className={
                           "nav-link fw-semibold" +
-                          (current == "datatervalidasi"
-                            ? " page-current"
-                            : "")
+                          (current == "datatervalidasi" ? " page-current" : "")
                         }
-                        onClick={() => {setCurrent("datatervalidasi")}}
+                        onClick={() => {
+                          setCurrent("datatervalidasi");
+                        }}
                       >
                         Data Tervalidasi
                       </a>
@@ -99,7 +148,36 @@ const Parent = () => {
           </div>
         </div>
       </div>
-      {current == "livemonitoring" ? <LiveMonitoring /> : current == "validasideviasi" ? <ValidasiDeviasi /> : current == "datatervalidasi" ? <DataTervalidasi /> : ""}
+      {current == "livemonitoring" ? (
+        <LiveMonitoring
+          handleRoute={handleRoute}
+          handleViewidpass={handleViewidpass}
+          handleViewstatuspass={handleViewstatuspass}
+          handleViewobjectpass={handleViewobjectpass}
+          handleViewcctvnamepass={handleViewcctvnamepass}
+          handleViewcctvlocationpass={handleViewcctvlocationpass}
+          handleViewtimepass={handleViewtimepass}
+          handleViewuserpass={handleViewuserpass}
+          handleViewcommentpass={handleViewcommentpass}
+          handleViewimagepass={handleViewimagepass}
+        />
+      ) : current == "validasideviasi" ? (
+        <ValidasiDeviasi
+          viewidpass={viewidpass}
+          viewstatuspass={viewstatuspass}
+          viewobjectpass={viewobjectpass}
+          viewcctvnamepass={viewcctvnamepass}
+          viewcctvlocationpass={viewcctvlocationpass}
+          viewtimepass={viewtimepass}
+          viewuserpass={viewuserpass}
+          viewcommentpass={viewcommentpass}
+          viewimagepass={viewimagepass}
+        />
+      ) : current == "datatervalidasi" ? (
+        <DataTervalidasi />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

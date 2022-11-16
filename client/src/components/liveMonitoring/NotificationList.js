@@ -3,16 +3,47 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 
-const NotificationList = ({ cctvname, cctvlocation }) => {
+const NotificationList = ({
+  cctvname,
+  cctvlocation,
+  handleClick,
+  handleViewid,
+  handleViewstatus,
+  handleViewobject,
+  handleViewcctvname,
+  handleViewcctvlocation,
+  handleViewtime,
+  handleViewuser,
+  handleViewcomment,
+  handleViewimage,
+}) => {
   const [data, setData] = useState([{}]);
   const [viewid, setViewid] = useState();
   const [kategori, setKategori] = useState("All");
   const numlimiter = 10;
-  const array = data.map((data, index) => {return(data.id)})
+  const array = data.map((data, index) => {
+    return data.id;
+  });
 
   useEffect(() => {
     axios
-      .get(kategori == "All" ? ("/viewtablecctvobject/" + cctvname + "/" + cctvlocation + "/" + numlimiter) : ("/viewtablecctvobject/" + cctvname + "/" + cctvlocation + "/" + kategori + "/" + numlimiter))
+      .get(
+        kategori == "All"
+          ? "/viewtablecctvobject/" +
+              cctvname +
+              "/" +
+              cctvlocation +
+              "/" +
+              numlimiter
+          : "/viewtablecctvobject/" +
+              cctvname +
+              "/" +
+              cctvlocation +
+              "/" +
+              kategori +
+              "/" +
+              numlimiter
+      )
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
@@ -28,7 +59,16 @@ const NotificationList = ({ cctvname, cctvlocation }) => {
         key={data.id}
         onClick={() => {
           setViewid(data.id);
-          window.location.href='validasideviasi'
+          handleClick("validasideviasi");
+          handleViewid(data.id);
+          handleViewstatus(data.type_validation);
+          handleViewobject(data.type_object);
+          handleViewcctvname(data.name);
+          handleViewcctvlocation(data.location);
+          handleViewtime(data.created_at);
+          handleViewuser(data.user_name);
+          handleViewcomment(data.comment);
+          handleViewimage(data.image);
         }}
       >
         <div className="d-flex">
