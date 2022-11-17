@@ -4,7 +4,7 @@ import React from "react";
 import exportFromJSON from "export-from-json";
 import PropTypes from "prop-types";
 
-export default function XMLExport(props) {
+export default function XLSExport(props) {
   function onClick() {
     const data = props.data;
     const name = props.name;
@@ -29,7 +29,7 @@ export default function XMLExport(props) {
   );
 }
 
-XMLExport.propTypes = {
+XLSExport.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   tooltip: PropTypes.string,
   fileName: PropTypes.string,

@@ -1,7 +1,7 @@
 import "../../App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import XMLExport from "./xmlExport";
+import XLSExport from "./xlsExport";
 
 const Export = ({ filtercctv, filterobject, date, dateflip }) => {
   const [data, setData] = useState([{}]);
@@ -65,7 +65,7 @@ const Export = ({ filtercctv, filterobject, date, dateflip }) => {
       .catch((err) => console.log(err));
   }, [filtercctv, filterobject, date]);
 
-  return <XMLExport data={data} fields={fieldsAsObjects} name={name}/>;
+  return <XLSExport data={data} fields={fieldsAsObjects} name={name}/>;
 };
 
 export default Export;
