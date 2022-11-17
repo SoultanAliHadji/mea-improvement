@@ -4,41 +4,25 @@ import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import ReactImageMagnify from "react-magnify-image";
 
-const TableData = ({ filtercctv, filterobject, year, month, day }) => {
+const TableData = ({ filtercctv, filterobject, date }) => {
   const [data, setData] = useState([{}]);
   const [modalimage, setModalImage] = useState();
   const datalimit = 100;
   const [numstart, setNumstart] = useState(0);
   const [numend, setNumend] = useState(10);
-  const date = year + "-" + month + "-" + day;
   const [status, setStatus] = useState();
   const [validator, setValidator] = useState();
   const [comment, setComment] = useState();
 
   useEffect(() => {
     axios
-      .get(
-        (filtercctv == "All") & (filterobject == "All")
-          ? "viewtable/" + date + "/" + datalimit
-          : (filtercctv == "All") & (filterobject != "All")
-          ? "/viewtable/" + filterobject + "/" + date + "/" + datalimit
-          : (filtercctv != "All") & (filterobject == "All")
-          ? "/viewtable/" + filtercctv + "/" + date + "/" + datalimit
-          : "/viewtable/" +
-            filtercctv +
-            "/" +
-            filterobject +
-            "/" +
-            date +
-            "/" +
-            datalimit
-      )
+      .get("/viewtable/" + filtercctv + "/" + filterobject + "/" + date + "/" + datalimit)
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [filtercctv, filterobject, year, month, day]);
+  }, [filtercctv, filterobject, date]);
 
   const arr = data.slice(numstart, numend).map((data, index) => {
     return (
@@ -203,7 +187,7 @@ const TableData = ({ filtercctv, filterobject, year, month, day }) => {
       <nav aria-label="Page navigation">
         {data.length == 0 ? (
           <div className="d-flex justify-content-center my-4">
-            <div className="text-black-50">Tidak terdapat data yang sesuai dengan input filter CCTV, Objek, maupun Periode</div>
+            <div className="text-black-50">Tidak terdapat data yang sesuai dengan filter CCTV, Objek, maupun Periode</div>
           </div>
         ) : (
           ""

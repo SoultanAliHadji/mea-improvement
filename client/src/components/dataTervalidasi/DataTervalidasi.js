@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 import Calendar from "react-calendar";
 
 const DataTervalidasi = () => {
-  const [filtercctv, setFiltercctv] = useState("All");
+  const [filtercctv, setFiltercctv] = useState("All/All");
   const [filterobject, setFilterobject] = useState("All");
   const [filterdate, setFilterdate] = useState(new Date());
   const year = filterdate.toString().substring(11, 15);
@@ -34,6 +34,7 @@ const DataTervalidasi = () => {
       ? "11"
       : "12";
   const day = filterdate.toString().substring(8, 10);
+  const date = year + "-" + month + "-" + day;
 
   function handlerFiltercctv(data) {
     setFiltercctv(data.target.value);
@@ -64,7 +65,7 @@ const DataTervalidasi = () => {
                     defaultValue={filtercctv}
                     onChange={handlerFiltercctv}
                   >
-                    <option selected value="All">
+                    <option selected value="All/All">
                       Semua
                     </option>
                     <option value="CCTV BMO2/E Camera 3">
@@ -167,9 +168,7 @@ const DataTervalidasi = () => {
             <TableData
               filterobject={filterobject}
               filtercctv={filtercctv}
-              year={year}
-              month={month}
-              day={day}
+              date={date}
             />
           </div>
         </div>

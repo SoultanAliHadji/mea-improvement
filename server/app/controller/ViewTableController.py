@@ -33,65 +33,86 @@ def viewNotificationFilter(object, num):
     except Exception as e:
         print(e)
 
-def viewValidatedFilter(date, num):
-    try:
-        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
-        data = formatData(view)
-        
-        return response.success(data, "Success")
-
-    except Exception as e:
-        print(e)
-
 def viewTableFilter(name, location, object, date, num):
-    try:
-        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.name == name) & (Viewtable.location == location) & (Viewtable.type_object == object) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
-        data = formatData(view)
+        if(name == "All" and location == "All" and object == "All"):
+            try:
+                view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
+                data = formatData(view)
+            
+                return response.success(data, "Success")
 
-        return response.success(data, "Success")
+            except Exception as e:
+                print(e)
+        
+        elif(name == "All" and location == "All"):
+            try:
+                view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.type_object == object) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
+                data = formatData(view)
 
-    except Exception as e:
-        print(e)
+                return response.success(data, "Success")
 
-def viewTableFilterWithoutDate(name, location, object, num):
-    try:
-        view = Viewtable.query.filter((Viewtable.name == name) & (Viewtable.location == location) & (Viewtable.type_object == object)).order_by(desc(Viewtable.id)).limit(num)
-        data = formatData(view)
+            except Exception as e:
+                print(e)
 
-        return response.success(data, "Success")
+        elif(object == "All"):
+            try:
+                view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.name == name) & (Viewtable.location == location) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
+                data = formatData(view)
 
-    except Exception as e:
-        print(e)
+                return response.success(data, "Success")
 
-def viewTableFilterNameLocation(name, location, num):
-    try:
-        view = Viewtable.query.filter((Viewtable.name == name) & (Viewtable.location == location)).order_by(desc(Viewtable.id)).limit(num)
-        data = formatData(view)
+            except Exception as e:
+                print(e)
 
-        return response.success(data, "Success")
+        elif(name == "AllName" and location == "AllLocation" and object == "AllObject" and date == "All"):
+            try:
+                view = Viewtable.query.order_by(desc(Viewtable.id)).limit(num)
+                data = formatData(view)
 
-    except Exception as e:
-        print(e)
+                return response.success(data, "Success")
 
-def viewTableFilterAllCctv(object, date, num):
-    try:
-        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.type_object == object) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
-        data = formatData(view)
+            except Exception as e:
+                print(e)
 
-        return response.success(data, "Success")
+        elif(name == "AllName" and location == "AllLocation" and date == "All"):
+            try:
+                view = Viewtable.query.filter(Viewtable.type_object == object).order_by(desc(Viewtable.id)).limit(num)
+                data = formatData(view)
 
-    except Exception as e:
-        print(e)
+                return response.success(data, "Success")
 
-def viewTableFilterAllObject(name, location, date, num):
-    try:
-        view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.name == name) & (Viewtable.location == location) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
-        data = formatData(view)
+            except Exception as e:
+                print(e)
 
-        return response.success(data, "Success")
+        elif(object == "AllObject" and date == "All"):
+            try:
+                view = Viewtable.query.filter((Viewtable.name == name) & (Viewtable.location == location)).order_by(desc(Viewtable.id)).limit(num)
+                data = formatData(view)
 
-    except Exception as e:
-        print(e)
+                return response.success(data, "Success")
+
+            except Exception as e:
+                print(e)
+
+        elif(date == "All"):
+            try:
+                view = Viewtable.query.filter((Viewtable.name == name) & (Viewtable.location == location) & (Viewtable.type_object == object)).order_by(desc(Viewtable.id)).limit(num)
+                data = formatData(view)
+
+                return response.success(data, "Success")
+
+            except Exception as e:
+                print(e)
+
+        else:
+            try:
+                view = Viewtable.query.filter(((Viewtable.type_validation == "true") | (Viewtable.type_validation == "false")) & (Viewtable.name == name) & (Viewtable.location == location) & (Viewtable.type_object == object) & (Viewtable.updated_at.contains(date))).order_by(desc(Viewtable.id)).limit(num)
+                data = formatData(view)
+
+                return response.success(data, "Success")
+
+            except Exception as e:
+                print(e)
 
 def viewDetail(id):
     try:

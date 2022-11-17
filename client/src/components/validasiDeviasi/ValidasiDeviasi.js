@@ -21,34 +21,28 @@ const ValidasiDeviasi = ({
   const [viewstatus, setViewstatus] = useState(viewstatuspass);
   const [viewobject, setViewobject] = useState(viewobjectpass);
   const [viewcctvname, setViewcctvname] = useState(viewcctvnamepass);
-  const [viewcctvlocation, setViewcctvlocation] = useState(viewcctvlocationpass);
+  const [viewcctvlocation, setViewcctvlocation] =
+    useState(viewcctvlocationpass);
   const [viewtime, setViewtime] = useState(viewtimepass);
   const [viewuser, setViewuser] = useState(viewuserpass);
   const [viewcomment, setViewcomment] = useState(viewcommentpass);
   const [viewimage, setViewimage] = useState(viewimagepass);
-  const [kategori, setKategori] = useState("All");
-  const numlimiter = 10;
+  const [object, setObject] = useState("AllObject");
+  const datalimit = 10;
   const array = data.map((data, index) => {
     return data.id;
   });
 
   useEffect(() => {
     axios
-      .get(
-        kategori == "All"
-          ? "/viewlimit/" + numlimiter
-          : kategori == "Person"
-          ? "/viewobject/" + kategori + "/" + numlimiter
-          : kategori == "LV"
-          ? "/viewobject/" + kategori + "/" + numlimiter
-          : "/viewobject/" + kategori + "/" + numlimiter
-      )
+      .get("/viewtable/AllName/AllLocation/" + object + "/All/" + datalimit)
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
   }, [
+    object,
     viewid,
     viewstatus,
     viewobject,
@@ -61,7 +55,7 @@ const ValidasiDeviasi = ({
     array,
   ]);
 
-  const arr = data.slice(0, [numlimiter]).map((data, index) => {
+  const arr = data.slice(0, [datalimit]).map((data, index) => {
     return (
       <button
         type="button"
@@ -259,12 +253,12 @@ const ValidasiDeviasi = ({
                       type="button"
                       className={
                         "shadow-all btn fw-semibold rounded-5 text-start" +
-                        (kategori == "All"
+                        (object == "AllObject"
                           ? " btn-outline-success"
                           : " btn-success")
                       }
                       onClick={() => {
-                        setKategori("All");
+                        setObject("AllObject");
                       }}
                     >
                       Semua
@@ -273,12 +267,12 @@ const ValidasiDeviasi = ({
                       type="button"
                       className={
                         "shadow-all btn fw-semibold rounded-5 text-start" +
-                        (kategori == "Person"
+                        (object == "Person"
                           ? " btn-outline-success"
                           : " btn-success")
                       }
                       onClick={() => {
-                        setKategori("Person");
+                        setObject("Person");
                       }}
                     >
                       Person
@@ -287,12 +281,12 @@ const ValidasiDeviasi = ({
                       type="button"
                       className={
                         "shadow-all btn fw-semibold rounded-5 text-start" +
-                        (kategori == "LV"
+                        (object == "LV"
                           ? " btn-outline-success"
                           : " btn-success")
                       }
                       onClick={() => {
-                        setKategori("LV");
+                        setObject("LV");
                       }}
                     >
                       LV
@@ -301,12 +295,12 @@ const ValidasiDeviasi = ({
                       type="button"
                       className={
                         "shadow-all btn fw-semibold rounded-5 text-start" +
-                        (kategori == "HD"
+                        (object == "HD"
                           ? " btn-outline-success"
                           : " btn-success")
                       }
                       onClick={() => {
-                        setKategori("HD");
+                        setObject("HD");
                       }}
                     >
                       HD

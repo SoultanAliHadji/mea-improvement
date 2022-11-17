@@ -19,8 +19,8 @@ const NotificationList = ({
 }) => {
   const [data, setData] = useState([{}]);
   const [viewid, setViewid] = useState();
-  const [kategori, setKategori] = useState("All");
-  const numlimiter = 10;
+  const [object, setObject] = useState("AllObject");
+  const datalimit = 10;
   const array = data.map((data, index) => {
     return data.id;
   });
@@ -28,30 +28,23 @@ const NotificationList = ({
   useEffect(() => {
     axios
       .get(
-        kategori == "All"
-          ? "/viewtablecctvobject/" +
-              cctvname +
-              "/" +
-              cctvlocation +
-              "/" +
-              numlimiter
-          : "/viewtablecctvobject/" +
-              cctvname +
-              "/" +
-              cctvlocation +
-              "/" +
-              kategori +
-              "/" +
-              numlimiter
+        "/viewtable/" +
+          cctvname +
+          "/" +
+          cctvlocation +
+          "/" +
+          object +
+          "/All/" +
+          datalimit
       )
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [cctvname, cctvlocation, kategori, array]);
+  }, [cctvname, cctvlocation, object]);
 
-  const arr = data.slice(0, [numlimiter]).map((data, index) => {
+  const arr = data.slice(0, [datalimit]).map((data, index) => {
     return (
       <button
         type="button"
@@ -118,10 +111,10 @@ const NotificationList = ({
             type="button"
             className={
               "shadow-all btn fw-semibold rounded-5 text-start" +
-              (kategori == "All" ? " btn-outline-success" : " btn-success")
+              (object == "AllObject" ? " btn-outline-success" : " btn-success")
             }
             onClick={() => {
-              setKategori("All");
+              setObject("AllObject");
             }}
           >
             Semua
@@ -130,10 +123,10 @@ const NotificationList = ({
             type="button"
             className={
               "shadow-all btn fw-semibold rounded-5 text-start" +
-              (kategori == "Person" ? " btn-outline-success" : " btn-success")
+              (object == "Person" ? " btn-outline-success" : " btn-success")
             }
             onClick={() => {
-              setKategori("Person");
+              setObject("Person");
             }}
           >
             Person
@@ -142,10 +135,10 @@ const NotificationList = ({
             type="button"
             className={
               "shadow-all btn fw-semibold rounded-5 text-start" +
-              (kategori == "LV" ? " btn-outline-success" : " btn-success")
+              (object == "LV" ? " btn-outline-success" : " btn-success")
             }
             onClick={() => {
-              setKategori("LV");
+              setObject("LV");
             }}
           >
             LV
@@ -154,10 +147,10 @@ const NotificationList = ({
             type="button"
             className={
               "shadow-all btn fw-semibold rounded-5 text-start" +
-              (kategori == "HD" ? " btn-outline-success" : " btn-success")
+              (object == "HD" ? " btn-outline-success" : " btn-success")
             }
             onClick={() => {
-              setKategori("HD");
+              setObject("HD");
             }}
           >
             HD
