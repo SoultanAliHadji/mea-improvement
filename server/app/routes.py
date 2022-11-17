@@ -67,13 +67,8 @@ def viewSingle(id):
 
 
 @app.route('/viewlimit/<num>', methods=['GET'])
-def viewLimited(num):
+def viewLimit(num):
     return ViewTableController.viewLimit(num)
-
-
-@app.route('/viewobject/<object>/<num>', methods=['GET'])
-def viewNotificationFilter(object, num):
-    return ViewTableController.viewNotificationFilter(object, num)
 
 
 @app.route('/viewtable/<name>/<location>/<object>/<date>/<num>', methods=['GET'])
