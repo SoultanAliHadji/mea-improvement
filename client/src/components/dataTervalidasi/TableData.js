@@ -16,7 +16,16 @@ const TableData = ({ filtercctv, filterobject, date }) => {
 
   useEffect(() => {
     axios
-      .get("/viewtable/" + filtercctv + "/" + filterobject + "/" + date + "/" + datalimit)
+      .get(
+        "/viewtable/" +
+          filtercctv +
+          "/" +
+          filterobject +
+          "/" +
+          date +
+          "/" +
+          datalimit
+      )
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
@@ -36,7 +45,11 @@ const TableData = ({ filtercctv, filterobject, date }) => {
         <td>{data.created_at}</td>
         <td className="text-center">{data.type_object}</td>
         <td className="text-center">
-          <img className="data-img" src={require("../../assets/mining_eyes.jpg")} alt="" />
+          <img
+            className="data-img"
+            src={require("../../assets/mining_eyes.jpg")}
+            alt=""
+          />
         </td>
         <td>
           {data.comment == null
@@ -82,7 +95,7 @@ const TableData = ({ filtercctv, filterobject, date }) => {
               onClick={() => {
                 setModalImage(require("../../assets/mining_eyes.jpg"));
                 setStatus(data.type_validation);
-                setValidator(data.user_name)
+                setValidator(data.user_name);
                 setComment(data.comment);
               }}
             >
@@ -187,7 +200,10 @@ const TableData = ({ filtercctv, filterobject, date }) => {
       <nav aria-label="Page navigation">
         {data.length == 0 ? (
           <div className="d-flex justify-content-center my-4">
-            <div className="text-black-50">Tidak terdapat data yang sesuai dengan filter CCTV, Objek, maupun Periode</div>
+            <div className="text-black-50">
+              Tidak terdapat data yang sesuai dengan filter CCTV, Objek, maupun
+              Periode
+            </div>
           </div>
         ) : (
           ""
@@ -196,7 +212,8 @@ const TableData = ({ filtercctv, filterobject, date }) => {
           <li className="page-item">
             <button
               className={
-                "page-link" + (numstart == 0 ? " text-black-50 disabled" : " text-success")
+                "page-link" +
+                (numstart == 0 ? " text-black-50 disabled" : " text-success")
               }
               onClick={() => {
                 setNumstart(numstart - 10);
@@ -210,7 +227,9 @@ const TableData = ({ filtercctv, filterobject, date }) => {
             <button
               className={
                 "page-link" +
-                (numend > data.length ? " text-black-50 disabled" : " text-success")
+                (numend > data.length
+                  ? " text-black-50 disabled"
+                  : " text-success")
               }
               onClick={() => {
                 setNumstart(numstart + 10);

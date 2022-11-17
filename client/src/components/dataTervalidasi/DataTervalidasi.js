@@ -3,6 +3,7 @@ import TableData from "./TableData";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import Calendar from "react-calendar";
+import Export from "./Export";
 
 const DataTervalidasi = () => {
   const [filtercctv, setFiltercctv] = useState("All/All");
@@ -35,6 +36,7 @@ const DataTervalidasi = () => {
       : "12";
   const day = filterdate.toString().substring(8, 10);
   const date = year + "-" + month + "-" + day;
+  const dateflip = day + "-" + month + "-" + year;
 
   function handlerFiltercctv(data) {
     setFiltercctv(data.target.value);
@@ -150,16 +152,12 @@ const DataTervalidasi = () => {
               </div>
               <div className="col-5 d-flex align-items-end justify-content-end">
                 <div className="d-flex gap-3">
-                  <button
-                    type="button"
-                    className="shadow-all btn btn-success fw-semibold py-2 rounded-3"
-                    data-bs-toggle="modal"
-                  >
-                    <div>
-                      <Icon className="button-icon me-1" icon="entypo:export" />
-                      Export
-                    </div>
-                  </button>
+                  <Export
+                    filterobject={filterobject}
+                    filtercctv={filtercctv}
+                    date={date}
+                    dateflip={dateflip}
+                  />
                 </div>
               </div>
             </div>
