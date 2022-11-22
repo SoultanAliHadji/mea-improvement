@@ -99,6 +99,10 @@ button {
     font-size: 14px;
 }
 
+.navbar-component .nav-link {
+    cursor: pointer;
+}
+
 .navbar-component .nav-link:hover {
     color: #297209;
 }
@@ -204,6 +208,11 @@ button {
 
 .notificationlistbutton-component .details {
     margin-top: -10px;
+}
+
+.notification-list .load-more a {
+    text-decoration: none;
+    cursor: pointer;
 }
 
 

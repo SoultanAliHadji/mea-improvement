@@ -28,7 +28,7 @@ const ValidasiDeviasi = ({
   const [viewcomment, setViewcomment] = useState(viewcommentpass);
   const [viewimage, setViewimage] = useState(viewimagepass);
   const [object, setObject] = useState("AllObject");
-  const datalimit = 10;
+  const [datalimit, SetDatalimit] = useState(10);
   const array = data.map((data, index) => {
     return data.id;
   });
@@ -52,7 +52,8 @@ const ValidasiDeviasi = ({
     viewuser,
     viewcomment,
     viewimage,
-    array,
+    datalimit,
+    /*array,*/
   ]);
 
   const arr = data.slice(0, [datalimit]).map((data, index) => {
@@ -259,6 +260,7 @@ const ValidasiDeviasi = ({
                       }
                       onClick={() => {
                         setObject("AllObject");
+                        SetDatalimit(10)
                       }}
                     >
                       Semua
@@ -273,6 +275,7 @@ const ValidasiDeviasi = ({
                       }
                       onClick={() => {
                         setObject("Person");
+                        SetDatalimit(10)
                       }}
                     >
                       Person
@@ -287,6 +290,7 @@ const ValidasiDeviasi = ({
                       }
                       onClick={() => {
                         setObject("LV");
+                        SetDatalimit(10)
                       }}
                     >
                       LV
@@ -301,14 +305,22 @@ const ValidasiDeviasi = ({
                       }
                       onClick={() => {
                         setObject("HD");
+                        SetDatalimit(10)
                       }}
                     >
                       HD
                     </button>
                   </div>
                 </div>
-                <div className="d-grid px-2 py-2 overflow-auto notification-list gap-2 mt-2 notificationlistbutton-component">
-                  {arr}
+                <div className="px-2 py-2 overflow-auto notification-list mt-2">
+                  <div className="notificationlistbutton-component d-grid gap-2">
+                    {arr}
+                  </div>
+                  <div className="load-more d-flex justify-content-center mt-3">
+                    <a className="p-medium" onClick={() => {SetDatalimit(datalimit + 10)}}>
+                      Load More
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

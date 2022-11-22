@@ -20,7 +20,7 @@ const NotificationList = ({
   const [data, setData] = useState([{}]);
   const [viewid, setViewid] = useState();
   const [object, setObject] = useState("AllObject");
-  const datalimit = 10;
+  const [datalimit, setDatalimit] = useState(10);
   const array = data.map((data, index) => {
     return data.id;
   });
@@ -42,7 +42,7 @@ const NotificationList = ({
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [cctvname, cctvlocation, object]);
+  }, [cctvname, cctvlocation, object, datalimit /*array,*/]);
 
   const arr = data.slice(0, [datalimit]).map((data, index) => {
     return (
@@ -115,6 +115,7 @@ const NotificationList = ({
             }
             onClick={() => {
               setObject("AllObject");
+              setDatalimit(10)
             }}
           >
             Semua
@@ -127,6 +128,7 @@ const NotificationList = ({
             }
             onClick={() => {
               setObject("Person");
+              setDatalimit(10)
             }}
           >
             Person
@@ -139,6 +141,7 @@ const NotificationList = ({
             }
             onClick={() => {
               setObject("LV");
+              setDatalimit(10)
             }}
           >
             LV
@@ -151,14 +154,27 @@ const NotificationList = ({
             }
             onClick={() => {
               setObject("HD");
+              setDatalimit(10)
             }}
           >
             HD
           </button>
         </div>
       </div>
-      <div className="d-grid px-2 py-2 overflow-auto notification-list gap-2 mt-2 notificationlistbutton-component">
-        {arr}
+      <div className="px-2 py-2 overflow-auto notification-list mt-2">
+        <div className="notificationlistbutton-component d-grid gap-2">
+          {arr}
+        </div>
+        <div className="load-more d-flex justify-content-center mt-3">
+          <a
+            className="p-medium"
+            onClick={() => {
+              setDatalimit(datalimit + 10);
+            }}
+          >
+            Load More
+          </a>
+        </div>
       </div>
     </div>
   );

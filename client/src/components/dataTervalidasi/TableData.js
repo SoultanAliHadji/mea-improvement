@@ -7,7 +7,7 @@ import ReactImageMagnify from "react-magnify-image";
 const TableData = ({ filtercctv, filterobject, date }) => {
   const [data, setData] = useState([{}]);
   const [modalimage, setModalImage] = useState();
-  const datalimit = 100;
+  const [datalimit, setDatalimit] = useState(10);
   const [numstart, setNumstart] = useState(0);
   const [numend, setNumend] = useState(10);
   const [status, setStatus] = useState();
@@ -31,7 +31,12 @@ const TableData = ({ filtercctv, filterobject, date }) => {
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [filtercctv, filterobject, date]);
+  }, [filtercctv, filterobject, date, datalimit]);
+
+  useEffect(() => {
+    setNumstart(0);
+    setNumend(10);
+  }, [date]);
 
   const arr = data.slice(numstart, numend).map((data, index) => {
     return (
@@ -234,6 +239,7 @@ const TableData = ({ filtercctv, filterobject, date }) => {
               onClick={() => {
                 setNumstart(numstart + 10);
                 setNumend(numend + 10);
+                setDatalimit(datalimit + 10);
               }}
             >
               Next
