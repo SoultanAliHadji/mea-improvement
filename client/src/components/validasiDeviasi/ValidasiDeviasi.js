@@ -29,13 +29,24 @@ const ValidasiDeviasi = ({
   const [viewimage, setViewimage] = useState(viewimagepass);
   const [object, setObject] = useState("AllObject");
   const [datalimit, SetDatalimit] = useState(10);
+  const [filtercctv, setFiltercctv] = useState("AllName/AllLocation");
+  const [validation, setValidation] = useState("Allvalidation");
   const array = data.map((data, index) => {
     return data.id;
   });
 
   useEffect(() => {
     axios
-      .get("/viewtable/AllName/AllLocation/" + object + "/All/" + datalimit)
+      .get(
+        "/viewtable/" +
+          filtercctv +
+          "/" +
+          object +
+          "/All/" +
+          validation +
+          "/" +
+          datalimit
+      )
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
@@ -53,7 +64,9 @@ const ValidasiDeviasi = ({
     viewcomment,
     viewimage,
     datalimit,
-    /*array,*/
+    filtercctv,
+    validation,
+    array,
   ]);
 
   const arr = data.slice(0, [datalimit]).map((data, index) => {
@@ -116,6 +129,10 @@ const ValidasiDeviasi = ({
     );
   });
 
+  function handlerFiltercctv(data) {
+    setFiltercctv(data.target.value);
+  }
+
   return (
     <div className="validasideviasi-body">
       <div className="body-bg">
@@ -123,8 +140,39 @@ const ValidasiDeviasi = ({
           <div className="row">
             <div className="col">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
-                <h6 className="fw-semibold">Validasi Deviasi</h6>
-                <p className="p-small">Validasi deviasi yang terdeteksi</p>
+                <div className="row">
+                  <div className="col-8">
+                    <h6 className="fw-semibold">Validasi Deviasi</h6>
+                    <p className="p-small">Validasi deviasi yang terdeteksi</p>
+                  </div>
+                  <div className="col-4 d-flex">
+                    <select
+                      className="form-select"
+                      id="inputGroupSelect01"
+                      defaultValue={filtercctv}
+                      onChange={handlerFiltercctv}
+                    >
+                      <option selected value="AllName/AllLocation">
+                        Semua Kamera
+                      </option>
+                      <option value="CCTV BMO2/E Camera 3">
+                        CCTV BMO2 - E Camera 3
+                      </option>
+                      <option value="CCTV BMO2/E Camera 2">
+                        CCTV BMO2 - E Camera 2
+                      </option>
+                      <option value="CCTV BMO2/7West Camera 1">
+                        CCTV BMO2 - 7West Camera 1
+                      </option>
+                      <option value="CCTV BMO2/PIT E1 [disabled]">
+                        CCTV BMO2 - PIT E1 [disabled]
+                      </option>
+                      <option value="CCTV BMO2/Low Wall Pit E">
+                        CCTV BMO2 - Low Wall Pit E
+                      </option>
+                    </select>
+                  </div>
+                </div>
               </div>
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 pt-2">
                 <div className="d-grid px-2 py-2 d-flex justify-content-center">
@@ -244,8 +292,81 @@ const ValidasiDeviasi = ({
             </div>
             <div className="col-3">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
-                <h6 className="fw-semibold">List Deviasi</h6>
-                <p className="p-small">List deviasi yang terdeteksi</p>
+                <div className="row">
+                  <div className="col-9">
+                    <h6 className="fw-semibold">List Deviasi</h6>
+                    <p className="p-small">List deviasi yang terdeteksi</p>
+                  </div>
+                  <div className="col-3 d-flex justify-content-end align-items-center">
+                    <div className="dropdown">
+                      <button
+                        type="button"
+                        className="nav-link fw-semibold"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        {validation == "Allvalidation" ? (
+                          <Icon
+                            className="fs-4"
+                            icon="material-symbols:filter-list-off"
+                          />
+                        ) : (
+                          <Icon
+                            className="fs-4"
+                            icon="material-symbols:filter-list"
+                          />
+                        )}
+                      </button>
+                      <ul className="dropdown-menu dropdown-menu-end">
+                        <li>
+                          <button
+                            className={
+                              "dropdown-item" +
+                              (validation == "Allvalidation"
+                                ? " dropdown-item-active"
+                                : "")
+                            }
+                            onClick={() => {
+                              setValidation("Allvalidation");
+                            }}
+                          >
+                            Semua
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className={
+                              "dropdown-item" +
+                              (validation == "validated"
+                                ? " dropdown-item-active"
+                                : "")
+                            }
+                            onClick={() => {
+                              setValidation("validated");
+                            }}
+                          >
+                            Tervalidasi
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className={
+                              "dropdown-item" +
+                              (validation == "unvalidated"
+                                ? " dropdown-item-active"
+                                : "")
+                            }
+                            onClick={() => {
+                              setValidation("unvalidated");
+                            }}
+                          >
+                            Belum Tervalidasi
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 py-2">
                 <div className="d-grid px-2 py-2 border-bottom border-2 notificationfilter-component">
@@ -260,7 +381,7 @@ const ValidasiDeviasi = ({
                       }
                       onClick={() => {
                         setObject("AllObject");
-                        SetDatalimit(10)
+                        SetDatalimit(10);
                       }}
                     >
                       Semua
@@ -275,7 +396,7 @@ const ValidasiDeviasi = ({
                       }
                       onClick={() => {
                         setObject("Person");
-                        SetDatalimit(10)
+                        SetDatalimit(10);
                       }}
                     >
                       Person
@@ -290,7 +411,7 @@ const ValidasiDeviasi = ({
                       }
                       onClick={() => {
                         setObject("LV");
-                        SetDatalimit(10)
+                        SetDatalimit(10);
                       }}
                     >
                       LV
@@ -305,7 +426,7 @@ const ValidasiDeviasi = ({
                       }
                       onClick={() => {
                         setObject("HD");
-                        SetDatalimit(10)
+                        SetDatalimit(10);
                       }}
                     >
                       HD
@@ -317,7 +438,12 @@ const ValidasiDeviasi = ({
                     {arr}
                   </div>
                   <div className="load-more d-flex justify-content-center mt-3">
-                    <a className="p-medium" onClick={() => {SetDatalimit(datalimit + 10)}}>
+                    <a
+                      className="p-medium"
+                      onClick={() => {
+                        SetDatalimit(datalimit + 10);
+                      }}
+                    >
                       Load More
                     </a>
                   </div>

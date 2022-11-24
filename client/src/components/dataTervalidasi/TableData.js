@@ -23,7 +23,7 @@ const TableData = ({ filtercctv, filterobject, date }) => {
           filterobject +
           "/" +
           date +
-          "/" +
+          "/Allvalidation/" +
           datalimit
       )
       .then((res) => {

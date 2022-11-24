@@ -115,7 +115,7 @@ const Parent = () => {
                         Data Tervalidasi
                       </a>
                     </li>
-                    <li className="nav-item dropdown">
+                    <div className="nav-item dropdown">
                       <a
                         className="nav-link dropdown-toggle fw-semibold"
                         href="#"
@@ -140,7 +140,7 @@ const Parent = () => {
                           </a>
                         </li>
                       </ul>
-                    </li>
+                    </div>
                   </ul>
                 </div>
               </div>

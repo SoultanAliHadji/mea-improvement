@@ -34,7 +34,7 @@ const NotificationList = ({
           cctvlocation +
           "/" +
           object +
-          "/All/" +
+          "/All/Allvalidation/" +
           datalimit
       )
       .then((res) => {
@@ -115,7 +115,7 @@ const NotificationList = ({
             }
             onClick={() => {
               setObject("AllObject");
-              setDatalimit(10)
+              setDatalimit(10);
             }}
           >
             Semua
@@ -128,7 +128,7 @@ const NotificationList = ({
             }
             onClick={() => {
               setObject("Person");
-              setDatalimit(10)
+              setDatalimit(10);
             }}
           >
             Person
@@ -141,7 +141,7 @@ const NotificationList = ({
             }
             onClick={() => {
               setObject("LV");
-              setDatalimit(10)
+              setDatalimit(10);
             }}
           >
             LV
@@ -154,7 +154,7 @@ const NotificationList = ({
             }
             onClick={() => {
               setObject("HD");
-              setDatalimit(10)
+              setDatalimit(10);
             }}
           >
             HD

@@ -111,7 +111,7 @@ button {
     background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
 }
 
-.navbar-component .dropdown-item:active {
+.navbar-component .dropdown-item:focus {
     background-image: linear-gradient(to left, #297209, #297209);
 }
 
@@ -355,7 +355,24 @@ button {
 
 
 /*-------------------------------------------------validasi deviasi page costumization--------------------------------------------------*/
-.deviasi-image-container {
+.validasideviasi-body .dropdown-menu .dropdown-item:hover {
+    background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
+    color: #3E4958 !important;
+}
+
+.validasideviasi-body .dropdown-menu .dropdown-item {
+    background-image: linear-gradient(to right, white, white);
+    color: #3E4958 !important;
+    border: none !important;
+    font-size: small !important;
+}
+
+.validasideviasi-body .dropdown-menu .dropdown-item-active {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+}
+
+.validasideviasi-body .deviasi-image-container {
     width: 71%;
 }
 
