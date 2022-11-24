@@ -355,6 +355,26 @@ button {
 
 
 /*-------------------------------------------------validasi deviasi page costumization--------------------------------------------------*/
+.validasideviasi-body .validation-filter-icon {
+    color: #3E4958 !important;
+    width: 28px;
+    height: 28px;
+}
+
+.validasideviasi-body .validation-filter-icon:hover {
+    background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
+    color: #3E4958 !important;
+    width: 28px;
+    height: 28px;
+}
+
+.validasideviasi-body .validation-filter-icon:active {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    width: 28px;
+    height: 28px;
+}
+
 .validasideviasi-body .dropdown-menu .dropdown-item:hover {
     background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
     color: #3E4958 !important;
@@ -370,13 +390,6 @@ button {
 .validasideviasi-body .dropdown-menu .dropdown-item-active {
     background-image: linear-gradient(to right, #3B9315, #297209);
     color: white !important;
-}
-
-.validasideviasi-body .validation-filter-icon {
-    background-image: linear-gradient(to right, #3B9315, #297209);
-    color: white !important;
-    width: 28px;
-    height: 28px;
 }
 
 .validasideviasi-body .deviasi-image-container {

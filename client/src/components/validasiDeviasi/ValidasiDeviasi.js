@@ -307,12 +307,12 @@ const ValidasiDeviasi = ({
                       >
                         {validation == "Allvalidation" ? (
                           <Icon
-                            className="validation-filter-icon fs-4 rounded p-1"
+                            className="validation-filter-icon fs-4 rounded p-1 shadow-all"
                             icon="material-symbols:filter-list-off"
                           />
                         ) : (
                           <Icon
-                            className="validation-filter-icon fs-4 rounded p-1"
+                            className="validation-filter-icon fs-4 rounded p-1 shadow-all"
                             icon="material-symbols:filter-list"
                           />
                         )}
