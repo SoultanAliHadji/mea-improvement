@@ -301,18 +301,18 @@ const ValidasiDeviasi = ({
                     <div className="dropdown">
                       <button
                         type="button"
-                        className="nav-link fw-semibold"
+                        className="fw-semibold"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
                         {validation == "Allvalidation" ? (
                           <Icon
-                            className="fs-4"
+                            className="validation-filter-icon fs-4 rounded p-1"
                             icon="material-symbols:filter-list-off"
                           />
                         ) : (
                           <Icon
-                            className="fs-4"
+                            className="validation-filter-icon fs-4 rounded p-1"
                             icon="material-symbols:filter-list"
                           />
                         )}
