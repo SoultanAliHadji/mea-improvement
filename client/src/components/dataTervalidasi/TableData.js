@@ -151,7 +151,7 @@ const TableData = ({ filtercctv, filterobject, date }) => {
                     : "Tidak Valid"}
                 </div>
                 <div className="d-flex gap-1 mt-2 deviation-desc">
-                  <label className="fw-bolder">Validator:</label>
+                  <label className="fw-bolder">Pengawas:</label>
                   {validator == null ? "-" : <label>{validator}</label>}
                 </div>
                 <div className="d-flex gap-1 deviation-desc">
