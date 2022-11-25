@@ -167,12 +167,15 @@ const NotificationList = ({
         </div>
         <div className="load-more d-flex justify-content-center mt-3">
           <a
-            className="p-medium"
+            className={
+              "p-medium" +
+              (data.length < datalimit ? " disabled text-secondary" : "")
+            }
             onClick={() => {
               setDatalimit(datalimit + 10);
             }}
           >
-            Load More
+            {data.length < datalimit ? "No More Data" : "Load More"}
           </a>
         </div>
       </div>
