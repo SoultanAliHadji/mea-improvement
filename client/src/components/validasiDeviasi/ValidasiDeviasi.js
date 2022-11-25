@@ -129,10 +129,6 @@ const ValidasiDeviasi = ({
     );
   });
 
-  function handlerFiltercctv(data) {
-    setFiltercctv(data.target.value);
-  }
-
   return (
     <div className="validasideviasi-body">
       <div className="body-bg">
@@ -140,39 +136,8 @@ const ValidasiDeviasi = ({
           <div className="row">
             <div className="col">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
-                <div className="row">
-                  <div className="col-8">
-                    <h6 className="fw-semibold">Validasi Deviasi</h6>
-                    <p className="p-small">Validasi deviasi yang terdeteksi</p>
-                  </div>
-                  <div className="col-4 d-flex">
-                    <select
-                      className="form-select"
-                      id="inputGroupSelect01"
-                      defaultValue={filtercctv}
-                      onChange={handlerFiltercctv}
-                    >
-                      <option selected value="AllName/AllLocation">
-                        Semua Kamera
-                      </option>
-                      <option value="CCTV BMO2/E Camera 3">
-                        CCTV BMO2 - E Camera 3
-                      </option>
-                      <option value="CCTV BMO2/E Camera 2">
-                        CCTV BMO2 - E Camera 2
-                      </option>
-                      <option value="CCTV BMO2/7West Camera 1">
-                        CCTV BMO2 - 7West Camera 1
-                      </option>
-                      <option value="CCTV BMO2/PIT E1 [disabled]">
-                        CCTV BMO2 - PIT E1 [disabled]
-                      </option>
-                      <option value="CCTV BMO2/Low Wall Pit E">
-                        CCTV BMO2 - Low Wall Pit E
-                      </option>
-                    </select>
-                  </div>
-                </div>
+                <h6 className="fw-semibold">Validasi Deviasi</h6>
+                <p className="p-small">Validasi deviasi yang terdeteksi</p>
               </div>
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 pt-2">
                 <div className="d-grid px-2 py-2 d-flex justify-content-center">
@@ -303,9 +268,11 @@ const ValidasiDeviasi = ({
                         type="button"
                         className="fw-semibold"
                         data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside"
                         aria-expanded="false"
                       >
-                        {validation == "Allvalidation" ? (
+                        {(filtercctv == "AllName/AllLocation") &
+                        (validation == "Allvalidation") ? (
                           <Icon
                             className="validation-filter-icon fs-4 rounded p-1 shadow-all"
                             icon="material-symbols:filter-list-off"
@@ -318,6 +285,102 @@ const ValidasiDeviasi = ({
                         )}
                       </button>
                       <ul className="dropdown-menu dropdown-menu-end">
+                        <div className="d-flex justify-content-center mb-1">
+                          <div className="fw-bolder">Filter CCTV</div>
+                        </div>
+                        <li>
+                          <button
+                            className={
+                              "dropdown-item" +
+                              (filtercctv == "AllName/AllLocation"
+                                ? " dropdown-item-active"
+                                : "")
+                            }
+                            onClick={() => {
+                              setFiltercctv("AllName/AllLocation");
+                            }}
+                          >
+                            Semua Kamera
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className={
+                              "dropdown-item" +
+                              (filtercctv == "CCTV BMO2/E Camera 3"
+                                ? " dropdown-item-active"
+                                : "")
+                            }
+                            onClick={() => {
+                              setFiltercctv("CCTV BMO2/E Camera 3");
+                            }}
+                          >
+                            CCTV BMO2 - E Camera 3
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className={
+                              "dropdown-item" +
+                              (filtercctv == "CCTV BMO2/E Camera 2"
+                                ? " dropdown-item-active"
+                                : "")
+                            }
+                            onClick={() => {
+                              setFiltercctv("CCTV BMO2/E Camera 2");
+                            }}
+                          >
+                            CCTV BMO2 - E Camera 2
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className={
+                              "dropdown-item" +
+                              (filtercctv == "CCTV BMO2/7West Camera 1"
+                                ? " dropdown-item-active"
+                                : "")
+                            }
+                            onClick={() => {
+                              setFiltercctv("CCTV BMO2/7West Camera 1");
+                            }}
+                          >
+                            CCTV BMO2 - 7West Camera 1
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className={
+                              "dropdown-item" +
+                              (filtercctv == "CCTV BMO2/PIT E1 [disabled]"
+                                ? " dropdown-item-active"
+                                : "")
+                            }
+                            onClick={() => {
+                              setFiltercctv("CCTV BMO2/PIT E1 [disabled]");
+                            }}
+                          >
+                            CCTV BMO2 - PIT E1 [disabled]
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className={
+                              "dropdown-item" +
+                              (filtercctv == "CCTV BMO2/Low Wall Pit E"
+                                ? " dropdown-item-active"
+                                : "")
+                            }
+                            onClick={() => {
+                              setFiltercctv("CCTV BMO2/Low Wall Pit E");
+                            }}
+                          >
+                            CCTV BMO2 - Low Wall Pit E
+                          </button>
+                        </li>
+                        <div className="d-flex justify-content-center border-top border-secondary my-1 pt-2">
+                          <div className="fw-bolder">Filter Tipe Validasi</div>
+                        </div>
                         <li>
                           <button
                             className={
@@ -330,7 +393,7 @@ const ValidasiDeviasi = ({
                               setValidation("Allvalidation");
                             }}
                           >
-                            Semua
+                            Semua Tipe Validasi
                           </button>
                         </li>
                         <li>

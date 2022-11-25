@@ -375,6 +375,13 @@ button {
     height: 28px;
 }
 
+.validasideviasi-body .validation-filter-icon:focus {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    width: 28px;
+    height: 28px;
+}
+
 .validasideviasi-body .dropdown-menu .dropdown-item:hover {
     background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
     color: #3E4958 !important;
@@ -387,7 +394,20 @@ button {
     font-size: small !important;
 }
 
+.validasideviasi-body .dropdown-menu .dropdown-item:focus {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    border: none !important;
+    font-size: small !important;
+}
+
 .validasideviasi-body .dropdown-menu .dropdown-item-active {
+    background-image: linear-gradient(to right, #3B9315, #297209);
+    color: white !important;
+    pointer-events: none;
+}
+
+.validasideviasi-body .dropdown-menu .dropdown-item-active:hover {
     background-image: linear-gradient(to right, #3B9315, #297209);
     color: white !important;
 }
