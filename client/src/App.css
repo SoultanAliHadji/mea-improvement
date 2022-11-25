@@ -69,6 +69,10 @@ button {
     background-color: transparent;
 }
 
+.disabled {
+    pointer-events: none !important;
+}
+
 
 
 /*----------------------------------------------------navbar component costumization----------------------------------------------------*/
