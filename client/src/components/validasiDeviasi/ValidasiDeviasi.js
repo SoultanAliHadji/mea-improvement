@@ -66,7 +66,7 @@ const ValidasiDeviasi = ({
     datalimit,
     filtercctv,
     validation,
-    array,
+    /*array,*/
   ]);
 
   const arr = data.slice(0, [datalimit]).map((data, index) => {

@@ -363,6 +363,7 @@ button {
     color: #3E4958 !important;
     width: 28px;
     height: 28px;
+    border: 1px solid #297209;
 }
 
 .validasideviasi-body .validation-filter-icon:hover {
