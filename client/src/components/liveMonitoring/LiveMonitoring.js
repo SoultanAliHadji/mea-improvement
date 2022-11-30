@@ -105,7 +105,7 @@ const LiveMonitoring = ({
       <div className="body-bg">
         <div className="container pt-3 pb-1">
           <div className="row">
-            <div className="col">
+            <div className="col-lg-3">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
                 <h6 className="fw-semibold">List CCTV</h6>
                 <p className="p-small">
@@ -116,7 +116,7 @@ const LiveMonitoring = ({
                 {arr}
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-lg-6">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
                 <h6 className="fw-semibold">Real Time Monitoring</h6>
                 <p className="p-small">
@@ -197,7 +197,7 @@ const LiveMonitoring = ({
                 </div>
               </div>
             </div>
-            <div className="col">
+            <div className="col-lg-3">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
                 <h6 className="fw-semibold">List Deviasi</h6>
                 <p className="p-small">List deviasi yang terdeteksi</p>

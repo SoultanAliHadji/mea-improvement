@@ -64,19 +64,41 @@ const Parent = () => {
           <div className="container">
             <nav className="navbar navbar-expand-md">
               <div className="container-fluid">
-                <div className="navbar-brand disabled">
-                  <img
-                    className="logo"
-                    src={require("../assets/logo.png")}
-                    alt=""
-                  />
+                <div className="navbar-brand">
+                  <a
+                    className={
+                      current == "livemonitoring" ? "page-current" : ""
+                    }
+                    onClick={() => {
+                      setCurrent("livemonitoring");
+                    }}
+                  >
+                    <img
+                      className="logo"
+                      src={require("../assets/logo.png")}
+                      alt=""
+                    />
+                  </a>
                 </div>
+                <div className="d-flex justify-content-end">
+                    <button
+                      className="navbar-toggler"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#navbarSupportedContent"
+                      aria-controls="navbarSupportedContent"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+                    >
+                      <span className="navbar-toggler-icon"></span>
+                    </button>
+                  </div>
                 <div
                   className="collapse navbar-collapse justify-content-end"
-                  id="navbarNavDropdown"
+                  id="navbarSupportedContent"
                 >
                   <ul className="navbar-nav gap-2">
-                    <li className="nav-item">
+                    <li className="nav-item d-flex justify-content-center">
                       <a
                         className={
                           "nav-link fw-semibold" +
@@ -89,7 +111,7 @@ const Parent = () => {
                         Live Monitoring
                       </a>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item d-flex justify-content-center">
                       <a
                         className={
                           "nav-link fw-semibold" +
@@ -102,7 +124,7 @@ const Parent = () => {
                         Validasi Deviasi
                       </a>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item d-flex justify-content-center">
                       <a
                         className={
                           "nav-link fw-semibold" +
@@ -115,7 +137,7 @@ const Parent = () => {
                         Data Tervalidasi
                       </a>
                     </li>
-                    <div className="nav-item dropdown">
+                    <div className="nav-item dropdown d-flex justify-content-center">
                       <a
                         className="nav-link dropdown-toggle fw-semibold"
                         href="#"

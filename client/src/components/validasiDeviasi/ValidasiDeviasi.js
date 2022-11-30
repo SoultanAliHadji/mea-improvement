@@ -134,7 +134,7 @@ const ValidasiDeviasi = ({
       <div className="body-bg">
         <div className="container pt-3">
           <div className="row">
-            <div className="col">
+            <div className="col-lg-9">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
                 <h6 className="fw-semibold">Validasi Deviasi</h6>
                 <p className="p-small">Validasi deviasi yang terdeteksi</p>
@@ -255,7 +255,7 @@ const ValidasiDeviasi = ({
                 </div>
               </div>
             </div>
-            <div className="col-3">
+            <div className="col-lg-3">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
                 <div className="row">
                   <div className="col-9">

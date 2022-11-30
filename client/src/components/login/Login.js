@@ -9,17 +9,23 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [passwordtype, setPasswordtype] = useState("password");
   const [incorrect, setIncorrect] = useState("");
+
   const incorrectAlert = "*Incorrect username or password";
 
   useEffect(() => {
     axios
-      .get("/user/" + username)
-      .then((res) => {
-        console.log("Getting from ::::", res.data.data);
-        setData(res.data.data);
+      .post("http://10.10.10.66:5001/api/login", {
+        username: username,
+        password: password,
       })
-      .catch((err) => console.log(err));
-  }, [username]);
+      .then((data) => {
+        console.log(data.data);
+        setData(data.data.meta);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [username, password]);
 
   function handlerUsername(data) {
     setUsername(data.target.value);
@@ -31,10 +37,8 @@ const Login = () => {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      setIncorrect(
-        (data.status == "Success") & (password == username) ? "" : "Incorrect"
-      );
-      if ((data.status == "Success") & (password == username)) {
+      setIncorrect(data.status == "success" ? "" : "Incorrect");
+      if (data.status == "success") {
         window.location.replace("http://localhost:3000/mining-eyes-analytics");
       }
     }
@@ -64,33 +68,14 @@ const Login = () => {
                   </div>
                   <div className="mb-2">
                     <h6 className="fw-semibold">Username/SID</h6>
-                    <div className="d-flex">
-                      <input
-                        className="form-control"
-                        type="text"
-                        placeholder="Masukkan Username atau SID"
-                        defaultValue={username}
-                        onChange={handlerUsername}
-                        onKeyDown={handleKeyDown}
-                      />
-                      <div className="d-flex align-items-center checker-container">
-                        <Icon
-                          className={
-                            "checker" +
-                            (username == ""
-                              ? " text-white"
-                              : data.status == "Success"
-                              ? " text-success"
-                              : " text-danger")
-                          }
-                          icon={
-                            data.status == "Success"
-                              ? "akar-icons:circle-check"
-                              : "akar-icons:circle-x"
-                          }
-                        />
-                      </div>
-                    </div>
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Masukkan Username atau SID"
+                      defaultValue={username}
+                      onChange={handlerUsername}
+                      onKeyDown={handleKeyDown}
+                    />
                   </div>
                   <div className="mb-4">
                     <h6 className="fw-semibold">Password</h6>
@@ -134,7 +119,7 @@ const Login = () => {
                     <a
                       className="d-grid text-decoration-none"
                       href={
-                        (data.status == "Success") & (password == username)
+                        data.status == "success"
                           ? "/mining-eyes-analytics"
                           : "#"
                       }
@@ -144,9 +129,7 @@ const Login = () => {
                         type="button"
                         onClick={() => {
                           setIncorrect(
-                            (data.status == "Success") & (password == username)
-                              ? ""
-                              : "Incorrect"
+                            data.status == "success" ? "" : "Incorrect"
                           );
                         }}
                       >
@@ -161,84 +144,86 @@ const Login = () => {
                   </div>
                 </div>
               </div>
-              <div className="col">
-                <div
-                  id="carouselExampleDark"
-                  className="carousel carousel slide"
-                  data-bs-ride="carousel"
-                >
-                  <div className="carousel-indicators">
+              <div className="col d-flex align-items-center">
+                <div>
+                  <div
+                    id="carouselExampleDark"
+                    className="carousel carousel slide"
+                    data-bs-ride="carousel"
+                  >
+                    <div className="carousel-indicators">
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleDark"
+                        data-bs-slide-to="0"
+                        className="active"
+                        aria-current="true"
+                        aria-label="Slide 1"
+                      ></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleDark"
+                        data-bs-slide-to="1"
+                        aria-label="Slide 2"
+                      ></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleDark"
+                        data-bs-slide-to="2"
+                        aria-label="Slide 3"
+                      ></button>
+                    </div>
+                    <div className="carousel-inner">
+                      <div
+                        className="carousel-item active"
+                        data-bs-interval="3000"
+                      >
+                        <img
+                          src={require("../../assets/login-slider-png/slider_live_monitoring.png")}
+                          className="d-block w-100"
+                          alt="..."
+                        />
+                      </div>
+                      <div className="carousel-item" data-bs-interval="2000">
+                        <img
+                          src={require("../../assets/login-slider-png/slider_validasi_deviasi.png")}
+                          className="d-block w-100"
+                          alt="..."
+                        />
+                      </div>
+                      <div className="carousel-item">
+                        <img
+                          src={require("../../assets/login-slider-png/slider_data_tervalidasi.png")}
+                          className="d-block w-100"
+                          alt="..."
+                        />
+                      </div>
+                    </div>
                     <button
+                      className="carousel-control-prev"
                       type="button"
                       data-bs-target="#carouselExampleDark"
-                      data-bs-slide-to="0"
-                      className="active"
-                      aria-current="true"
-                      aria-label="Slide 1"
-                    ></button>
-                    <button
-                      type="button"
-                      data-bs-target="#carouselExampleDark"
-                      data-bs-slide-to="1"
-                      aria-label="Slide 2"
-                    ></button>
-                    <button
-                      type="button"
-                      data-bs-target="#carouselExampleDark"
-                      data-bs-slide-to="2"
-                      aria-label="Slide 3"
-                    ></button>
-                  </div>
-                  <div className="carousel-inner">
-                    <div
-                      className="carousel-item active"
-                      data-bs-interval="3000"
+                      data-bs-slide="prev"
                     >
-                      <img
-                        src={require("../../assets/login-slider-png/slider_live_monitoring.png")}
-                        className="d-block w-100"
-                        alt="..."
-                      />
-                    </div>
-                    <div className="carousel-item" data-bs-interval="2000">
-                      <img
-                        src={require("../../assets/login-slider-png/slider_validasi_deviasi.png")}
-                        className="d-block w-100"
-                        alt="..."
-                      />
-                    </div>
-                    <div className="carousel-item">
-                      <img
-                        src={require("../../assets/login-slider-png/slider_data_tervalidasi.png")}
-                        className="d-block w-100"
-                        alt="..."
-                      />
-                    </div>
+                      <span
+                        className="carousel-control-prev-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span className="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                      className="carousel-control-next"
+                      type="button"
+                      data-bs-target="#carouselExampleDark"
+                      data-bs-slide="next"
+                    >
+                      <span
+                        className="carousel-control-next-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span className="visually-hidden">Next</span>
+                    </button>
                   </div>
-                  <button
-                    className="carousel-control-prev"
-                    type="button"
-                    data-bs-target="#carouselExampleDark"
-                    data-bs-slide="prev"
-                  >
-                    <span
-                      className="carousel-control-prev-icon"
-                      aria-hidden="true"
-                    ></span>
-                    <span className="visually-hidden">Previous</span>
-                  </button>
-                  <button
-                    className="carousel-control-next"
-                    type="button"
-                    data-bs-target="#carouselExampleDark"
-                    data-bs-slide="next"
-                  >
-                    <span
-                      className="carousel-control-next-icon"
-                      aria-hidden="true"
-                    ></span>
-                    <span className="visually-hidden">Next</span>
-                  </button>
                 </div>
               </div>
             </div>

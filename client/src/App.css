@@ -82,6 +82,7 @@ button {
 
 .navbar-component .logo {
     width: 100%;
+    cursor: pointer;
 }
 
 .navbar-component .navbar-brand {
@@ -302,15 +303,6 @@ button {
     background-image: linear-gradient(to left, #297209, #297209);
 }
 
-.login-page .checker-container {
-    margin-left: -24px;
-}
-
-.login-page .checker {
-    width: 20px;
-    height: 20px;
-}
-
 .login-page .view-container {
     margin-left: -24px;
 }
@@ -319,6 +311,7 @@ button {
     width: 10px;
     height: 10px;
     margin-top: 6px;
+    cursor: pointer;
 }
 
 .login-page .view {
