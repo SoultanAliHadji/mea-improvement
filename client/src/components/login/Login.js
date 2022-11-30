@@ -8,6 +8,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordtype, setPasswordtype] = useState("password");
+  const [status, setStatus] = useState("")
   const [incorrect, setIncorrect] = useState("");
 
   const incorrectAlert = "*Incorrect username or password";
@@ -21,9 +22,11 @@ const Login = () => {
       .then((data) => {
         console.log(data.data);
         setData(data.data.meta);
+        setStatus(data.status == 200 ? "success" : "invalid")
       })
       .catch((err) => {
         console.log(err);
+        setStatus("invalid")
       });
   }, [username, password]);
 
@@ -37,8 +40,8 @@ const Login = () => {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      setIncorrect(data.status == "success" ? "" : "Incorrect");
-      if (data.status == "success") {
+      setIncorrect(status == "success" ? "" : "Incorrect");
+      if (status == "success") {
         window.location.replace("http://localhost:3000/mining-eyes-analytics");
       }
     }
@@ -119,7 +122,7 @@ const Login = () => {
                     <a
                       className="d-grid text-decoration-none"
                       href={
-                        data.status == "success"
+                        status == "success"
                           ? "/mining-eyes-analytics"
                           : "#"
                       }
@@ -129,7 +132,7 @@ const Login = () => {
                         type="button"
                         onClick={() => {
                           setIncorrect(
-                            data.status == "success" ? "" : "Incorrect"
+                            status == "success" ? "" : "Incorrect"
                           );
                         }}
                       >
@@ -230,6 +233,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      {status}
     </div>
   );
 };
