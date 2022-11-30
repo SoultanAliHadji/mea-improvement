@@ -4,11 +4,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Login = () => {
-  const [data, setData] = useState([{}]);
+  const [data, setData] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordtype, setPasswordtype] = useState("password");
-  const [status, setStatus] = useState("")
   const [incorrect, setIncorrect] = useState("");
 
   const incorrectAlert = "*Incorrect username or password";
@@ -21,12 +20,13 @@ const Login = () => {
       })
       .then((data) => {
         console.log(data.data);
-        setData(data.data.meta);
-        setStatus(data.status == 200 ? "success" : "invalid")
+        setData(data.data.meta.status == "success" ? "success" : "");
       })
-      .catch((err) => {
-        console.log(err);
-        setStatus("invalid")
+      .catch(err => {
+        if(err.response) {
+          console.log(err.response);
+          setData(err.response.data.meta.status);
+        }
       });
   }, [username, password]);
 
@@ -40,8 +40,8 @@ const Login = () => {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      setIncorrect(status == "success" ? "" : "Incorrect");
-      if (status == "success") {
+      setIncorrect(data == "success" ? "" : "Incorrect");
+      if (data == "success") {
         window.location.replace("http://localhost:3000/mining-eyes-analytics");
       }
     }
@@ -122,18 +122,14 @@ const Login = () => {
                     <a
                       className="d-grid text-decoration-none"
                       href={
-                        status == "success"
-                          ? "/mining-eyes-analytics"
-                          : "#"
+                        data == "success" ? "/mining-eyes-analytics" : "#"
                       }
                     >
                       <button
                         className="btn btn-success"
                         type="button"
                         onClick={() => {
-                          setIncorrect(
-                            status == "success" ? "" : "Incorrect"
-                          );
+                          setIncorrect(data == "success" ? "" : "Incorrect");
                         }}
                       >
                         Masuk
@@ -233,7 +229,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      {status}
     </div>
   );
 };
