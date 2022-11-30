@@ -5,10 +5,12 @@ import { useState, useEffect } from "react";
 
 const Login = () => {
   const [data, setData] = useState("");
+  const [jwt, setJwt] = useState("")
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordtype, setPasswordtype] = useState("password");
   const [incorrect, setIncorrect] = useState("");
+  const settoken = localStorage.setItem('jwt', jwt);
 
   const incorrectAlert = "*Incorrect username or password";
 
@@ -21,11 +23,13 @@ const Login = () => {
       .then((data) => {
         console.log(data.data);
         setData(data.data.meta.status == "success" ? "success" : "");
+        setJwt(data.data.data.token)
       })
       .catch(err => {
         if(err.response) {
           console.log(err.response);
           setData(err.response.data.meta.status);
+          setJwt("")
         }
       });
   }, [username, password]);

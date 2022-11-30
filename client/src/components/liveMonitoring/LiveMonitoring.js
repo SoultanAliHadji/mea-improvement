@@ -24,6 +24,7 @@ const LiveMonitoring = ({
   const [cctvlocation, setCctvlocation] = useState("E Camera 3");
   const [cctvip, setCctvip] = useState("10.1.73.20");
   const livecctv = "http://10.1.74.9:5000/video_feed/" + cctvid;
+  const gettoken = localStorage.getItem("jwt");
 
   const handleClick = (value) => {
     handleRoute(value);

@@ -4,12 +4,14 @@ import Login from "./components/login/Login";
 import Parent from "./components/Parent";
 
 function App() {
+  const gettoken = localStorage.getItem("jwt");
+
   return (
     <div className="font-roboto noselect">
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/mining-eyes-analytics" component={Parent} />
+          <Route exact path="/mining-eyes-analytics" component={gettoken != "" ? Parent : Login} />
         </Switch>
       </Router>
     </div>
