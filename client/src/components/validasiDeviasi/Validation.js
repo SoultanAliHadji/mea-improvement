@@ -2,7 +2,7 @@ import "../../App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const Validation = ({ viewid }) => {
+const Validation = ({ viewid, handleClick, click }) => {
   const [data, setData] = useState([{}]);
   const [deviationstatus, setDeviationstatus] = useState();
   const [checkbox1, setCheckbox1] = useState("off");
@@ -39,6 +39,8 @@ const Validation = ({ viewid }) => {
     cbvalue5 +
     "" +
     tavalue;
+  const gettoken = localStorage.getItem("jwt");
+  const getid = localStorage.getItem("id");
 
   useEffect(() => {
     axios
@@ -57,13 +59,16 @@ const Validation = ({ viewid }) => {
   const handleUpdate = () => {
     axios({
       method: "put",
-      url: "/deviation/" + viewid,
+      url: "http://10.10.10.66:5001/api/deviation/" + viewid,
       data: {
         type_validation: deviationstatus,
         comment: deviationcomment,
-        user_id: 7,
+        user_id: getid,
       },
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + gettoken,
+      },
     })
       .then((data) => {
         console.log(data);
@@ -125,7 +130,7 @@ const Validation = ({ viewid }) => {
               </div>
               <div className="modal-body">
                 <form action="">
-                  {deviationstatus == "true" ? 
+                  {deviationstatus == "true" ? (
                     <div>
                       <div className="d-flex gap-2 mb-3">
                         <input
@@ -181,9 +186,9 @@ const Validation = ({ viewid }) => {
                         </label>
                       </div>
                     </div>
-                   : 
+                  ) : (
                     ""
-                  }
+                  )}
                   {deviationstatus == "false" ? (
                     <div className="d-flex gap-2 mb-3">
                       <input
@@ -235,9 +240,12 @@ const Validation = ({ viewid }) => {
                 </button>
                 <button
                   type="submit"
-                  className="btn btn-success"
+                  className={"btn btn-success" + (deviationcomment == "" ? " disabled" : "")}
                   data-bs-dismiss="modal"
                   onClick={handleUpdate}
+                  onSubmit={() => {
+                    click == 0 ? handleClick(1) : handleClick(0);
+                  }}
                 >
                   Simpan
                 </button>

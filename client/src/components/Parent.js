@@ -16,6 +16,8 @@ const Parent = () => {
   const [viewuserpass, setViewuserpass] = useState();
   const [viewcommentpass, setViewcommentpass] = useState();
   const [viewimagepass, setViewimagepass] = useState();
+  const getrole = localStorage.getItem("role");
+  const getname = localStorage.getItem("name");
 
   const handleRoute = (value) => {
     setCurrent(value);
@@ -81,18 +83,18 @@ const Parent = () => {
                   </a>
                 </div>
                 <div className="d-flex justify-content-end">
-                    <button
-                      className="navbar-toggler"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarSupportedContent"
-                      aria-controls="navbarSupportedContent"
-                      aria-expanded="false"
-                      aria-label="Toggle navigation"
-                    >
-                      <span className="navbar-toggler-icon"></span>
-                    </button>
-                  </div>
+                  <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                  >
+                    <span className="navbar-toggler-icon"></span>
+                  </button>
+                </div>
                 <div
                   className="collapse navbar-collapse justify-content-end"
                   id="navbarSupportedContent"
@@ -124,19 +126,25 @@ const Parent = () => {
                         Validasi Deviasi
                       </a>
                     </li>
-                    <li className="nav-item d-flex justify-content-center">
-                      <a
-                        className={
-                          "nav-link fw-semibold" +
-                          (current == "datatervalidasi" ? " page-current" : "")
-                        }
-                        onClick={() => {
-                          setCurrent("datatervalidasi");
-                        }}
-                      >
-                        Data Tervalidasi
-                      </a>
-                    </li>
+                    {getrole == "admin" ? (
+                      <li className="nav-item d-flex justify-content-center">
+                        <a
+                          className={
+                            "nav-link fw-semibold" +
+                            (current == "datatervalidasi"
+                              ? " page-current"
+                              : "")
+                          }
+                          onClick={() => {
+                            setCurrent("datatervalidasi");
+                          }}
+                        >
+                          Data Tervalidasi
+                        </a>
+                      </li>
+                    ) : (
+                      ""
+                    )}
                     <div className="nav-item dropdown d-flex justify-content-center">
                       <a
                         className="nav-link dropdown-toggle fw-semibold"
@@ -153,7 +161,7 @@ const Parent = () => {
                       <ul className="dropdown-menu dropdown-menu-end">
                         <li>
                           <a className="dropdown-item disabled" href="#">
-                            Admin
+                            {getname}
                           </a>
                         </li>
                         <li>

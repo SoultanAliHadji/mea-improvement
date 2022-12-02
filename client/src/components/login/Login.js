@@ -5,12 +5,18 @@ import { useState, useEffect } from "react";
 
 const Login = () => {
   const [data, setData] = useState("");
-  const [jwt, setJwt] = useState("")
+  const [jwt, setJwt] = useState("");
+  const [role, setRole] = useState("");
+  const [name, setName] = useState("");
+  const [id, setId] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordtype, setPasswordtype] = useState("password");
   const [incorrect, setIncorrect] = useState("");
-  const settoken = localStorage.setItem('jwt', jwt);
+  const settoken = localStorage.setItem("jwt", jwt);
+  const setrole = localStorage.setItem("role", role);
+  const setname = localStorage.setItem("name", name);
+  const setid = localStorage.setItem("id", id);
 
   const incorrectAlert = "*Incorrect username or password";
 
@@ -21,15 +27,18 @@ const Login = () => {
         password: password,
       })
       .then((data) => {
-        console.log(data.data);
-        setData(data.data.meta.status == "success" ? "success" : "");
-        setJwt(data.data.data.token)
+        console.log(data.data.data.token);
+        setData(data.data.meta.status);
+        setJwt(data.data.data.token);
+        setRole(data.data.data.role);
+        setName(data.data.data.name);
+        setId(data.data.data.id);
       })
-      .catch(err => {
-        if(err.response) {
+      .catch((err) => {
+        if (err.response) {
           console.log(err.response);
           setData(err.response.data.meta.status);
-          setJwt("")
+          setJwt("");
         }
       });
   }, [username, password]);
@@ -125,9 +134,7 @@ const Login = () => {
                   <div>
                     <a
                       className="d-grid text-decoration-none"
-                      href={
-                        data == "success" ? "/mining-eyes-analytics" : "#"
-                      }
+                      href={data == "success" ? "/mining-eyes-analytics" : "#"}
                     >
                       <button
                         className="btn btn-success"

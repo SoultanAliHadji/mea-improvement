@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/login/Login";
 import Parent from "./components/Parent";
+import { useEffect } from "react";
 
 function App() {
   const gettoken = localStorage.getItem("jwt");
@@ -11,7 +12,11 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/mining-eyes-analytics" component={gettoken != "" ? Parent : Login} />
+          <Route
+            exact
+            path="/mining-eyes-analytics"
+            component={gettoken != "" ? Parent : Login}
+          />
         </Switch>
       </Router>
     </div>

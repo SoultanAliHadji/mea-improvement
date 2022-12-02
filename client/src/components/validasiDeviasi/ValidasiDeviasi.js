@@ -31,27 +31,39 @@ const ValidasiDeviasi = ({
   const [datalimit, SetDatalimit] = useState(10);
   const [filtercctv, setFiltercctv] = useState("AllName/AllLocation");
   const [validation, setValidation] = useState("Allvalidation");
+  const [click, setClick] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const gettoken = localStorage.getItem("jwt");
   const array = data.map((data, index) => {
     return data.id;
   });
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(
-        "/viewtable/" +
+        "http://10.10.10.66:5001/api/viewtable/" +
           filtercctv +
           "/" +
           object +
           "/All/" +
           validation +
           "/" +
-          datalimit
+          datalimit,
+        {
+          headers: {
+            Authorization: "Bearer " + gettoken,
+          },
+        }
       )
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setLoading(false);
+      });
   }, [
     object,
     viewid,
@@ -68,6 +80,10 @@ const ValidasiDeviasi = ({
     validation,
     /*array,*/
   ]);
+
+  const handleClick = (value) => {
+    setClick(value);
+  };
 
   const arr = data.slice(0, [datalimit]).map((data, index) => {
     return (
@@ -247,7 +263,11 @@ const ValidasiDeviasi = ({
                   </div>
                   {viewstatus == "not_yet" ? (
                     <div className="col">
-                      <Validation viewid={viewid} />
+                      <Validation
+                        viewid={viewid}
+                        handleClick={handleClick}
+                        click={click}
+                      />
                     </div>
                   ) : (
                     ""
@@ -289,142 +309,187 @@ const ValidasiDeviasi = ({
                           <div className="fw-bolder">Filter CCTV</div>
                         </div>
                         <li>
-                          <button
-                            className={
-                              "dropdown-item" +
-                              (filtercctv == "AllName/AllLocation"
-                                ? " dropdown-item-active"
-                                : "")
-                            }
-                            onClick={() => {
-                              setFiltercctv("AllName/AllLocation");
-                            }}
+                          <a
+                            className="text-decoration-none"
+                            href="#updeviation"
                           >
-                            Semua Kamera
-                          </button>
+                            <button
+                              className={
+                                "dropdown-item" +
+                                (filtercctv == "AllName/AllLocation"
+                                  ? " dropdown-item-active"
+                                  : "")
+                              }
+                              onClick={() => {
+                                setFiltercctv("AllName/AllLocation");
+                              }}
+                            >
+                              Semua Kamera
+                            </button>
+                          </a>
                         </li>
                         <li>
-                          <button
-                            className={
-                              "dropdown-item" +
-                              (filtercctv == "CCTV BMO2/E Camera 3"
-                                ? " dropdown-item-active"
-                                : "")
-                            }
-                            onClick={() => {
-                              setFiltercctv("CCTV BMO2/E Camera 3");
-                            }}
+                          <a
+                            className="text-decoration-none"
+                            href="#updeviation"
                           >
-                            CCTV BMO2 - E Camera 3
-                          </button>
+                            <button
+                              className={
+                                "dropdown-item" +
+                                (filtercctv == "CCTV BMO2/E Camera 3"
+                                  ? " dropdown-item-active"
+                                  : "")
+                              }
+                              onClick={() => {
+                                setFiltercctv("CCTV BMO2/E Camera 3");
+                              }}
+                            >
+                              CCTV BMO2 - E Camera 3
+                            </button>
+                          </a>
                         </li>
                         <li>
-                          <button
-                            className={
-                              "dropdown-item" +
-                              (filtercctv == "CCTV BMO2/E Camera 2"
-                                ? " dropdown-item-active"
-                                : "")
-                            }
-                            onClick={() => {
-                              setFiltercctv("CCTV BMO2/E Camera 2");
-                            }}
+                          <a
+                            className="text-decoration-none"
+                            href="#updeviation"
                           >
-                            CCTV BMO2 - E Camera 2
-                          </button>
+                            <button
+                              className={
+                                "dropdown-item" +
+                                (filtercctv == "CCTV BMO2/E Camera 2"
+                                  ? " dropdown-item-active"
+                                  : "")
+                              }
+                              onClick={() => {
+                                setFiltercctv("CCTV BMO2/E Camera 2");
+                              }}
+                            >
+                              CCTV BMO2 - E Camera 2
+                            </button>
+                          </a>
                         </li>
                         <li>
-                          <button
-                            className={
-                              "dropdown-item" +
-                              (filtercctv == "CCTV BMO2/7West Camera 1"
-                                ? " dropdown-item-active"
-                                : "")
-                            }
-                            onClick={() => {
-                              setFiltercctv("CCTV BMO2/7West Camera 1");
-                            }}
+                          <a
+                            className="text-decoration-none"
+                            href="#updeviation"
                           >
-                            CCTV BMO2 - 7West Camera 1
-                          </button>
+                            <button
+                              className={
+                                "dropdown-item" +
+                                (filtercctv == "CCTV BMO2/7West Camera 1"
+                                  ? " dropdown-item-active"
+                                  : "")
+                              }
+                              onClick={() => {
+                                setFiltercctv("CCTV BMO2/7West Camera 1");
+                              }}
+                            >
+                              CCTV BMO2 - 7West Camera 1
+                            </button>
+                          </a>
                         </li>
                         <li>
-                          <button
-                            className={
-                              "dropdown-item" +
-                              (filtercctv == "CCTV BMO2/PIT E1 [disabled]"
-                                ? " dropdown-item-active"
-                                : "")
-                            }
-                            onClick={() => {
-                              setFiltercctv("CCTV BMO2/PIT E1 [disabled]");
-                            }}
+                          <a
+                            className="text-decoration-none"
+                            href="#updeviation"
                           >
-                            CCTV BMO2 - PIT E1 [disabled]
-                          </button>
+                            <button
+                              className={
+                                "dropdown-item" +
+                                (filtercctv == "CCTV BMO2/PIT E1 [disabled]"
+                                  ? " dropdown-item-active"
+                                  : "")
+                              }
+                              onClick={() => {
+                                setFiltercctv("CCTV BMO2/PIT E1 [disabled]");
+                              }}
+                            >
+                              CCTV BMO2 - PIT E1 [disabled]
+                            </button>
+                          </a>
                         </li>
                         <li>
-                          <button
-                            className={
-                              "dropdown-item" +
-                              (filtercctv == "CCTV BMO2/Low Wall Pit E"
-                                ? " dropdown-item-active"
-                                : "")
-                            }
-                            onClick={() => {
-                              setFiltercctv("CCTV BMO2/Low Wall Pit E");
-                            }}
+                          <a
+                            className="text-decoration-none"
+                            href="#updeviation"
                           >
-                            CCTV BMO2 - Low Wall Pit E
-                          </button>
+                            <button
+                              className={
+                                "dropdown-item" +
+                                (filtercctv == "CCTV BMO2/Low Wall Pit E"
+                                  ? " dropdown-item-active"
+                                  : "")
+                              }
+                              onClick={() => {
+                                setFiltercctv("CCTV BMO2/Low Wall Pit E");
+                              }}
+                            >
+                              CCTV BMO2 - Low Wall Pit E
+                            </button>
+                          </a>
                         </li>
                         <div className="d-flex justify-content-center border-top border-secondary my-1 pt-2">
                           <div className="fw-bolder">Filter Tipe Validasi</div>
                         </div>
                         <li>
-                          <button
-                            className={
-                              "dropdown-item" +
-                              (validation == "Allvalidation"
-                                ? " dropdown-item-active"
-                                : "")
-                            }
-                            onClick={() => {
-                              setValidation("Allvalidation");
-                            }}
+                          <a
+                            className="text-decoration-none"
+                            href="#updeviation"
                           >
-                            Semua Tipe Validasi
-                          </button>
+                            <button
+                              className={
+                                "dropdown-item" +
+                                (validation == "Allvalidation"
+                                  ? " dropdown-item-active"
+                                  : "")
+                              }
+                              onClick={() => {
+                                setValidation("Allvalidation");
+                              }}
+                            >
+                              Semua Tipe Validasi
+                            </button>
+                          </a>
                         </li>
                         <li>
-                          <button
-                            className={
-                              "dropdown-item" +
-                              (validation == "validated"
-                                ? " dropdown-item-active"
-                                : "")
-                            }
-                            onClick={() => {
-                              setValidation("validated");
-                            }}
+                          <a
+                            className="text-decoration-none"
+                            href="#updeviation"
                           >
-                            Tervalidasi
-                          </button>
+                            <button
+                              className={
+                                "dropdown-item" +
+                                (validation == "validated"
+                                  ? " dropdown-item-active"
+                                  : "")
+                              }
+                              onClick={() => {
+                                setValidation("validated");
+                              }}
+                            >
+                              Tervalidasi
+                            </button>
+                          </a>
                         </li>
                         <li>
-                          <button
-                            className={
-                              "dropdown-item" +
-                              (validation == "unvalidated"
-                                ? " dropdown-item-active"
-                                : "")
-                            }
-                            onClick={() => {
-                              setValidation("unvalidated");
-                            }}
+                          <a
+                            className="text-decoration-none"
+                            href="#updeviation"
                           >
-                            Belum Tervalidasi
-                          </button>
+                            <button
+                              className={
+                                "dropdown-item" +
+                                (validation == "unvalidated"
+                                  ? " dropdown-item-active"
+                                  : "")
+                              }
+                              onClick={() => {
+                                setValidation("unvalidated");
+                              }}
+                            >
+                              Belum Tervalidasi
+                            </button>
+                          </a>
                         </li>
                       </ul>
                     </div>
@@ -434,87 +499,119 @@ const ValidasiDeviasi = ({
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 py-2">
                 <div className="d-grid px-2 py-2 border-bottom border-2 notificationfilter-component">
                   <div className="d-flex gap-2">
-                    <button
-                      type="button"
-                      className={
-                        "shadow-all btn fw-semibold rounded-5 text-start" +
-                        (object == "AllObject"
-                          ? " btn-outline-success"
-                          : " btn-success")
-                      }
-                      onClick={() => {
-                        setObject("AllObject");
-                        SetDatalimit(10);
-                      }}
-                    >
-                      Semua
-                    </button>
-                    <button
-                      type="button"
-                      className={
-                        "shadow-all btn fw-semibold rounded-5 text-start" +
-                        (object == "Person"
-                          ? " btn-outline-success"
-                          : " btn-success")
-                      }
-                      onClick={() => {
-                        setObject("Person");
-                        SetDatalimit(10);
-                      }}
-                    >
-                      Person
-                    </button>
-                    <button
-                      type="button"
-                      className={
-                        "shadow-all btn fw-semibold rounded-5 text-start" +
-                        (object == "LV"
-                          ? " btn-outline-success"
-                          : " btn-success")
-                      }
-                      onClick={() => {
-                        setObject("LV");
-                        SetDatalimit(10);
-                      }}
-                    >
-                      LV
-                    </button>
-                    <button
-                      type="button"
-                      className={
-                        "shadow-all btn fw-semibold rounded-5 text-start" +
-                        (object == "HD"
-                          ? " btn-outline-success"
-                          : " btn-success")
-                      }
-                      onClick={() => {
-                        setObject("HD");
-                        SetDatalimit(10);
-                      }}
-                    >
-                      HD
-                    </button>
-                  </div>
-                </div>
-                <div className="px-2 py-2 overflow-auto notification-list mt-2">
-                  <div className="notificationlistbutton-component d-grid gap-2">
-                    {arr}
-                  </div>
-                  <div className="load-more d-flex justify-content-center mt-3">
-                    <a
-                      className={
-                        "p-medium" +
-                        (data.length < datalimit
-                          ? " disabled text-secondary"
-                          : "")
-                      }
-                      onClick={() => {
-                        SetDatalimit(datalimit + 10);
-                      }}
-                    >
-                      {data.length < datalimit ? "No More Data" : "Load More"}
+                    <a href="#updeviation">
+                      <button
+                        type="button"
+                        className={
+                          "shadow-all btn fw-semibold rounded-5 text-start" +
+                          (object == "AllObject"
+                            ? " btn-outline-success"
+                            : " btn-success")
+                        }
+                        onClick={() => {
+                          setObject("AllObject");
+                          SetDatalimit(10);
+                        }}
+                      >
+                        Semua
+                      </button>
+                    </a>
+                    <a href="#updeviation">
+                      <button
+                        type="button"
+                        className={
+                          "shadow-all btn fw-semibold rounded-5 text-start" +
+                          (object == "Person"
+                            ? " btn-outline-success"
+                            : " btn-success")
+                        }
+                        onClick={() => {
+                          setObject("Person");
+                          SetDatalimit(10);
+                        }}
+                      >
+                        Person
+                      </button>
+                    </a>
+                    <a href="#updeviation">
+                      <button
+                        type="button"
+                        className={
+                          "shadow-all btn fw-semibold rounded-5 text-start" +
+                          (object == "LV"
+                            ? " btn-outline-success"
+                            : " btn-success")
+                        }
+                        onClick={() => {
+                          setObject("LV");
+                          SetDatalimit(10);
+                        }}
+                      >
+                        LV
+                      </button>
+                    </a>
+                    <a href="#updeviation">
+                      <button
+                        type="button"
+                        className={
+                          "shadow-all btn fw-semibold rounded-5 text-start" +
+                          (object == "HD"
+                            ? " btn-outline-success"
+                            : " btn-success")
+                        }
+                        onClick={() => {
+                          setObject("HD");
+                          SetDatalimit(10);
+                        }}
+                      >
+                        HD
+                      </button>
                     </a>
                   </div>
+                </div>
+                <div className="px-2 py-2 overflow-auto notification-list mt-2 relative-component">
+                  <div
+                    className={
+                      "absolute-component" +
+                      (loading == true ? " absolute-blur" : "")
+                    }
+                  >
+                    <div id="updeviation"></div>
+                    <div className="notificationlistbutton-component d-grid gap-2">
+                      {arr}
+                    </div>
+                    <div className="load-more d-flex justify-content-center mt-3">
+                      <a
+                        className={
+                          "p-medium" +
+                          (data.length < datalimit
+                            ? " disabled text-secondary"
+                            : "")
+                        }
+                        onClick={() => {
+                          SetDatalimit(datalimit + 10);
+                        }}
+                      >
+                        {(data.length == datalimit) & (loading == false)
+                          ? "Load More"
+                          : ""}
+                      </a>
+                    </div>
+                  </div>
+                  {loading == true ? (
+                    <div className="d-flex justify-content-center">
+                      <div className="absolute-component absolute-fixed">
+                        <div
+                          className="spinner-border text-success"
+                          role="status"
+                        >
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>

@@ -13,24 +13,35 @@ const TableData = ({ filtercctv, filterobject, date }) => {
   const [status, setStatus] = useState();
   const [validator, setValidator] = useState();
   const [comment, setComment] = useState();
+  const [loading, setLoading] = useState(false);
+  const gettoken = localStorage.getItem("jwt");
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(
-        "/viewtable/" +
+        "http://10.10.10.66:5001/api/viewtable/" +
           filtercctv +
           "/" +
           filterobject +
           "/" +
           date +
           "/Allvalidation/" +
-          datalimit
+          datalimit,
+        {
+          headers: {
+            Authorization: "Bearer " + gettoken,
+          },
+        }
       )
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setLoading(false);
+      });
   }, [filtercctv, filterobject, date, datalimit]);
 
   useEffect(() => {
@@ -168,7 +179,7 @@ const TableData = ({ filtercctv, filterobject, date }) => {
 
   return (
     <div className="overflow-auto pt-1">
-      <table className="table">
+      {loading == false ? <table className="table">
         <thead>
           <tr className="text-center">
             <th className="table-success" scope="col">
@@ -201,9 +212,17 @@ const TableData = ({ filtercctv, filterobject, date }) => {
           </tr>
         </thead>
         <tbody className="table-group-divider">{arr}</tbody>
-      </table>
+      </table> : ""}
       <nav aria-label="Page navigation">
-        {data.length == 0 ? (
+        {loading == true ? (
+          <div className="d-flex justify-content-center">
+            <div className="absolute-fixed">
+              <div className="spinner-border text-success" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </div>
+        ) : data.length == 0 ? (
           <div className="d-flex justify-content-center my-4">
             <div className="text-black-50">
               Tidak terdapat data yang sesuai dengan filter CCTV, Objek, maupun
@@ -213,7 +232,7 @@ const TableData = ({ filtercctv, filterobject, date }) => {
         ) : (
           ""
         )}
-        <ul className="pagination justify-content-center gap-4">
+        <ul className={"pagination justify-content-center gap-4" + (loading == true ? " absolute-blur" : "" )}>
           <li className="page-item">
             <button
               className={

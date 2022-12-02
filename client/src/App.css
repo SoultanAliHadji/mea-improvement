@@ -16,7 +16,7 @@
 }
 
 .body-bg {
-    background-color: #F5F5F5;
+    background-color: #F0F0F0;
 }
 
 .shadow-all {
@@ -71,6 +71,22 @@ button {
 
 .disabled {
     pointer-events: none !important;
+}
+
+.relative-component {
+    position: relative;
+}
+
+.absolute-component {
+    position: absolute;
+}
+
+.absolute-blur {
+    visibility: hidden;
+}
+
+.absolute-fixed {
+    position: fixed;
 }
 
 

@@ -10,7 +10,7 @@ const SeeAllNotificationButton = ({ handleClick }) => {
           handleClick("validasideviasi");
         }}
       >
-        Lihat Detail
+        Validasi
       </button>
     </a>
   );

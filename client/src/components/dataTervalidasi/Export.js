@@ -1,12 +1,13 @@
 import "../../App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import XLSExport from "./xlsExport";
+import ExportData from "./exportdata";
 
 const Export = ({ filtercctv, filterobject, date, dateflip }) => {
   const [data, setData] = useState([{}]);
-  const datalimit = 100;
-  const name = "Exported " + dateflip
+  const datalimit = 10000;
+  const name = "Exported " + dateflip;
+  const gettoken = localStorage.getItem("jwt");
 
   const fieldsAsObjects = {
     cctv_id: "CCTV ID",
@@ -49,14 +50,19 @@ const Export = ({ filtercctv, filterobject, date, dateflip }) => {
   useEffect(() => {
     axios
       .get(
-        "/viewtable/" +
+        "http://10.10.10.66:5001/api/viewtable/" +
           filtercctv +
           "/" +
           filterobject +
           "/" +
           date +
-          "/" +
-          datalimit
+          "/Allvalidation/" +
+          datalimit,
+        {
+          headers: {
+            Authorization: "Bearer " + gettoken,
+          },
+        }
       )
       .then((res) => {
         console.log("Getting from ::::", res.data.data);
@@ -65,7 +71,7 @@ const Export = ({ filtercctv, filterobject, date, dateflip }) => {
       .catch((err) => console.log(err));
   }, [filtercctv, filterobject, date]);
 
-  return <XLSExport data={data} fields={fieldsAsObjects} name={name}/>;
+  return <ExportData data={data} fields={fieldsAsObjects} name={name} />;
 };
 
 export default Export;
