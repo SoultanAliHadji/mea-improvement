@@ -1,5 +1,5 @@
 from app import app
-from app.controller import CctvController, UsersController, Realtime_ImagesController, Realtime_DeviationsController, ViewTableController
+from app.controller import CctvController, UsersController, Realtime_ImagesController, Realtime_DeviationsController, ViewTableController, RefreshController
 from flask import request
 
 
@@ -74,3 +74,7 @@ def viewLimit(num):
 @app.route('/viewtable/<name>/<location>/<object>/<date>/<validation>/<num>', methods=['GET'])
 def viewTableFilter(name, location, object, date, validation, num):
     return ViewTableController.viewTableFilter(name, location, object, date, validation, num)
+
+@app.route('/refresh', methods=['GET'])
+def Refresh():
+    return RefreshController.Refresh()

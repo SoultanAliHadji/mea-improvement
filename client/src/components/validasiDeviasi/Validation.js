@@ -246,7 +246,9 @@ const Validation = ({ viewid, handleClick, click }) => {
                   data-bs-dismiss="modal"
                   onClick={() => {
                     handleUpdate();
-                    click == 0 ? handleClick(1) : handleClick(0);
+                    setTimeout(() => {
+                      click == 0 ? handleClick(1) : handleClick(0);
+                    }, 500);
                   }}
                 >
                   Simpan

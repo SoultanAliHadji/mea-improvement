@@ -33,6 +33,7 @@ const ValidasiDeviasi = ({
   const [validation, setValidation] = useState("Allvalidation");
   const [click, setClick] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [refresh, setRefresh] = useState("");
   const gettoken = localStorage.getItem("jwt");
 
   useEffect(() => {
@@ -60,22 +61,15 @@ const ValidasiDeviasi = ({
       .finally(() => {
         setLoading(false);
       });
-  }, [
-    object,
-    viewid,
-    viewstatus,
-    viewobject,
-    viewcctvname,
-    viewcctvlocation,
-    viewtime,
-    viewuser,
-    viewcomment,
-    viewimage,
-    datalimit,
-    filtercctv,
-    validation,
-    click,
-  ]);
+  }, [object, datalimit, filtercctv, validation, click, refresh]);
+
+  useEffect(() => {
+    setInterval(() => {
+      axios.get("http://127.0.0.1:5000/refresh").then((res) => {
+        setRefresh(res.data.data);
+      });
+    }, 5000);
+  });
 
   const handleClick = (value) => {
     setClick(value);
@@ -149,7 +143,9 @@ const ValidasiDeviasi = ({
             <div className="col-lg-9">
               <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
                 <h6 className="fw-semibold">Validasi Deviasi</h6>
-                <p className="p-small">Validasi deviasi yang terdeteksi</p>
+                <p className="p-small">
+                  Validasi deviasi yang terdeteksi {refresh}
+                </p>
               </div>
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 pt-2">
                 <div className="d-grid px-2 py-2 d-flex justify-content-center">
@@ -318,6 +314,7 @@ const ValidasiDeviasi = ({
                               }
                               onClick={() => {
                                 setFiltercctv("AllName/AllLocation");
+                                SetDatalimit(10);
                               }}
                             >
                               Semua Kamera
@@ -338,6 +335,7 @@ const ValidasiDeviasi = ({
                               }
                               onClick={() => {
                                 setFiltercctv("CCTV BMO2/E Camera 3");
+                                SetDatalimit(10);
                               }}
                             >
                               CCTV BMO2 - E Camera 3
@@ -358,6 +356,7 @@ const ValidasiDeviasi = ({
                               }
                               onClick={() => {
                                 setFiltercctv("CCTV BMO2/E Camera 2");
+                                SetDatalimit(10);
                               }}
                             >
                               CCTV BMO2 - E Camera 2
@@ -378,6 +377,7 @@ const ValidasiDeviasi = ({
                               }
                               onClick={() => {
                                 setFiltercctv("CCTV BMO2/7West Camera 1");
+                                SetDatalimit(10);
                               }}
                             >
                               CCTV BMO2 - 7West Camera 1
@@ -398,6 +398,7 @@ const ValidasiDeviasi = ({
                               }
                               onClick={() => {
                                 setFiltercctv("CCTV BMO2/PIT E1 [disabled]");
+                                SetDatalimit(10);
                               }}
                             >
                               CCTV BMO2 - PIT E1 [disabled]
@@ -418,6 +419,7 @@ const ValidasiDeviasi = ({
                               }
                               onClick={() => {
                                 setFiltercctv("CCTV BMO2/Low Wall Pit E");
+                                SetDatalimit(10);
                               }}
                             >
                               CCTV BMO2 - Low Wall Pit E
@@ -441,6 +443,7 @@ const ValidasiDeviasi = ({
                               }
                               onClick={() => {
                                 setValidation("Allvalidation");
+                                SetDatalimit(10);
                               }}
                             >
                               Semua Tipe Validasi
@@ -461,6 +464,7 @@ const ValidasiDeviasi = ({
                               }
                               onClick={() => {
                                 setValidation("validated");
+                                SetDatalimit(10);
                               }}
                             >
                               Tervalidasi
@@ -481,6 +485,7 @@ const ValidasiDeviasi = ({
                               }
                               onClick={() => {
                                 setValidation("unvalidated");
+                                SetDatalimit(10);
                               }}
                             >
                               Belum Tervalidasi

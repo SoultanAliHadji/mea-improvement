@@ -21,6 +21,7 @@ const NotificationList = ({
   const [object, setObject] = useState("AllObject");
   const [datalimit, setDatalimit] = useState(10);
   const [loading, setLoading] = useState(false);
+  const [refresh, setRefresh] = useState("");
   const gettoken = localStorage.getItem("jwt");
   const array = data.map((data, index) => {
     return data.id;
@@ -52,7 +53,19 @@ const NotificationList = ({
       .finally(() => {
         setLoading(false);
       });
-  }, [cctvname, cctvlocation, object, datalimit /*array,*/]);
+  }, [cctvname, cctvlocation, object, datalimit, refresh]);
+
+  useEffect(() => {
+    setDatalimit(10);
+  }, [cctvname, cctvlocation]);
+
+  useEffect(() => {
+    setInterval(() => {
+      axios.get("http://127.0.0.1:5000/refresh").then((res) => {
+        setRefresh(res.data.data);
+      });
+    }, 5000);
+  });
 
   const arr = data.slice(0, [datalimit]).map((data, index) => {
     return (
