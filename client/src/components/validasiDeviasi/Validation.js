@@ -46,7 +46,6 @@ const Validation = ({ viewid, handleClick, click }) => {
     axios
       .get("/deviation/" + viewid)
       .then((res) => {
-        console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
@@ -240,10 +239,13 @@ const Validation = ({ viewid, handleClick, click }) => {
                 </button>
                 <button
                   type="submit"
-                  className={"btn btn-success" + (deviationcomment == "" ? " disabled" : "")}
+                  className={
+                    "btn btn-success" +
+                    (deviationcomment == "" ? " disabled" : "")
+                  }
                   data-bs-dismiss="modal"
-                  onClick={handleUpdate}
-                  onSubmit={() => {
+                  onClick={() => {
+                    handleUpdate();
                     click == 0 ? handleClick(1) : handleClick(0);
                   }}
                 >

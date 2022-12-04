@@ -34,9 +34,6 @@ const ValidasiDeviasi = ({
   const [click, setClick] = useState(0);
   const [loading, setLoading] = useState(false);
   const gettoken = localStorage.getItem("jwt");
-  const array = data.map((data, index) => {
-    return data.id;
-  });
 
   useEffect(() => {
     setLoading(true);
@@ -57,7 +54,6 @@ const ValidasiDeviasi = ({
         }
       )
       .then((res) => {
-        console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
       .catch((err) => console.log(err))
@@ -78,7 +74,7 @@ const ValidasiDeviasi = ({
     datalimit,
     filtercctv,
     validation,
-    /*array,*/
+    click,
   ]);
 
   const handleClick = (value) => {

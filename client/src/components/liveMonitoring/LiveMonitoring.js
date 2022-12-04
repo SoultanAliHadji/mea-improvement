@@ -80,7 +80,6 @@ const LiveMonitoring = ({
         },
       })
       .then((res) => {
-        console.log("Getting from ::::", res.data.data);
         setData(res.data.data);
       })
       .catch((err) => console.log(err))
@@ -105,7 +104,6 @@ const LiveMonitoring = ({
         }
       )
       .then((res) => {
-        console.log("Getting from ::::", res.data.data);
         setPtzcctv(res.data.data);
       })
       .catch((err) => console.log(err));

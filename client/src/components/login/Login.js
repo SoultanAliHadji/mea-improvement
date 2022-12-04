@@ -4,7 +4,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Login = () => {
-  const [data, setData] = useState("");
   const [jwt, setJwt] = useState("");
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
@@ -20,29 +19,6 @@ const Login = () => {
 
   const incorrectAlert = "*Incorrect username or password";
 
-  useEffect(() => {
-    axios
-      .post("http://10.10.10.66:5001/api/login", {
-        username: username,
-        password: password,
-      })
-      .then((data) => {
-        console.log(data.data.data.token);
-        setData(data.data.meta.status);
-        setJwt(data.data.data.token);
-        setRole(data.data.data.role);
-        setName(data.data.data.name);
-        setId(data.data.data.id);
-      })
-      .catch((err) => {
-        if (err.response) {
-          console.log(err.response);
-          setData(err.response.data.meta.status);
-          setJwt("");
-        }
-      });
-  }, [username, password]);
-
   function handlerUsername(data) {
     setUsername(data.target.value);
   }
@@ -51,12 +27,55 @@ const Login = () => {
     setPassword(data.target.value);
   }
 
+  const handleLogin = () => {
+    axios
+      .post("http://10.10.10.66:5001/api/login", {
+        username: username,
+        password: password,
+      })
+      .then((data) => {
+        console.log(data.data.meta.status);
+        setJwt(data.data.data.token);
+        setRole(data.data.data.role);
+        setName(data.data.data.name);
+        setId(data.data.data.id);
+        window.location.replace("http://localhost:3000/mining-eyes-analytics");
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data.meta.status);
+          setJwt("");
+          window.location.replace("http://localhost:3000/#");
+          setIncorrect("Incorrect");
+        }
+      });
+  };
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      setIncorrect(data == "success" ? "" : "Incorrect");
-      if (data == "success") {
-        window.location.replace("http://localhost:3000/mining-eyes-analytics");
-      }
+      axios
+        .post("http://10.10.10.66:5001/api/login", {
+          username: username,
+          password: password,
+        })
+        .then((data) => {
+          console.log(data.data.meta.status);
+          setJwt(data.data.data.token);
+          setRole(data.data.data.role);
+          setName(data.data.data.name);
+          setId(data.data.data.id);
+          window.location.replace(
+            "http://localhost:3000/mining-eyes-analytics"
+          );
+        })
+        .catch((err) => {
+          if (err.response) {
+            console.log(err.response.data.meta.status);
+            setJwt("");
+            window.location.replace("http://localhost:3000/#");
+            setIncorrect("Incorrect");
+          }
+        });
     }
   };
 
@@ -131,21 +150,16 @@ const Login = () => {
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <a
-                      className="d-grid text-decoration-none"
-                      href={data == "success" ? "/mining-eyes-analytics" : "#"}
+                  <div className="d-grid text-decoration-none">
+                    <button
+                      className="btn btn-success"
+                      type="button"
+                      onClick={() => {
+                        handleLogin();
+                      }}
                     >
-                      <button
-                        className="btn btn-success"
-                        type="button"
-                        onClick={() => {
-                          setIncorrect(data == "success" ? "" : "Incorrect");
-                        }}
-                      >
-                        Masuk
-                      </button>
-                    </a>
+                      Masuk
+                    </button>
                   </div>
                   <div className="mt-3">
                     <p className="p-small text-danger">
