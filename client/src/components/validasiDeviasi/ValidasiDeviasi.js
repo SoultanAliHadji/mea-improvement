@@ -17,9 +17,9 @@ const ValidasiDeviasi = ({
   viewimagepass,
 }) => {
   const [data, setData] = useState([{}]);
+  const [deviationdata, setDeviationdata] = useState([{}]);
   const [viewid, setViewid] = useState(viewidpass);
   const [viewstatus, setViewstatus] = useState(viewstatuspass);
-  const [viewstatusupdate, setViewstatusupdate] = useState();
   const [viewobject, setViewobject] = useState(viewobjectpass);
   const [viewcctvname, setViewcctvname] = useState(viewcctvnamepass);
   const [viewcctvlocation, setViewcctvlocation] =
@@ -63,6 +63,19 @@ const ValidasiDeviasi = ({
         setLoading(false);
       });
   }, [object, datalimit, filtercctv, validation, click, refresh]);
+
+  useEffect(() => {
+    axios
+      .get("http://10.10.10.66:5001/api/view/" + viewid, {
+        headers: {
+          Authorization: "Bearer " + gettoken,
+        },
+      })
+      .then((res) => {
+        setDeviationdata(res.data.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, [viewid, click]);
 
   useEffect(() => {
     setInterval(() => {
@@ -175,22 +188,22 @@ const ValidasiDeviasi = ({
                       <p
                         className={
                           "rounded-2 px-2 fw-bolder" +
-                          (viewstatus == "not_yet"
+                          (deviationdata.type_validation == "not_yet"
                             ? " text-primary notification-tag"
-                            : viewstatus == "true"
+                            : deviationdata.type_validation == "true"
                             ? " text-success notification-tag-true"
                             : " text-danger notification-tag-false")
                         }
                       >
-                        {viewstatus == "not_yet"
+                        {deviationdata.type_validation == "not_yet"
                           ? "Perlu Validasi"
-                          : viewstatus == "true"
+                          : deviationdata.type_validation == "true"
                           ? "Valid"
                           : "Tidak Valid"}
                       </p>
                     </div>
                     <h6 className="fw-semibold d-flex gap-1">
-                      <div>Terdeteksi Deviasi {viewobject}</div>
+                      <div>Terdeteksi Deviasi {deviationdata.type_object}</div>
                     </h6>
                     {viewstatus != "not_yet" ? (
                       <div>
@@ -201,7 +214,7 @@ const ValidasiDeviasi = ({
                               icon="bi:camera-fill"
                             />
                             <p className="p-small">
-                              {viewcctvname} - {viewcctvlocation}
+                              {deviationdata.name} - {deviationdata.location}
                             </p>
                           </div>
                           <div className="d-flex pb-2 gap-2 col">
@@ -210,7 +223,7 @@ const ValidasiDeviasi = ({
                               icon="fa6-solid:helmet-safety"
                             />
                             <p className="p-small">
-                              {viewuser == null ? "-" : viewuser}
+                              {deviationdata.user_name == null ? "-" : deviationdata.user_name}
                             </p>
                           </div>
                           <div className="col"></div>
@@ -221,16 +234,16 @@ const ValidasiDeviasi = ({
                               className="notif-icon"
                               icon="akar-icons:clock"
                             />
-                            <p className="p-small">{viewtime}</p>
+                            <p className="p-small">{deviationdata.created_at}</p>
                           </div>
                           <div className="d-flex pb-2 gap-2 col">
                             <Icon className="notif-icon" icon="codicon:note" />
                             <p className="p-small">
-                              {viewcomment == null
+                              {deviationdata.comment == null
                                 ? "-"
-                                : viewcomment.length < 30
-                                ? viewcomment
-                                : viewcomment.substr(0, 29) + "..."}
+                                : deviationdata.comment.length < 30
+                                ? deviationdata.comment
+                                : deviationdata.comment.substr(0, 29) + "..."}
                             </p>
                           </div>
                           <div className="col"></div>
@@ -241,7 +254,7 @@ const ValidasiDeviasi = ({
                         <div className="d-flex pb-2 gap-2 col">
                           <Icon className="notif-icon" icon="bi:camera-fill" />
                           <p className="p-small">
-                            {viewcctvname} - {viewcctvlocation}
+                            {deviationdata.name} - {deviationdata.location}
                           </p>
                         </div>
                         <div className="d-flex pb-2 gap-2 col">
@@ -249,12 +262,12 @@ const ValidasiDeviasi = ({
                             className="notif-icon"
                             icon="akar-icons:clock"
                           />
-                          <p className="p-small">{viewtime}</p>
+                          <p className="p-small">{deviationdata.created_at}</p>
                         </div>
                       </div>
                     )}
                   </div>
-                  {viewstatus == "not_yet" ? (
+                  {deviationdata.type_validation == "not_yet" ? (
                     <div className="col">
                       <Validation
                         viewid={viewid}
