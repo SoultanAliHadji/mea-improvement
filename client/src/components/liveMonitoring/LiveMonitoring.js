@@ -26,8 +26,8 @@ const LiveMonitoring = ({
   const [cctvip, setCctvip] = useState("10.1.73.20");
   const [cctvusername, setCctvusername] = useState("admin");
   const [cctvpassword, setCctvpassword] = useState("Buma@2020");
+  const [controltype, setControltype] = useState("");
   const livecctv = "http://10.1.74.9:5000/video_feed/" + cctvid;
-  const [limitrefresh, setLimitrefresh] = useState("");
   const [loading, setLoading] = useState(false);
   const gettoken = localStorage.getItem("jwt");
 
@@ -107,7 +107,26 @@ const LiveMonitoring = ({
         setPtzcctv(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, [cctvid]);
+  }, [cctvid, controltype]);
+
+  const handleControl = () => {
+    axios({
+      method: "post",
+      url: "http://10.10.10.66:5001/api/control-cctv/" + cctvid,
+      data: {
+        control: controltype,
+      },
+      headers: {
+        Authorization: "Bearer " + gettoken,
+      },
+    })
+      .then((data) => {
+        console.log(data.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const arr = data.map((data, index) => {
     return (
@@ -189,28 +208,72 @@ const LiveMonitoring = ({
                     }}
                   />
                   <div className="cam-navigation shadow-all d-flex justify-content-end align-items-center p-2">
-                    <button className="navigation">
+                    <button
+                      className="navigation"
+                      onClick={() => {
+                        setControltype();
+                      }}
+                    >
                       <Icon icon="charm:refresh" />
                     </button>
-                    <button className="navigation">
+                    <button
+                      className="navigation"
+                      onClick={() => {
+                        setControltype("move_left");
+                        handleControl();
+                      }}
+                    >
                       <Icon icon="akar-icons:chevron-left" />
                     </button>
-                    <button className="navigation">
+                    <button
+                      className="navigation"
+                      onClick={() => {
+                        setControltype("move_right");
+                        handleControl();
+                      }}
+                    >
                       <Icon icon="akar-icons:chevron-right" />
                     </button>
-                    <button className="navigation">
-                      <Icon icon="akar-icons:chevron-down" />
-                    </button>
-                    <button className="navigation">
+                    <button
+                      className="navigation"
+                      onClick={() => {
+                        setControltype("move_up");
+                        handleControl();
+                      }}
+                    >
                       <Icon icon="akar-icons:chevron-up" />
                     </button>
-                    <button className="navigation">
-                      <Icon icon="bx:zoom-out" />
+                    <button
+                      className="navigation"
+                      onClick={() => {
+                        setControltype("move_down");
+                        handleControl();
+                      }}
+                    >
+                      <Icon icon="akar-icons:chevron-down" />
                     </button>
-                    <button className="navigation">
+                    <button
+                      className="navigation"
+                      onClick={() => {
+                        setControltype("zoom_in");
+                        handleControl();
+                      }}
+                    >
                       <Icon icon="bx:zoom-in" />
                     </button>
-                    <button className="navigation">
+                    <button
+                      className="navigation"
+                      onClick={() => {
+                        setControltype("zoom_out");
+                      }}
+                    >
+                      <Icon icon="bx:zoom-out" />
+                    </button>
+                    <button
+                      className="navigation"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
                       <Icon icon="ic:outline-zoom-out-map" />
                     </button>
                   </div>

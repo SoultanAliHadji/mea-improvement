@@ -19,6 +19,7 @@ const ValidasiDeviasi = ({
   const [data, setData] = useState([{}]);
   const [viewid, setViewid] = useState(viewidpass);
   const [viewstatus, setViewstatus] = useState(viewstatuspass);
+  const [viewstatusupdate, setViewstatusupdate] = useState();
   const [viewobject, setViewobject] = useState(viewobjectpass);
   const [viewcctvname, setViewcctvname] = useState(viewcctvnamepass);
   const [viewcctvlocation, setViewcctvlocation] =
