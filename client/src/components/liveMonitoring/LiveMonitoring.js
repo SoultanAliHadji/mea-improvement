@@ -6,18 +6,7 @@ import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import ReactImageMagnify from "react-magnify-image";
 
-const LiveMonitoring = ({
-  handleRoute,
-  handleViewidpass,
-  handleViewstatuspass,
-  handleViewobjectpass,
-  handleViewcctvnamepass,
-  handleViewcctvlocationpass,
-  handleViewtimepass,
-  handleViewuserpass,
-  handleViewcommentpass,
-  handleViewimagepass,
-}) => {
+const LiveMonitoring = ({ handleRoute, handleViewidpass }) => {
   const [data, setData] = useState([{}]);
   const [ptzcctv, setPtzcctv] = useState([{}]);
   const [cctvid, setCctvid] = useState(1);
@@ -37,38 +26,6 @@ const LiveMonitoring = ({
 
   const handleViewid = (value) => {
     handleViewidpass(value);
-  };
-
-  const handleViewstatus = (value) => {
-    handleViewstatuspass(value);
-  };
-
-  const handleViewobject = (value) => {
-    handleViewobjectpass(value);
-  };
-
-  const handleViewcctvname = (value) => {
-    handleViewcctvnamepass(value);
-  };
-
-  const handleViewcctvlocation = (value) => {
-    handleViewcctvlocationpass(value);
-  };
-
-  const handleViewtime = (value) => {
-    handleViewtimepass(value);
-  };
-
-  const handleViewuser = (value) => {
-    handleViewuserpass(value);
-  };
-
-  const handleViewcomment = (value) => {
-    handleViewcommentpass(value);
-  };
-
-  const handleViewimage = (value) => {
-    handleViewimagepass(value);
   };
 
   useEffect(() => {
@@ -317,14 +274,6 @@ const LiveMonitoring = ({
                   cctvlocation={cctvlocation}
                   handleClick={handleClick}
                   handleViewid={handleViewid}
-                  handleViewstatus={handleViewstatus}
-                  handleViewobject={handleViewobject}
-                  handleViewcctvname={handleViewcctvname}
-                  handleViewcctvlocation={handleViewcctvlocation}
-                  handleViewtime={handleViewtime}
-                  handleViewuser={handleViewuser}
-                  handleViewcomment={handleViewcomment}
-                  handleViewimage={handleViewimage}
                 />
                 <div className="px-2 py-1 seeallnotificationbutton-component">
                   <SeeAllNotificationButton handleClick={handleClick} />

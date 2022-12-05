@@ -8,14 +8,6 @@ import { useState } from "react";
 const Parent = () => {
   const [current, setCurrent] = useState("livemonitoring");
   const [viewidpass, setViewidpass] = useState();
-  const [viewstatuspass, setViewstatuspass] = useState();
-  const [viewobjectpass, setViewobjectpass] = useState();
-  const [viewcctvnamepass, setViewcctvnamepass] = useState();
-  const [viewcctvlocationpass, setViewcctvlocationpass] = useState();
-  const [viewtimepass, setViewtimepass] = useState();
-  const [viewuserpass, setViewuserpass] = useState();
-  const [viewcommentpass, setViewcommentpass] = useState();
-  const [viewimagepass, setViewimagepass] = useState();
   const getrole = localStorage.getItem("role");
   const getname = localStorage.getItem("name");
 
@@ -25,38 +17,6 @@ const Parent = () => {
 
   const handleViewidpass = (value) => {
     setViewidpass(value);
-  };
-
-  const handleViewstatuspass = (value) => {
-    setViewstatuspass(value);
-  };
-
-  const handleViewobjectpass = (value) => {
-    setViewobjectpass(value);
-  };
-
-  const handleViewcctvnamepass = (value) => {
-    setViewcctvnamepass(value);
-  };
-
-  const handleViewcctvlocationpass = (value) => {
-    setViewcctvlocationpass(value);
-  };
-
-  const handleViewtimepass = (value) => {
-    setViewtimepass(value);
-  };
-
-  const handleViewuserpass = (value) => {
-    setViewuserpass(value);
-  };
-
-  const handleViewcommentpass = (value) => {
-    setViewcommentpass(value);
-  };
-
-  const handleViewimagepass = (value) => {
-    setViewimagepass(value);
   };
 
   return (
@@ -182,27 +142,9 @@ const Parent = () => {
         <LiveMonitoring
           handleRoute={handleRoute}
           handleViewidpass={handleViewidpass}
-          handleViewstatuspass={handleViewstatuspass}
-          handleViewobjectpass={handleViewobjectpass}
-          handleViewcctvnamepass={handleViewcctvnamepass}
-          handleViewcctvlocationpass={handleViewcctvlocationpass}
-          handleViewtimepass={handleViewtimepass}
-          handleViewuserpass={handleViewuserpass}
-          handleViewcommentpass={handleViewcommentpass}
-          handleViewimagepass={handleViewimagepass}
         />
       ) : current == "validasideviasi" ? (
-        <ValidasiDeviasi
-          viewidpass={viewidpass}
-          viewstatuspass={viewstatuspass}
-          viewobjectpass={viewobjectpass}
-          viewcctvnamepass={viewcctvnamepass}
-          viewcctvlocationpass={viewcctvlocationpass}
-          viewtimepass={viewtimepass}
-          viewuserpass={viewuserpass}
-          viewcommentpass={viewcommentpass}
-          viewimagepass={viewimagepass}
-        />
+        <ValidasiDeviasi viewidpass={viewidpass} />
       ) : current == "datatervalidasi" ? (
         <DataTervalidasi />
       ) : (

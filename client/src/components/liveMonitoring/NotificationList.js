@@ -8,14 +8,6 @@ const NotificationList = ({
   cctvlocation,
   handleClick,
   handleViewid,
-  handleViewstatus,
-  handleViewobject,
-  handleViewcctvname,
-  handleViewcctvlocation,
-  handleViewtime,
-  handleViewuser,
-  handleViewcomment,
-  handleViewimage,
 }) => {
   const [data, setData] = useState([{}]);
   const [object, setObject] = useState("AllObject");
@@ -23,9 +15,6 @@ const NotificationList = ({
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState("");
   const gettoken = localStorage.getItem("jwt");
-  const array = data.map((data, index) => {
-    return data.id;
-  });
 
   useEffect(() => {
     setLoading(true);
@@ -76,14 +65,6 @@ const NotificationList = ({
         onClick={() => {
           handleClick("validasideviasi");
           handleViewid(data.id);
-          handleViewstatus(data.type_validation);
-          handleViewobject(data.type_object);
-          handleViewcctvname(data.name);
-          handleViewcctvlocation(data.location);
-          handleViewtime(data.created_at);
-          handleViewuser(data.user_name);
-          handleViewcomment(data.comment);
-          handleViewimage(data.image);
         }}
       >
         <div className="d-flex">

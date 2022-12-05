@@ -5,29 +5,10 @@ import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import ReactImageMagnify from "react-magnify-image";
 
-const ValidasiDeviasi = ({
-  viewidpass,
-  viewstatuspass,
-  viewobjectpass,
-  viewcctvnamepass,
-  viewcctvlocationpass,
-  viewtimepass,
-  viewuserpass,
-  viewcommentpass,
-  viewimagepass,
-}) => {
+const ValidasiDeviasi = ({ viewidpass }) => {
   const [data, setData] = useState([{}]);
   const [deviationdata, setDeviationdata] = useState([{}]);
   const [viewid, setViewid] = useState(viewidpass);
-  const [viewstatus, setViewstatus] = useState(viewstatuspass);
-  const [viewobject, setViewobject] = useState(viewobjectpass);
-  const [viewcctvname, setViewcctvname] = useState(viewcctvnamepass);
-  const [viewcctvlocation, setViewcctvlocation] =
-    useState(viewcctvlocationpass);
-  const [viewtime, setViewtime] = useState(viewtimepass);
-  const [viewuser, setViewuser] = useState(viewuserpass);
-  const [viewcomment, setViewcomment] = useState(viewcommentpass);
-  const [viewimage, setViewimage] = useState(viewimagepass);
   const [object, setObject] = useState("AllObject");
   const [datalimit, SetDatalimit] = useState(10);
   const [filtercctv, setFiltercctv] = useState("AllName/AllLocation");
@@ -100,14 +81,6 @@ const ValidasiDeviasi = ({
         key={data.id}
         onClick={() => {
           setViewid(data.id);
-          setViewstatus(data.type_validation);
-          setViewobject(data.type_object);
-          setViewcctvname(data.name);
-          setViewcctvlocation(data.location);
-          setViewtime(data.created_at);
-          setViewimage(data.image);
-          setViewuser(data.user_name);
-          setViewcomment(data.comment);
         }}
       >
         <div className="d-flex">
@@ -205,7 +178,7 @@ const ValidasiDeviasi = ({
                     <h6 className="fw-semibold d-flex gap-1">
                       <div>Terdeteksi Deviasi {deviationdata.type_object}</div>
                     </h6>
-                    {viewstatus != "not_yet" ? (
+                    {deviationdata.type_validation != "not_yet" ? (
                       <div>
                         <div className="d-flex row">
                           <div className="d-flex pb-2 gap-2 col">
@@ -223,7 +196,9 @@ const ValidasiDeviasi = ({
                               icon="fa6-solid:helmet-safety"
                             />
                             <p className="p-small">
-                              {deviationdata.user_name == null ? "-" : deviationdata.user_name}
+                              {deviationdata.user_name == null
+                                ? "-"
+                                : deviationdata.user_name}
                             </p>
                           </div>
                           <div className="col"></div>
@@ -234,7 +209,9 @@ const ValidasiDeviasi = ({
                               className="notif-icon"
                               icon="akar-icons:clock"
                             />
-                            <p className="p-small">{deviationdata.created_at}</p>
+                            <p className="p-small">
+                              {deviationdata.created_at}
+                            </p>
                           </div>
                           <div className="d-flex pb-2 gap-2 col">
                             <Icon className="notif-icon" icon="codicon:note" />
