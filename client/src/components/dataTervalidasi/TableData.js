@@ -232,7 +232,7 @@ const TableData = ({ filtercctv, filterobject, date }) => {
         ) : (
           ""
         )}
-        <ul className={"pagination justify-content-center gap-4" + (loading == true ? " absolute-blur" : "" )}>
+        <ul className={"pagination justify-content-center gap-4" + (loading == true ? " absolute-hidden" : "" )}>
           <li className="page-item">
             <button
               className={

@@ -87,12 +87,43 @@ button {
     position: absolute;
 }
 
-.absolute-blur {
+.absolute-position {
+    top: 10px;
+    left: 46% !important;
+}
+
+.absolute-hidden {
     visibility: hidden;
+}
+
+.absolute-invisible {
+    display: none;
 }
 
 .absolute-fixed {
     position: fixed;
+}
+
+.fill-window {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+}
+
+.fullscreen-cctv .btn-success:hover {
+    background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
+    color: #3E4958 !important;
+    font-size: 10px !important;
+}
+
+.fullscreen-cctv .btn-success {
+    background-image: linear-gradient(to right, white, white);
+    color: #3E4958 !important;
+    border: none !important;
+    font-size: small !important;
+    font-size: 10px !important;
 }
 
 
@@ -376,7 +407,7 @@ button {
 }
 
 .livemonitoring-body .modal-cctv {
-    width: 1040px !important;
+    width: 990px !important;
 }
 
 
@@ -581,6 +612,9 @@ button {
 .datatervalidasi-body .date-modal .modal-body {
     padding: 0px !important;
 }
+.ayam {
+    display: none;
+}
 
 
 
@@ -747,8 +781,4 @@ abbr[title] {
 
 .react-calendar--selectRange .react-calendar__tile--hover {
     background-color: #f8f8fa;
-}
-
-.imageimage {
-    width: 100px;
 }

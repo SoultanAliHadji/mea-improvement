@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 const NotificationList = ({
   cctvname,
   cctvlocation,
-  handleClick,
+  handleRoutePass,
   handleViewid,
 }) => {
   const [data, setData] = useState([{}]);
@@ -48,13 +48,7 @@ const NotificationList = ({
     setDatalimit(10);
   }, [cctvname, cctvlocation]);
 
-  useEffect(() => {
-    setInterval(() => {
-      axios.get("http://127.0.0.1:5000/refresh").then((res) => {
-        setRefresh(res.data.data);
-      });
-    }, 5000);
-  });
+
 
   const arr = data.slice(0, [datalimit]).map((data, index) => {
     return (
@@ -63,7 +57,7 @@ const NotificationList = ({
         className="shadow-all btn btn-success fw-semibold py-2 rounded-3 text-start"
         key={data.id}
         onClick={() => {
-          handleClick("validasideviasi");
+          handleRoutePass("validasideviasi");
           handleViewid(data.id);
         }}
       >
@@ -177,7 +171,7 @@ const NotificationList = ({
       <div className="px-2 py-2 overflow-auto notification-list mt-2 relative-component">
         <div
           className={
-            "absolute-component" + (loading == true ? " absolute-blur" : "")
+            "absolute-component" + (loading == true ? " absolute-hidden" : "")
           }
         >
           <div id="up"></div>

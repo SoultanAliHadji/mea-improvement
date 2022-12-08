@@ -2,11 +2,16 @@ import "../../App.css";
 import SeeAllNotificationButton from "./SeeAllNotificationButton";
 import NotificationList from "./NotificationList";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Icon } from "@iconify/react";
 import ReactImageMagnify from "react-magnify-image";
 
-const LiveMonitoring = ({ handleRoute, handleViewidpass }) => {
+const LiveMonitoring = ({
+  handleRoute,
+  handleViewidpass,
+  handleCctvid,
+  handleFullScreen,
+}) => {
   const [data, setData] = useState([{}]);
   const [ptzcctv, setPtzcctv] = useState([{}]);
   const [cctvid, setCctvid] = useState(1);
@@ -20,13 +25,15 @@ const LiveMonitoring = ({ handleRoute, handleViewidpass }) => {
   const [loading, setLoading] = useState(false);
   const gettoken = localStorage.getItem("jwt");
 
-  const handleClick = (value) => {
+  const handleRoutePass = (value) => {
     handleRoute(value);
   };
 
   const handleViewid = (value) => {
     handleViewidpass(value);
   };
+
+  handleCctvid(cctvid);
 
   useEffect(() => {
     setLoading(true);
@@ -169,6 +176,7 @@ const LiveMonitoring = ({ handleRoute, handleViewidpass }) => {
                       className="navigation"
                       onClick={() => {
                         setControltype();
+                        handleControl();
                       }}
                     >
                       <Icon icon="charm:refresh" />
@@ -222,6 +230,7 @@ const LiveMonitoring = ({ handleRoute, handleViewidpass }) => {
                       className="navigation"
                       onClick={() => {
                         setControltype("zoom_out");
+                        handleControl();
                       }}
                     >
                       <Icon icon="bx:zoom-out" />
@@ -230,6 +239,10 @@ const LiveMonitoring = ({ handleRoute, handleViewidpass }) => {
                       className="navigation"
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
+                      onClick={() => {
+                        handleFullScreen(true);
+                      }}
+                      id="full--screenVideo"
                     >
                       <Icon icon="ic:outline-zoom-out-map" />
                     </button>
@@ -272,11 +285,11 @@ const LiveMonitoring = ({ handleRoute, handleViewidpass }) => {
                 <NotificationList
                   cctvname={cctvname}
                   cctvlocation={cctvlocation}
-                  handleClick={handleClick}
+                  handleRoutePass={handleRoutePass}
                   handleViewid={handleViewid}
                 />
                 <div className="px-2 py-1 seeallnotificationbutton-component">
-                  <SeeAllNotificationButton handleClick={handleClick} />
+                  <SeeAllNotificationButton handleRoutePass={handleRoutePass} />
                 </div>
               </div>
             </div>
