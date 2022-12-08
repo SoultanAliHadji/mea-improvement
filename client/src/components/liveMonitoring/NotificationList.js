@@ -48,7 +48,13 @@ const NotificationList = ({
     setDatalimit(10);
   }, [cctvname, cctvlocation]);
 
-
+  /*useEffect(() => {
+    setInterval(() => {
+      axios.get("http://127.0.0.1:5000/refresh").then((res) => {
+        setRefresh(res.data.data);
+      });
+    }, 5000);
+  });*/
 
   const arr = data.slice(0, [datalimit]).map((data, index) => {
     return (

@@ -183,14 +183,15 @@ const Parent = () => {
         <div className="absolute-component absolute-position">
           <button
             type="button"
-            className="shadow-all btn fw-semibold py-2 rounded-3 btn-success"
+            className="shadow-all btn fw-semibold mt-2 px-5 py-2 rounded-3 btn-success"
             onClick={() => {
               setFullscreen(false);
             }}
           >
-            <div className="">Exit Fullscreen</div>
+            <div>Click Anywhere to Exit</div>
           </button>
         </div>
+        ;
       </div>
     </div>
   );

@@ -73,13 +73,13 @@ const ValidasiDeviasi = ({ viewidpass }) => {
       .catch((err) => console.log(err));
   }, [viewid, click]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     setInterval(() => {
       axios.get("http://127.0.0.1:5000/refresh").then((res) => {
         setRefresh(res.data.data);
       });
     }, 5000);
-  });
+  });*/
 
   const handleClick = (value) => {
     setClick(value);
