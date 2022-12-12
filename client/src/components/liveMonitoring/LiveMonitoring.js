@@ -21,7 +21,7 @@ const LiveMonitoring = ({
   const [cctvusername, setCctvusername] = useState("admin");
   const [cctvpassword, setCctvpassword] = useState("Buma@2020");
   const [controltype, setControltype] = useState("");
-  const livecctv = "http://10.1.74.9:5000/video_feed/" + cctvid;
+  const livecctv = "http://10.10.10.66:5001/api/video_feed/" + cctvid;
   const [loading, setLoading] = useState(false);
   const gettoken = localStorage.getItem("jwt");
 
@@ -94,7 +94,12 @@ const LiveMonitoring = ({
 
   const arr = data.map((data, index) => {
     return (
-      <a className="text-decoration-none" href="#up">
+      <a
+        className={
+          "text-decoration-none" + (cctvid == data.id ? " disabled" : "")
+        }
+        href="#up"
+      >
         <div className="d-grid px-2 py-1">
           <button
             type="button"

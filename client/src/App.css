@@ -88,7 +88,7 @@ button {
 }
 
 .absolute-position {
-    left: 40% !important;
+    left: 39% !important;
 }
 
 .absolute-hidden {
@@ -111,18 +111,14 @@ button {
     overflow: hidden;
 }
 
-.fullscreen-cctv .btn-success:hover {
-    background-image: linear-gradient(to right, #DFF4DF, #DFF4DF);
-    color: #3E4958 !important;
-    font-size: 10px !important;
+.fullscreen-cctv {
+    cursor: pointer;
 }
 
-.fullscreen-cctv .btn-success {
-    background-image: linear-gradient(to right, white, white);
-    color: #3E4958 !important;
-    border: none !important;
-    font-size: small !important;
-    font-size: 10px !important;
+.fullscreen-cctv .alart {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 12px;
 }
 
 

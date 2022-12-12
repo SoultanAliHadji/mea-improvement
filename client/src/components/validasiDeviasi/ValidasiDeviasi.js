@@ -45,7 +45,6 @@ const ValidasiDeviasi = ({ viewidpass }) => {
       )
       .then((res) => {
         setData(res.data.data);
-
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -304,7 +303,12 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                         </div>
                         <li>
                           <a
-                            className="text-decoration-none"
+                            className={
+                              "text-decoration-none" +
+                              (filtercctv == "AllName/AllLocation"
+                                ? " disabled"
+                                : "")
+                            }
                             href="#updeviation"
                           >
                             <button
@@ -325,7 +329,12 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                         </li>
                         <li>
                           <a
-                            className="text-decoration-none"
+                            className={
+                              "text-decoration-none" +
+                              (filtercctv == "CCTV BMO2/E Camera 3"
+                                ? " disabled"
+                                : "")
+                            }
                             href="#updeviation"
                           >
                             <button
@@ -346,7 +355,12 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                         </li>
                         <li>
                           <a
-                            className="text-decoration-none"
+                            className={
+                              "text-decoration-none" +
+                              (filtercctv == "CCTV BMO2/E Camera 2"
+                                ? " disabled"
+                                : "")
+                            }
                             href="#updeviation"
                           >
                             <button
@@ -367,7 +381,12 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                         </li>
                         <li>
                           <a
-                            className="text-decoration-none"
+                            className={
+                              "text-decoration-none" +
+                              (filtercctv == "CCTV BMO2/7West Camera 1"
+                                ? " disabled"
+                                : "")
+                            }
                             href="#updeviation"
                           >
                             <button
@@ -388,7 +407,12 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                         </li>
                         <li>
                           <a
-                            className="text-decoration-none"
+                            className={
+                              "text-decoration-none" +
+                              (filtercctv == "CCTV BMO2/PIT E1 [disabled]"
+                                ? " disabled"
+                                : "")
+                            }
                             href="#updeviation"
                           >
                             <button
@@ -409,7 +433,12 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                         </li>
                         <li>
                           <a
-                            className="text-decoration-none"
+                            className={
+                              "text-decoration-none" +
+                              (filtercctv == "CCTV BMO2/Low Wall Pit E"
+                                ? " disabled"
+                                : "")
+                            }
                             href="#updeviation"
                           >
                             <button
@@ -433,7 +462,12 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                         </div>
                         <li>
                           <a
-                            className="text-decoration-none"
+                            className={
+                              "text-decoration-none" +
+                              (validation == "Allvalidation"
+                                ? " disabled"
+                                : "")
+                            }
                             href="#updeviation"
                           >
                             <button
@@ -454,7 +488,12 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                         </li>
                         <li>
                           <a
-                            className="text-decoration-none"
+                            className={
+                              "text-decoration-none" +
+                              (validation == "validated"
+                                ? " disabled"
+                                : "")
+                            }
                             href="#updeviation"
                           >
                             <button
@@ -475,7 +514,12 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                         </li>
                         <li>
                           <a
-                            className="text-decoration-none"
+                            className={
+                              "text-decoration-none" +
+                              (validation == "unvalidated"
+                                ? " disabled"
+                                : "")
+                            }
                             href="#updeviation"
                           >
                             <button
@@ -502,7 +546,10 @@ const ValidasiDeviasi = ({ viewidpass }) => {
               <div className="shadow-all mb-3 bg-body rounded-bottom px-3 py-2">
                 <div className="d-grid px-2 py-2 border-bottom border-2 notificationfilter-component">
                   <div className="d-flex gap-2">
-                    <a href="#updeviation">
+                    <a
+                      className={object == "AllObject" ? " disabled" : ""}
+                      href="#updeviation"
+                    >
                       <button
                         type="button"
                         className={
@@ -519,7 +566,10 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                         Semua
                       </button>
                     </a>
-                    <a href="#updeviation">
+                    <a
+                      className={object == "Person" ? " disabled" : ""}
+                      href="#updeviation"
+                    >
                       <button
                         type="button"
                         className={
@@ -536,7 +586,10 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                         Person
                       </button>
                     </a>
-                    <a href="#updeviation">
+                    <a
+                      className={object == "LV" ? " disabled" : ""}
+                      href="#updeviation"
+                    >
                       <button
                         type="button"
                         className={
@@ -553,7 +606,10 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                         LV
                       </button>
                     </a>
-                    <a href="#updeviation">
+                    <a
+                      className={object == "HD" ? " disabled" : ""}
+                      href="#updeviation"
+                    >
                       <button
                         type="button"
                         className={

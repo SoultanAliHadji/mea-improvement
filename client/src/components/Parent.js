@@ -181,17 +181,10 @@ const Parent = () => {
       >
         <img className="fill-window" src={livecctv} alt="" />
         <div className="absolute-component absolute-position">
-          <button
-            type="button"
-            className="shadow-all btn fw-semibold mt-2 px-5 py-2 rounded-3 btn-success"
-            onClick={() => {
-              setFullscreen(false);
-            }}
-          >
-            <div>Click Anywhere to Exit</div>
-          </button>
+          <div className="alart px-5 py-2 rounded-3 mt-2 fw-semibold">
+            <label className="px-4 py-1">Click Anywhere To Exit</label>
+          </div>
         </div>
-        ;
       </div>
     </div>
   );

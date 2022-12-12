@@ -110,7 +110,7 @@ const NotificationList = ({
     <div>
       <div className="d-grid px-2 py-2 border-bottom border-2 notificationfilter-component">
         <div className="d-flex gap-2">
-          <a href="#up">
+          <a className={object == "AllObject" ? " disabled" : ""} href="#up">
             <button
               type="button"
               className={
@@ -127,7 +127,7 @@ const NotificationList = ({
               Semua
             </button>
           </a>
-          <a href="#up">
+          <a className={object == "Person" ? " disabled" : ""} href="#up">
             <button
               type="button"
               className={
@@ -142,7 +142,7 @@ const NotificationList = ({
               Person
             </button>
           </a>
-          <a href="#up">
+          <a className={object == "LV" ? " disabled" : ""} href="#up">
             <button
               type="button"
               className={
@@ -157,7 +157,7 @@ const NotificationList = ({
               LV
             </button>
           </a>
-          <a href="#up">
+          <a className={object == "HD" ? " disabled" : ""} href="#up">
             <button
               type="button"
               className={
