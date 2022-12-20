@@ -108,8 +108,8 @@ const NotificationList = ({
 
   return (
     <div>
-      <div className="d-grid px-2 py-2 border-bottom border-2 notificationfilter-component">
-        <div className="d-flex gap-2">
+      <div className="p-2 border-bottom border-2 notificationfilter-component">
+        <div className="d-flex justify-content-center gap-2">
           <a className={object == "AllObject" ? " disabled" : ""} href="#up">
             <button
               type="button"
@@ -174,7 +174,7 @@ const NotificationList = ({
           </a>
         </div>
       </div>
-      <div className="px-2 py-2 overflow-auto notification-list mt-2 relative-component">
+      <div className="px-2 py-2 overflow-auto notification-list mt-2 relative-component d-flex justify-content-center">
         <div
           className={
             "absolute-component" + (loading == true ? " absolute-hidden" : "")

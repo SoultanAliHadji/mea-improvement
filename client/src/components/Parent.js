@@ -32,8 +32,8 @@ const Parent = () => {
 
   return (
     <div>
-      <div className={fullscreen == false ? "" : " absolute-invisible"}>
-        <div className="navbar-component">
+      <div className={fullscreen == false ? "body-bg" : " absolute-invisible"}>
+        <div className="navbar-component nav-bg">
           <div className="nav-border">
             <div className="container">
               <nav className="navbar navbar-expand-md">

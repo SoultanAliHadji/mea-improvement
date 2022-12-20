@@ -21,8 +21,13 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.nav-bg {
+    background-color: white;
+}
+
 .body-bg {
     background-color: #F0F0F0;
+    height: 100vh;
 }
 
 .shadow-all {
@@ -401,9 +406,6 @@ button {
     background-color: transparent !important;
 }
 
-.livemonitoring-body .modal-cctv {
-    width: 990px !important;
-}
 
 
 
