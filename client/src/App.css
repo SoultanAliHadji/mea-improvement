@@ -343,8 +343,8 @@ button {
 }
 
 .login-page .card {
-    width: 70%;
-    height: 82%;
+    width: 848px;
+    height: 500px;
 }
 
 .login-page .card-col-left {
@@ -384,6 +384,11 @@ button {
     color: #297209 !important;
     width: 20px;
     height: 20px;
+}
+
+.carousel-inner {
+    width: 100%;
+    max-height: 100% !important;
 }
 
 
@@ -617,9 +622,6 @@ button {
 .datatervalidasi-body .date-modal .modal-body {
     padding: 0px !important;
 }
-.ayam {
-    display: none;
-}
 
 
 
@@ -786,4 +788,11 @@ abbr[title] {
 
 .react-calendar--selectRange .react-calendar__tile--hover {
     background-color: #f8f8fa;
+}
+
+@media (max-width:991.5px) {
+    .login-page .card {
+        width: 70%;
+        height: 82%;
+    }
 }
