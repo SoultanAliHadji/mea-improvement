@@ -10,7 +10,7 @@ const Parent = () => {
   const [viewidpass, setViewidpass] = useState();
   const [cctvid, setCctvid] = useState();
   const [fullscreen, setFullscreen] = useState(false);
-  const livecctv = "http://10.1.74.9:5000/video_feed/" + cctvid;
+  const livecctv = "http://10.10.10.66:5001/api/video_feed/" + cctvid;
   const getrole = localStorage.getItem("role");
   const getname = localStorage.getItem("name");
 

@@ -16,13 +16,15 @@ const ValidasiDeviasi = ({ viewidpass }) => {
   const [viewuser, setViewuser] = useState();
   const [viewcomment, setViewcomment] = useState();
   const [viewimage, setViewimage] = useState();
+  const [deviationimage, setDeviationimage] = useState();
   const [object, setObject] = useState("AllObject");
   const [datalimit, SetDatalimit] = useState(10);
   const [filtercctv, setFiltercctv] = useState("AllName/AllLocation");
   const [validation, setValidation] = useState("Allvalidation");
   const [click, setClick] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [refresh, setRefresh] = useState("");
+  const [secondloading, setSecondloading] = useState();
+  /*const [refresh, setRefresh] = useState("");*/
   const gettoken = localStorage.getItem("jwt");
 
   useEffect(() => {
@@ -50,7 +52,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
       .finally(() => {
         setLoading(false);
       });
-  }, [object, datalimit, filtercctv, validation, click, refresh]);
+  }, [object, datalimit, filtercctv, validation, click /*refresh*/]);
 
   useEffect(() => {
     axios
@@ -71,6 +73,35 @@ const ValidasiDeviasi = ({ viewidpass }) => {
       })
       .catch((err) => console.log(err));
   }, [viewid, click]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://10.10.10.66:5001/api/assets/outputFolder/cctvOutput/" +
+          viewimage,
+        {
+          headers: {
+            Authorization: "Bearer " + gettoken,
+          },
+        },
+        {
+          responseType: "arraybuffer",
+        }
+      )
+      .then((res) => {
+        const blob = new Blob([res.data], {
+          type: res.headers["content-type"],
+        });
+        const reader = new window.FileReader();
+        reader.readAsDataURL(blob);
+        reader.onload = () => {
+          const imageDataUrl = reader.result;
+          setDeviationimage(imageDataUrl);
+          console.log(imageDataUrl);
+        };
+      })
+      .catch((err) => console.log(err));
+  }, [viewimage]);
 
   /*useEffect(() => {
     setInterval(() => {
@@ -143,9 +174,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
           <div className="col-lg-9">
             <div className="shadow-all mb-3 bg-body rounded-top px-3 py-2">
               <h6 className="fw-semibold">Validasi Deviasi</h6>
-              <p className="p-small">
-                Validasi deviasi yang terdeteksi {refresh}
-              </p>
+              <p className="p-small">Validasi deviasi yang terdeteksi</p>
             </div>
             <div className="shadow-all mb-3 bg-body rounded-bottom px-3 pt-2">
               <div className="d-grid px-2 py-2 d-flex justify-content-center">
@@ -156,10 +185,10 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                       smallImage: {
                         alt: "",
                         isFluidWidth: true,
-                        src: require("../../assets/mining_eyes.jpg"),
+                        src: deviationimage,
                       },
                       largeImage: {
-                        src: require("../../assets/mining_eyes.jpg"),
+                        src: deviationimage,
                         width: 2000,
                         height: 1100,
                       },
@@ -314,6 +343,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                             onClick={() => {
                               setFiltercctv("AllName/AllLocation");
                               SetDatalimit(10);
+                              setSecondloading(false);
                             }}
                           >
                             Semua Kamera
@@ -340,6 +370,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                             onClick={() => {
                               setFiltercctv("CCTV BMO2/E Camera 3");
                               SetDatalimit(10);
+                              setSecondloading(false);
                             }}
                           >
                             CCTV BMO2 - E Camera 3
@@ -366,6 +397,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                             onClick={() => {
                               setFiltercctv("CCTV BMO2/E Camera 2");
                               SetDatalimit(10);
+                              setSecondloading(false);
                             }}
                           >
                             CCTV BMO2 - E Camera 2
@@ -392,6 +424,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                             onClick={() => {
                               setFiltercctv("CCTV BMO2/7West Camera 1");
                               SetDatalimit(10);
+                              setSecondloading(false);
                             }}
                           >
                             CCTV BMO2 - 7West Camera 1
@@ -418,6 +451,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                             onClick={() => {
                               setFiltercctv("CCTV BMO2/PIT E1 [disabled]");
                               SetDatalimit(10);
+                              setSecondloading(false);
                             }}
                           >
                             CCTV BMO2 - PIT E1 [disabled]
@@ -444,6 +478,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                             onClick={() => {
                               setFiltercctv("CCTV BMO2/Low Wall Pit E");
                               SetDatalimit(10);
+                              setSecondloading(false);
                             }}
                           >
                             CCTV BMO2 - Low Wall Pit E
@@ -471,6 +506,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                             onClick={() => {
                               setValidation("Allvalidation");
                               SetDatalimit(10);
+                              setSecondloading(false);
                             }}
                           >
                             Semua Tipe Validasi
@@ -495,6 +531,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                             onClick={() => {
                               setValidation("validated");
                               SetDatalimit(10);
+                              setSecondloading(false);
                             }}
                           >
                             Tervalidasi
@@ -519,6 +556,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                             onClick={() => {
                               setValidation("unvalidated");
                               SetDatalimit(10);
+                              setSecondloading(false);
                             }}
                           >
                             Belum Tervalidasi
@@ -548,6 +586,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                       onClick={() => {
                         setObject("AllObject");
                         SetDatalimit(10);
+                        setSecondloading(false);
                       }}
                     >
                       Semua
@@ -568,6 +607,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                       onClick={() => {
                         setObject("Person");
                         SetDatalimit(10);
+                        setSecondloading(false);
                       }}
                     >
                       Person
@@ -588,6 +628,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                       onClick={() => {
                         setObject("LV");
                         SetDatalimit(10);
+                        setSecondloading(false);
                       }}
                     >
                       LV
@@ -608,6 +649,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                       onClick={() => {
                         setObject("HD");
                         SetDatalimit(10);
+                        setSecondloading(false);
                       }}
                     >
                       HD
@@ -615,13 +657,8 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                   </a>
                 </div>
               </div>
-              <div className="px-2 py-2 overflow-auto notification-list mt-2 relative-component d-flex justify-content-center">
-                <div
-                  className={
-                    "absolute-component" +
-                    (loading == true ? " absolute-hidden" : "")
-                  }
-                >
+              <div className="px-2 py-2 overflow-auto notification-list mt-2">
+                <div className={loading == true ? " absolute-hidden" : ""}>
                   <div id="updeviation"></div>
                   <div className="notificationlistbutton-component d-grid gap-2">
                     {arr}
@@ -636,6 +673,7 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                       }
                       onClick={() => {
                         SetDatalimit(datalimit + 10);
+                        setSecondloading(true);
                       }}
                     >
                       {(data.length == datalimit) & (loading == false)
@@ -646,7 +684,15 @@ const ValidasiDeviasi = ({ viewidpass }) => {
                 </div>
                 {loading == true ? (
                   <div className="d-flex justify-content-center">
-                    <div className="absolute-component absolute-fixed">
+                    <div
+                      className={
+                        secondloading == null
+                          ? "first-loading"
+                          : secondloading == false
+                          ? "second-loading"
+                          : "third-loading"
+                      }
+                    >
                       <div
                         className="spinner-border text-success"
                         role="status"

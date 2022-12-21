@@ -46,6 +46,7 @@ const Login = () => {
           console.log(err.response.data.meta.status);
           setJwt("");
           setIncorrect("Incorrect");
+          window.location.replace("http://localhost:3000/#");
         }
       });
   };
@@ -72,6 +73,7 @@ const Login = () => {
             console.log(err.response.data.meta.status);
             setJwt("");
             setIncorrect("Incorrect");
+            window.location.replace("http://localhost:3000/#");
           }
         });
     }

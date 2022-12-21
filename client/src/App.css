@@ -27,7 +27,7 @@
 
 .body-bg {
     background-color: #F0F0F0;
-    height: 100vh;
+    height: 100%;
 }
 
 .shadow-all {
@@ -104,8 +104,16 @@ button {
     display: none;
 }
 
-.absolute-fixed {
-    position: fixed;
+.first-loading {
+    margin-top: 40px;
+}
+
+.second-loading {
+    margin-top: -728px;
+}
+
+.third-loading {
+    margin-top: -188px;
 }
 
 .fill-window {

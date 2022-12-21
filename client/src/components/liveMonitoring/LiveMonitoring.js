@@ -179,7 +179,7 @@ const LiveMonitoring = ({
                   <button
                     className="navigation"
                     onClick={() => {
-                      setControltype();
+                      setControltype("reload");
                       handleControl();
                     }}
                   >

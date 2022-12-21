@@ -54,7 +54,7 @@ const DataTervalidasi = () => {
             <h6 className="fw-semibold">Data Deviasi Tervalidasi</h6>
           </div>
           <div className="row mb-2 p-medium">
-            <div className="col-3">
+            <div className="col-sm-3">
               <p>CCTV</p>
               <div className="input-group">
                 <label className="input-group-text" for="inputGroupSelect03">
@@ -87,7 +87,7 @@ const DataTervalidasi = () => {
                 </select>
               </div>
             </div>
-            <div className="col-3">
+            <div className="col-sm-3">
               <p>Objek</p>
               <div className="input-group">
                 <label className="input-group-text" for="inputGroupSelect03">
@@ -111,7 +111,7 @@ const DataTervalidasi = () => {
                 </select>
               </div>
             </div>
-            <div className="col-1">
+            <div className="col-sm-1">
               <p>Periode</p>
               <div className="input-group">
                 <button
@@ -149,7 +149,7 @@ const DataTervalidasi = () => {
                 </div>
               </div>
             </div>
-            <div className="col-5 d-flex align-items-end justify-content-end">
+            <div className="col-sm-5 d-flex align-items-end justify-content-end">
               <div className="d-flex gap-3">
                 <Export
                   filterobject={filterobject}

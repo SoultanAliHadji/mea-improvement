@@ -13,6 +13,7 @@ const NotificationList = ({
   const [object, setObject] = useState("AllObject");
   const [datalimit, setDatalimit] = useState(10);
   const [loading, setLoading] = useState(false);
+  const [secondloading, setSecondloading] = useState();
   const [refresh, setRefresh] = useState("");
   const gettoken = localStorage.getItem("jwt");
 
@@ -122,6 +123,7 @@ const NotificationList = ({
               onClick={() => {
                 setObject("AllObject");
                 setDatalimit(10);
+                setSecondloading(false);
               }}
             >
               Semua
@@ -137,6 +139,7 @@ const NotificationList = ({
               onClick={() => {
                 setObject("Person");
                 setDatalimit(10);
+                setSecondloading(false);
               }}
             >
               Person
@@ -152,6 +155,7 @@ const NotificationList = ({
               onClick={() => {
                 setObject("LV");
                 setDatalimit(10);
+                setSecondloading(false);
               }}
             >
               LV
@@ -167,6 +171,7 @@ const NotificationList = ({
               onClick={() => {
                 setObject("HD");
                 setDatalimit(10);
+                setSecondloading(false);
               }}
             >
               HD
@@ -174,12 +179,8 @@ const NotificationList = ({
           </a>
         </div>
       </div>
-      <div className="px-2 py-2 overflow-auto notification-list mt-2 relative-component d-flex justify-content-center">
-        <div
-          className={
-            "absolute-component" + (loading == true ? " absolute-hidden" : "")
-          }
-        >
+      <div className="px-2 py-2 overflow-auto notification-list mt-2">
+        <div className={loading == true ? " absolute-hidden" : ""}>
           <div id="up"></div>
           <div className="notificationlistbutton-component d-grid gap-2">
             {arr}
@@ -192,6 +193,7 @@ const NotificationList = ({
               }
               onClick={() => {
                 setDatalimit(datalimit + 10);
+                setSecondloading(true);
               }}
             >
               {(data.length == datalimit) & (loading == false)
@@ -202,7 +204,15 @@ const NotificationList = ({
         </div>
         {loading == true ? (
           <div className="d-flex justify-content-center">
-            <div className="absolute-component absolute-fixed">
+            <div
+              className={
+                secondloading == null
+                  ? "first-loading"
+                  : secondloading == false
+                  ? "second-loading"
+                  : "third-loading"
+              }
+            >
               <div className="spinner-border text-success" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>
