@@ -39,14 +39,14 @@ const Login = () => {
         setRole(data.data.data.role);
         setName(data.data.data.name);
         setId(data.data.data.id);
-        window.location.replace("http://localhost:3000/mining-eyes-analytics");
+        window.location.replace("/mining-eyes-analytics");
       })
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data.meta.status);
           setJwt("");
           setIncorrect("Incorrect");
-          window.location.replace("http://localhost:3000/#");
+          window.location.replace("/#");
         }
       });
   };
@@ -65,7 +65,7 @@ const Login = () => {
           setName(data.data.data.name);
           setId(data.data.data.id);
           window.location.replace(
-            "http://localhost:3000/mining-eyes-analytics"
+            "/mining-eyes-analytics"
           );
         })
         .catch((err) => {
@@ -73,7 +73,7 @@ const Login = () => {
             console.log(err.response.data.meta.status);
             setJwt("");
             setIncorrect("Incorrect");
-            window.location.replace("http://localhost:3000/#");
+            window.location.replace("/#");
           }
         });
     }
